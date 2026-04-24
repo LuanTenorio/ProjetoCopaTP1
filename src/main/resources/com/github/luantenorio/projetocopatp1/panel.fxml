@@ -1,14 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.github.luantenorio.projetocopatp1.panel.PanelController"
-            prefHeight="400.0" prefWidth="600.0">
+<BorderPane prefHeight="1024.0" prefWidth="1440.0" stylesheets="@css/panel.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.luantenorio.projetocopatp1.panel.PanelController">
 
-</AnchorPane>
+    <left>
+        <VBox fx:id="panel" prefWidth="300.0" spacing="10" styleClass="panel">
+            <VBox prefWidth="295.0" styleClass="menu-lateral" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+                <children>
+                    <Button maxWidth="Infinity" styleClass="menu-button, menu-button-first" text="GESTÃO" />
+
+                    <Button maxWidth="Infinity" styleClass="menu-button" text="SELEÇÕES" />
+                    <Button maxWidth="Infinity" styleClass="menu-button" text="JOGADORES" />
+                    <Button maxWidth="Infinity" styleClass="menu-button" text="ESTÁDIOS" />
+                    <Button maxWidth="Infinity" styleClass="menu-button" text="ARBITRAGEM" />
+                    <Button maxWidth="Infinity" styleClass="menu-button" text="PARTIDAS" />
+                </children>
+            </VBox>
+        </VBox>
+    </left>
+
+    <center>
+        <StackPane fx:id="routerOutlet" style="-fx-background-color: #FFFDF6;" />
+    </center>
+
+</BorderPane>
