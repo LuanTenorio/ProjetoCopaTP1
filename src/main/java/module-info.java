@@ -9,4 +9,8 @@ module com.github.luantenorio.projetocopatp1 {
 
     opens com.github.luantenorio.projetocopatp1 to javafx.fxml;
     exports com.github.luantenorio.projetocopatp1;
+    exports com.github.luantenorio.projetocopatp1.login;
+    opens com.github.luantenorio.projetocopatp1.login to javafx.fxml;
+    exports com.github.luantenorio.projetocopatp1.panel;
+    opens com.github.luantenorio.projetocopatp1.panel to javafx.fxml;
 }
