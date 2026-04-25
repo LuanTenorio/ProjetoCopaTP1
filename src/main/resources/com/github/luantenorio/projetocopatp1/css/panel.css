@@ -29,3 +29,7 @@
 .menu-button-first {
     -fx-border-width: 1px 0 1px 0;
 }
+
+.router-outlet{
+    -fx-background-color: #FFFDF6;
+}

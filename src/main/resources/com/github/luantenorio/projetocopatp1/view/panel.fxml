@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="1024.0" prefWidth="1440.0" stylesheets="@css/panel.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.luantenorio.projetocopatp1.panel.PanelController">
+<BorderPane prefHeight="1024.0" prefWidth="1440.0" stylesheets="@../css/panel.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.luantenorio.projetocopatp1.panel.PanelController" >
 
     <left>
         <VBox fx:id="panel" prefWidth="300.0" spacing="10" styleClass="panel">
@@ -24,7 +24,7 @@
     </left>
 
     <center>
-        <StackPane fx:id="routerOutlet" style="-fx-background-color: #FFFDF6;" />
+        <StackPane fx:id="routerOutlet" styleClass="router-outlet" />
     </center>
 
 </BorderPane>

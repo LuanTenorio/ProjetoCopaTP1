@@ -23,7 +23,7 @@ public class LoginController {
         }
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/github/luantenorio/projetocopatp1/panel.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/github/luantenorio/projetocopatp1/view/panel.fxml"));
             Parent newRoot = loader.load();
             Stage curRoot = (Stage) loginBtn.getScene().getWindow();
             curRoot.getScene().setRoot(newRoot);
