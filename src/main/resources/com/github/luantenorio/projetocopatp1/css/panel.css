@@ -1,0 +1,35 @@
+.panel{
+    -fx-background-color: #014DFF;
+    -fx-padding: 15px;
+    -fx-border-width: 0 0 0 30;
+    -fx-border-color: #20195F;
+    -fx-border-style: solid inside;
+    -fx-background-image: url("../image/noise.png");
+    -fx-background-repeat: repeat;
+    -fx-background-radius: 0 20 20 0;
+    -fx-padding: 19;
+}
+
+.menu-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-family: "Poppins", "Segoe UI", sans-serif;
+    -fx-font-size: 20px;
+    -fx-alignment: center;
+    -fx-padding: 20px 0px;
+    -fx-border-color: white;
+    -fx-border-width: 0 0 1px 0;
+    -fx-cursor: hand;
+}
+
+.menu-button:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+}
+
+.menu-button-first {
+    -fx-border-width: 1px 0 1px 0;
+}
+
+.router-outlet{
+    -fx-background-color: #FFFDF6;
+}

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="1024.0" prefWidth="1440.0" stylesheets="@../css/panel.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.luantenorio.projetocopatp1.panel.PanelController" >
+
+    <left>
+        <VBox fx:id="panel" prefWidth="300.0" spacing="10" styleClass="panel">
+            <VBox prefWidth="295.0" styleClass="menu-lateral" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+                <children>
+                    <Button maxWidth="Infinity" styleClass="menu-button, menu-button-first" text="GESTÃO" />
+
+                    <Button maxWidth="Infinity" styleClass="menu-button" text="SELEÇÕES" />
+                    <Button maxWidth="Infinity" styleClass="menu-button" text="JOGADORES" />
+                    <Button maxWidth="Infinity" styleClass="menu-button" text="ESTÁDIOS" />
+                    <Button maxWidth="Infinity" styleClass="menu-button" text="ARBITRAGEM" />
+                    <Button maxWidth="Infinity" styleClass="menu-button" text="PARTIDAS" />
+                </children>
+            </VBox>
+        </VBox>
+    </left>
+
+    <center>
+        <StackPane fx:id="routerOutlet" styleClass="router-outlet" />
+    </center>
+
+</BorderPane>
