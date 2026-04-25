@@ -2,6 +2,8 @@ package com.github.luantenorio.projetocopatp1.estadium;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -12,11 +14,22 @@ import java.util.List;
 public class EstadiumController {
 
     private ArrayList<EstadiumEntity> estadiuns = new ArrayList<>();
+    private List<EstadiumEntity> estadiunsFiltered = new ArrayList<>();
     private EstadiumDAO estadiumDAO = new EstadiumDAO();
+    private EstadiumEntity activedFilters = new EstadiumEntity("", "", 0);
     private List<EstadiumEntity> entitiesVisibles = new ArrayList<>();
     private int SIZE_PAGINATION = 10;
     private int totPages;
     private int curPage = 1;
+
+    @FXML
+    private TextField filterName;
+
+    @FXML
+    private TextField filterLocation;
+
+    @FXML
+    private TextField filterCapacity;
 
     @FXML
     private VBox rowsContainer;
@@ -27,17 +40,25 @@ public class EstadiumController {
     @FXML
     public void initialize(){
         this.estadiuns = this.estadiumDAO.estadiumPagination();
+        this.estadiunsFiltered = this.estadiuns;
         this.renderTable();
+        this.formatCapacityField();
+
     }
 
     private void renderTable() {
         this.rowsContainer.getChildren().clear();
+        this.filterEstadiuns();
 
-        this.totPages = (int) Math.ceil((double) estadiuns.size() / this.SIZE_PAGINATION);
+        this.totPages = Math.max(1, (int) Math.ceil((double) estadiunsFiltered.size() / this.SIZE_PAGINATION));
+
+        if(this.curPage > this.totPages) //Evita bugs de filtragem
+            this.curPage = this.totPages;
+
         int initIndex = (this.curPage - 1) * this.SIZE_PAGINATION;
-        int endIndex = Math.min(initIndex + this.SIZE_PAGINATION, this.estadiuns.size());
+        int endIndex = Math.min(initIndex + this.SIZE_PAGINATION, this.estadiunsFiltered.size());
 
-        this.entitiesVisibles = this.estadiuns.subList(initIndex, endIndex);
+        this.entitiesVisibles = this.estadiunsFiltered.subList(initIndex, endIndex);
 
         for (EstadiumEntity e : this.entitiesVisibles) {
             GridPane linha = createRowTable(e);
@@ -80,6 +101,54 @@ public class EstadiumController {
 
         this.curPage++;
         this.renderTable();
+    }
+
+    public void filterName(){
+        if(activedFilters.getName().trim().equals(this.filterName.getText().trim()))
+            return;
+
+        this.activedFilters.setName(this.filterName.getText().trim());
+        this.renderTable();
+    }
+
+    public void filterLocation(){
+        if(activedFilters.getLocation().trim().equals(this.filterLocation.getText().trim()))
+            return;
+
+        this.activedFilters.setLocation(this.filterLocation.getText().trim());
+        this.renderTable();
+    }
+
+    private void filterEstadiuns(){
+        String name = this.filterName.getText().trim();
+        String location = this.filterLocation.getText().trim();
+        String capacity = this.filterCapacity.getText().trim();
+
+        if(name.isEmpty() && location.isEmpty()){
+            this.estadiunsFiltered = this.estadiuns;
+            return;
+        }
+
+        this.estadiunsFiltered = this.estadiuns.stream().filter(estadium -> {
+            if(!name.isEmpty() && !estadium.getName().trim().startsWith(name))
+                return false;
+
+            if(!location.isEmpty() && !estadium.getLocation().trim().startsWith(location))
+                return false;
+
+//            if(!capacity.isEmpty() && !String.format("%d", estadium.getCapacity()).startsWith(capacity))
+//                return false;
+
+            return true;
+        }).toList();
+    }
+
+    private void formatCapacityField(){
+        TextFormatter<String> numberFormatter = new TextFormatter<>(change ->
+            change.getText().matches("\\d*") ? change : null
+        );
+
+        this.filterCapacity.setTextFormatter(numberFormatter);
     }
 
 }

@@ -27,7 +27,7 @@
 
     <center>
 <!--    Aqui é onde vai está todas as telas do lado do painel de controle-->
-        <ScrollPane fitToWidth="true" fitToHeight="true" styleClass="scroll-principal">
+        <ScrollPane fitToWidth="true" fitToHeight="true" styleClass="scroll">
             <StackPane fx:id="routerOutlet" styleClass="router-outlet"></StackPane>
         </ScrollPane>
     </center>

@@ -26,17 +26,17 @@
 
             <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="0">
                 <Label text="Nome" styleClass="label-filter" />
-                <TextField promptText="Mané garrincha" styleClass="field-filter" />
+                <TextField fx:id="filterName" promptText="Mané garrincha" styleClass="field-filter" onInputMethodTextChanged="#filterName" onKeyReleased="#filterName"/>
             </VBox>
 
             <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="0">
                 <Label text="Localização" styleClass="label-filter" />
-                <TextField promptText="Rio de Janeiro" styleClass="field-filter" />
+                <TextField fx:id="filterLocation" promptText="Rio de Janeiro" styleClass="field-filter" onKeyReleased="#filterLocation" />
             </VBox>
 
             <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="1">
                 <Label text="Capacidade" styleClass="label-filter" />
-                <TextField promptText="100.000" styleClass="field-filter" />
+                <TextField fx:id="filterCapacity" promptText="100.000" styleClass="field-filter" />
             </VBox>
 
         </GridPane>

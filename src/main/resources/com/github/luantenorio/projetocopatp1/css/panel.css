@@ -42,7 +42,7 @@
     -fx-max-width: 1024px;
 }
 
-.scroll-principal .scroll-bar:vertical .thumb {
+.scroll .scroll-bar:vertical .thumb {
     -fx-background-color: rgba(32, 25, 95, 0.3);
     -fx-background-radius: 5px;
 }
