@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class Router {
 
-    private static String PATH = "/com/github/luantenorio/projetocopatp1/";
+    private static String PATH = "/com/github/luantenorio/projetocopatp1/view/";
 
     private static void loadScene(StackPane outlet, String arquivoFxml) {
         try {
