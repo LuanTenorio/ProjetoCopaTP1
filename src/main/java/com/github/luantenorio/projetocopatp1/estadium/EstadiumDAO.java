@@ -10,9 +10,10 @@ public class EstadiumDAO {
         return null;
     }
 
+//    Retornar tudo e fazer a paginação no componente
     public ArrayList<EstadiumEntity> estadiumPagination() {
         var arr = new ArrayList<EstadiumEntity>();
-        for(int i = 0; i < 10; i++)
+        for(int i = 1; i <= 45; i++)
             arr.add(new EstadiumEntity("est " + i, "bsb " + i, 10000 * i));
 
         return arr;

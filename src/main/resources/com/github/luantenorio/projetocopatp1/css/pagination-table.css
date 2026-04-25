@@ -16,6 +16,7 @@
     -fx-font-size: 16px;
     -fx-font-weight: bold;
     -fx-text-fill: #D5B256; /* Cor dourada/amarela do Figma */
+    -fx-alignment: center;
 }
 
 .bold-row {
@@ -39,7 +40,8 @@
     -fx-font-family: "Poppins", sans-serif;
     -fx-font-size: 15px;
     -fx-font-weight: bold;
-    -fx-text-fill: #20195F; /* Azul escuro */
+    -fx-text-fill: #20195F;
+    -fx-alignment: center;
 }
 
 .pagination-container {

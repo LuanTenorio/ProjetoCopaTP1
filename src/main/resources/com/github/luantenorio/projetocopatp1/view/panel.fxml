@@ -6,6 +6,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ScrollPane?>
 <BorderPane prefHeight="1024.0" prefWidth="1440.0" stylesheets="@../css/panel.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.luantenorio.projetocopatp1.panel.PanelController" >
 
     <left>
@@ -25,8 +26,10 @@
     </left>
 
     <center>
-<!--        Aqui é onde vai está todas as telas do lado do painel de controle-->
-        <StackPane fx:id="routerOutlet" styleClass="router-outlet"></StackPane>
+<!--    Aqui é onde vai está todas as telas do lado do painel de controle-->
+        <ScrollPane fitToWidth="true" fitToHeight="true" styleClass="scroll-principal">
+            <StackPane fx:id="routerOutlet" styleClass="router-outlet"></StackPane>
+        </ScrollPane>
     </center>
 
 </BorderPane>
