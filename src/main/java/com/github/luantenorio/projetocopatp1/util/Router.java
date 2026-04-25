@@ -10,24 +10,22 @@ public class Router {
 
     private static String PATH = "/com/github/luantenorio/projetocopatp1/view/";
 
-    private static void loadScene(StackPane outlet, String arquivoFxml) {
+    public static void NavigateTo(StackPane outlet, ViewName name) {
+        String filename = name.getFileFxmlName();
+
         try {
-            FXMLLoader loader = new FXMLLoader(Router.class.getResource(PATH + arquivoFxml));
+            FXMLLoader loader = new FXMLLoader(Router.class.getResource(PATH + filename));
             Parent newScene = loader.load();
 
             outlet.getChildren().clear();
             outlet.getChildren().add(newScene);
         } catch (IOException e) {
-            System.err.println("Rota não encontrada" + arquivoFxml);
+            System.err.println("Rota não encontrada" + filename);
             e.printStackTrace();
         } catch (NullPointerException e) {
-            System.err.println("Arquivo não encontrado" + PATH + arquivoFxml);
+            System.err.println("Arquivo não encontrado" + PATH + filename);
             e.printStackTrace();
         }
     }
-
-//    public static void goToStadium(StackPane outlet) {
-//        loadScene(outlet, "stadium.fxml");
-//    }
 
 }
