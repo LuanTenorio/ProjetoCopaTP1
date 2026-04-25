@@ -32,4 +32,12 @@
 
 .router-outlet{
     -fx-background-color: #FFFDF6;
+    -fx-padding: 30;
+    -fx-alignment: top-center;
+    -fx-spacing: 10px;
+}
+
+.router-outlet > .vbox {
+    -fx-pref-width: 10000px;
+    -fx-max-width: 1024px;
 }

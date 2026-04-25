@@ -1,6 +1,9 @@
 package com.github.luantenorio.projetocopatp1.panel;
 
+import com.github.luantenorio.projetocopatp1.util.Router;
+import com.github.luantenorio.projetocopatp1.util.ViewName;
 import javafx.fxml.FXML;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 
@@ -8,6 +11,9 @@ public class PanelController {
 
     @FXML
     private VBox panel;
+
+    @FXML
+    private StackPane routerOutlet;
 
     @FXML
     public void initialize() {
@@ -25,6 +31,10 @@ public class PanelController {
         clip.setArcHeight(40);
 
         panel.setClip(clip);
+    }
+
+    public void navigateToEstadium(){
+        Router.NavigateTo(this.routerOutlet, ViewName.ESTADIUM);
     }
 
 }

@@ -5,6 +5,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.geometry.Insets?>
 <BorderPane prefHeight="1024.0" prefWidth="1440.0" stylesheets="@../css/panel.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.luantenorio.projetocopatp1.panel.PanelController" >
 
     <left>
@@ -15,7 +16,7 @@
 
                     <Button maxWidth="Infinity" styleClass="menu-button" text="SELEÇÕES" />
                     <Button maxWidth="Infinity" styleClass="menu-button" text="JOGADORES" />
-                    <Button maxWidth="Infinity" styleClass="menu-button" text="ESTÁDIOS" />
+                    <Button maxWidth="Infinity" styleClass="menu-button" text="ESTÁDIOS" onMouseClicked="#navigateToEstadium"/>
                     <Button maxWidth="Infinity" styleClass="menu-button" text="ARBITRAGEM" />
                     <Button maxWidth="Infinity" styleClass="menu-button" text="PARTIDAS" />
                 </children>
@@ -24,7 +25,8 @@
     </left>
 
     <center>
-        <StackPane fx:id="routerOutlet" styleClass="router-outlet" />
+<!--        Aqui é onde vai está todas as telas do lado do painel de controle-->
+        <StackPane fx:id="routerOutlet" styleClass="router-outlet"></StackPane>
     </center>
 
 </BorderPane>
