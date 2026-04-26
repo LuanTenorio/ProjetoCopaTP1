@@ -13,7 +13,7 @@ import java.util.List;
 
 public class EstadiumController {
 
-    private ArrayList<EstadiumEntity> estadiuns = new ArrayList<>();
+    private List<EstadiumEntity> estadiuns = new ArrayList<>();
     private List<EstadiumEntity> estadiunsFiltered = new ArrayList<>();
     private EstadiumDAO estadiumDAO = new EstadiumDAO();
     private EstadiumEntity activedFilters = new EstadiumEntity("", "", 0);
@@ -39,7 +39,7 @@ public class EstadiumController {
 
     @FXML
     public void initialize(){
-        this.estadiuns = this.estadiumDAO.estadiumPagination();
+        this.estadiuns = this.estadiumDAO.findAll();
         this.estadiunsFiltered = this.estadiuns;
         this.renderTable();
         this.formatCapacityField();
@@ -122,8 +122,6 @@ public class EstadiumController {
         String name = this.filterName.getText().trim().toLowerCase();
         String location = this.filterLocation.getText().trim().toLowerCase();
         String capacity = this.filterCapacity.getText().trim();
-
-        System.out.println(capacity);
 
         if(name.isEmpty() && location.isEmpty() && capacity.isEmpty()){
             this.estadiunsFiltered = this.estadiuns;
