@@ -104,40 +104,41 @@ public class EstadiumController {
     }
 
     public void filterName(){
-        if(activedFilters.getName().trim().equals(this.filterName.getText().trim()))
-            return;
-
         this.activedFilters.setName(this.filterName.getText().trim());
         this.renderTable();
     }
 
     public void filterLocation(){
-        if(activedFilters.getLocation().trim().equals(this.filterLocation.getText().trim()))
-            return;
-
         this.activedFilters.setLocation(this.filterLocation.getText().trim());
         this.renderTable();
     }
 
+    public void filterCapacity(){
+        this.activedFilters.setCapacity(this.activedFilters.getCapacity());
+        this.renderTable();
+    }
+
     private void filterEstadiuns(){
-        String name = this.filterName.getText().trim();
-        String location = this.filterLocation.getText().trim();
+        String name = this.filterName.getText().trim().toLowerCase();
+        String location = this.filterLocation.getText().trim().toLowerCase();
         String capacity = this.filterCapacity.getText().trim();
 
-        if(name.isEmpty() && location.isEmpty()){
+        System.out.println(capacity);
+
+        if(name.isEmpty() && location.isEmpty() && capacity.isEmpty()){
             this.estadiunsFiltered = this.estadiuns;
             return;
         }
 
         this.estadiunsFiltered = this.estadiuns.stream().filter(estadium -> {
-            if(!name.isEmpty() && !estadium.getName().trim().startsWith(name))
+            if(!name.isEmpty() && !estadium.getName().trim().toLowerCase().startsWith(name))
                 return false;
 
-            if(!location.isEmpty() && !estadium.getLocation().trim().startsWith(location))
+            if(!location.isEmpty() && !estadium.getLocation().trim().toLowerCase().startsWith(location))
                 return false;
 
-//            if(!capacity.isEmpty() && !String.format("%d", estadium.getCapacity()).startsWith(capacity))
-//                return false;
+            if(!capacity.equals("0") && !String.format("%d", estadium.getCapacity()).startsWith(capacity))
+                return false;
 
             return true;
         }).toList();
