@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.SVGPath?>
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.github.luantenorio.projetocopatp1.estadium.EstadiumController"
+      fx:controller="com.github.luantenorio.projetocopatp1.stadium.StadiumController"
       stylesheets="@../css/estadium.css"
       spacing="40"
       maxWidth="1440">

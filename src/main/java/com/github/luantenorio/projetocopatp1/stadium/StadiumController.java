@@ -1,4 +1,4 @@
-package com.github.luantenorio.projetocopatp1.estadium;
+package com.github.luantenorio.projetocopatp1.stadium;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -11,13 +11,13 @@ import javafx.scene.layout.VBox;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EstadiumController {
+public class StadiumController {
 
-    private List<EstadiumEntity> estadiuns = new ArrayList<>();
-    private List<EstadiumEntity> estadiunsFiltered = new ArrayList<>();
-    private EstadiumDAO estadiumDAO = new EstadiumDAO();
-    private EstadiumEntity activedFilters = new EstadiumEntity("", "", 0);
-    private List<EstadiumEntity> entitiesVisibles = new ArrayList<>();
+    private List<StadiumEntity> stadiums = new ArrayList<>();
+    private List<StadiumEntity> stadiumsFiltered = new ArrayList<>();
+    private StadiumDAO stadiumDAO = new StadiumDAO();
+    private StadiumEntity activedFilters = new StadiumEntity("", "", 0);
+    private List<StadiumEntity> entitiesVisibles = new ArrayList<>();
     private int SIZE_PAGINATION = 10;
     private int totPages;
     private int curPage = 1;
@@ -39,8 +39,8 @@ public class EstadiumController {
 
     @FXML
     public void initialize(){
-        this.estadiuns = this.estadiumDAO.findAll();
-        this.estadiunsFiltered = this.estadiuns;
+        this.stadiums = this.stadiumDAO.findAll();
+        this.stadiumsFiltered = this.stadiums;
         this.renderTable();
         this.formatCapacityField();
 
@@ -50,17 +50,17 @@ public class EstadiumController {
         this.rowsContainer.getChildren().clear();
         this.filterEstadiuns();
 
-        this.totPages = Math.max(1, (int) Math.ceil((double) estadiunsFiltered.size() / this.SIZE_PAGINATION));
+        this.totPages = Math.max(1, (int) Math.ceil((double) stadiumsFiltered.size() / this.SIZE_PAGINATION));
 
         if(this.curPage > this.totPages) //Evita bugs de filtragem
             this.curPage = this.totPages;
 
         int initIndex = (this.curPage - 1) * this.SIZE_PAGINATION;
-        int endIndex = Math.min(initIndex + this.SIZE_PAGINATION, this.estadiunsFiltered.size());
+        int endIndex = Math.min(initIndex + this.SIZE_PAGINATION, this.stadiumsFiltered.size());
 
-        this.entitiesVisibles = this.estadiunsFiltered.subList(initIndex, endIndex);
+        this.entitiesVisibles = this.stadiumsFiltered.subList(initIndex, endIndex);
 
-        for (EstadiumEntity e : this.entitiesVisibles) {
+        for (StadiumEntity e : this.entitiesVisibles) {
             GridPane linha = createRowTable(e);
             this.rowsContainer.getChildren().add(linha);
         }
@@ -68,11 +68,11 @@ public class EstadiumController {
         this.infoPagination.setText(this.curPage + " de " + this.totPages);
     }
 
-    private GridPane createRowTable(EstadiumEntity estadium) {
+    private GridPane createRowTable(StadiumEntity stadium) {
         GridPane grid = new GridPane();
         grid.getStyleClass().add("table-row");
 
-        Label[] labels = {new Label(estadium.getName()), new Label(estadium.getLocation()), new Label(String.format("%d pessoas", estadium.getCapacity()))};
+        Label[] labels = {new Label(stadium.getName()), new Label(stadium.getLocation()), new Label(String.format("%d pessoas", stadium.getCapacity()))};
         ColumnConstraints[] cols = {new ColumnConstraints(), new ColumnConstraints(), new ColumnConstraints()};
 
         for(ColumnConstraints col : cols){
@@ -124,18 +124,18 @@ public class EstadiumController {
         String capacity = this.filterCapacity.getText().trim();
 
         if(name.isEmpty() && location.isEmpty() && capacity.isEmpty()){
-            this.estadiunsFiltered = this.estadiuns;
+            this.stadiumsFiltered = this.stadiums;
             return;
         }
 
-        this.estadiunsFiltered = this.estadiuns.stream().filter(estadium -> {
-            if(!name.isEmpty() && !estadium.getName().trim().toLowerCase().startsWith(name))
+        this.stadiumsFiltered = this.stadiums.stream().filter(stadium -> {
+            if(!name.isEmpty() && !stadium.getName().trim().toLowerCase().startsWith(name))
                 return false;
 
-            if(!location.isEmpty() && !estadium.getLocation().trim().toLowerCase().startsWith(location))
+            if(!location.isEmpty() && !stadium.getLocation().trim().toLowerCase().startsWith(location))
                 return false;
 
-            if(!capacity.equals("0") && !String.format("%d", estadium.getCapacity()).startsWith(capacity))
+            if(!capacity.equals("0") && !String.format("%d", stadium.getCapacity()).startsWith(capacity))
                 return false;
 
             return true;

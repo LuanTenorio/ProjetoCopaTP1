@@ -1,23 +1,23 @@
-package com.github.luantenorio.projetocopatp1.estadium;
+package com.github.luantenorio.projetocopatp1.stadium;
 
 import java.io.Serializable;
 import java.util.UUID;
 
-public class EstadiumEntity implements Serializable {
+public class StadiumEntity implements Serializable {
     private String id;
     private String name;
     private String location;
     private int capacity;
 
 
-    public EstadiumEntity(String name, String location, int capacity) {
+    public StadiumEntity(String name, String location, int capacity) {
         this.id = UUID.randomUUID().toString();
         this.name = name;
         this.location = location;
         this.capacity = capacity;
     }
 
-    public EstadiumEntity(String id, String name, String location, int capacity) {
+    public StadiumEntity(String id, String name, String location, int capacity) {
         this.id = id;
         this.name = name;
         this.location = location;

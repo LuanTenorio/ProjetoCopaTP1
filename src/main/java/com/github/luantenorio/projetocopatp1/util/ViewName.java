@@ -1,7 +1,7 @@
 package com.github.luantenorio.projetocopatp1.util;
 
 public enum ViewName {
-    ESTADIUM("estadium.fxml");
+    STADIUM("stadium.fxml");
 
     private final String fileFxmlName;
 

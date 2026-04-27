@@ -31,10 +31,11 @@ public class PanelController {
         clip.setArcHeight(40);
 
         panel.setClip(clip);
+        navigateToEstadium();
     }
 
     public void navigateToEstadium(){
-        Router.NavigateTo(this.routerOutlet, ViewName.ESTADIUM);
+        Router.NavigateTo(this.routerOutlet, ViewName.STADIUM);
     }
 
 }
