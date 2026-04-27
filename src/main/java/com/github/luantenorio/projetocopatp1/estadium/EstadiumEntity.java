@@ -1,8 +1,9 @@
 package com.github.luantenorio.projetocopatp1.estadium;
 
+import java.io.Serializable;
 import java.util.UUID;
 
-public class EstadiumEntity {
+public class EstadiumEntity implements Serializable {
     private String id;
     private String name;
     private String location;

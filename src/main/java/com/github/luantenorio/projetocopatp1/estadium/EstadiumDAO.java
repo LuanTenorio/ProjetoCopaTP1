@@ -1,40 +1,39 @@
 package com.github.luantenorio.projetocopatp1.estadium;
 
-import com.github.luantenorio.projetocopatp1.interfaces.Persistence;
+import com.github.luantenorio.projetocopatp1.util.DAO;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
-public class EstadiumDAO implements Persistence<EstadiumEntity> {
+public class EstadiumDAO extends DAO<EstadiumEntity> {
+
+    public EstadiumDAO(){
+        super("stadium.bin");
+    }
 
     public EstadiumEntity create(EstadiumEntity entity){
+        List<EstadiumEntity> estadiuns = this.readFile();
 
-//        EstadiumEntity estadium = new EstadiumEntity(name, location, capacity);
-        return null;
+        estadiuns.add(entity);
+        saveFile(estadiuns);
+
+        return entity;
     }
 
     public List<EstadiumEntity> findAll() {
-        var arr = new ArrayList<EstadiumEntity>();
-        for(int i = 1; i <= 15; i++)
-            arr.add(new EstadiumEntity("est " + i, "bsb " + i, 10000 * i));
-        for(int i = 1; i <= 15; i++)
-            arr.add(new EstadiumEntity("espet " + i, "bahia " + i, 10000 * i));
-        for(int i = 1; i <= 15; i++)
-            arr.add(new EstadiumEntity("peppa " + i, "pig " + i, 10000 * i));
-
-        return arr;
+        return this.readFile();
     }
 
-    public EstadiumEntity find(UUID id) {
-        return null;
+    public EstadiumEntity findById(String id) {
+        List<EstadiumEntity> estadiuns = this.readFile();
+
+        return estadiuns.stream().filter(s -> s.getId().equals(id)).findFirst().orElse(null);
     }
 
     public boolean update(EstadiumEntity entity) {
         return false;
     }
 
-    public boolean delete(UUID id) {
+    public boolean delete(String id) {
         return false;
     }
 
