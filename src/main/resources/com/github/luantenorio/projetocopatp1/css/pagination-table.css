@@ -1,0 +1,62 @@
+.card-table {
+    -fx-background-color: #F5F6FF; /* O fundo cremosinho */
+    -fx-background-radius: 15px;
+    -fx-border-radius: 15px;
+    -fx-border-color: #20195F; /* Borda bem sutil */
+    -fx-padding: 30px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.25), 5, 0, 2, 4);
+}
+
+.header-table {
+    -fx-padding: 0 0 15px 0; /* Espaço entre o texto e a linha grossa */
+}
+
+.header-text {
+    -fx-font-family: "Poppins", sans-serif;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #D5B256; /* Cor dourada/amarela do Figma */
+    -fx-alignment: center;
+}
+
+.bold-row {
+    -fx-background-color: #20195F;
+    -fx-min-height: 2px;
+    -fx-max-height: 2px;
+}
+
+.row-container {
+    -fx-padding: 10px 0 20px 0;
+}
+
+.table-row {
+    -fx-padding: 20px 0;
+    /* A linha fina entre os itens */
+    -fx-border-color: rgba(32, 25, 95, 0.3);
+    -fx-border-width: 0 0 1px 0;
+}
+
+.text-row {
+    -fx-font-family: "Poppins", sans-serif;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #20195F;
+    -fx-alignment: center;
+}
+
+.pagination-container {
+    -fx-padding: 20px 0 0 0;
+}
+
+.text-pagination {
+    -fx-font-family: "Poppins", sans-serif;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #20195F;
+}
+
+.btn-pagination {
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+    -fx-padding: 0;
+}

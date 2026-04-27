@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.shape.SVGPath?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.github.luantenorio.projetocopatp1.stadium.StadiumController"
+      stylesheets="@../css/estadium.css"
+      spacing="40"
+      maxWidth="1440">
+
+<!--    Filtro-->
+    <VBox stylesheets="@../css/filter.css" styleClass="filters" spacing="20" maxHeight="100">
+        <Label text="FILTROS" styleClass="title-filter" />
+
+        <GridPane hgap="30" vgap="20">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="50" />
+                <ColumnConstraints percentWidth="50" />
+            </columnConstraints>
+
+            <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                <Label text="Nome" styleClass="label-filter" />
+                <TextField fx:id="filterName" promptText="Mané garrincha" styleClass="field-filter" onInputMethodTextChanged="#filterName" onKeyReleased="#filterName"/>
+            </VBox>
+
+            <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                <Label text="Localização" styleClass="label-filter" />
+                <TextField fx:id="filterLocation" promptText="Rio de Janeiro" styleClass="field-filter" onKeyReleased="#filterLocation" />
+            </VBox>
+
+            <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                <Label text="Capacidade" styleClass="label-filter" />
+                <TextField fx:id="filterCapacity" promptText="100.000" styleClass="field-filter" onKeyReleased="#filterCapacity" />
+            </VBox>
+
+        </GridPane>
+    </VBox>
+
+<!--    Tabela-->
+    <VBox styleClass="card-table" minHeight="767" stylesheets="@../css/pagination-table.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+
+    <GridPane styleClass="header-table">
+        <columnConstraints>
+            <ColumnConstraints percentWidth="33.4" />
+            <ColumnConstraints percentWidth="33.3" />
+            <ColumnConstraints percentWidth="33.3" />
+        </columnConstraints>
+
+        <Label text="Nome" GridPane.columnIndex="0" styleClass="header-text" maxWidth="Infinity"/>
+        <Label text="Localização" GridPane.columnIndex="1" styleClass="header-text" maxWidth="Infinity"/>
+        <Label text="Capacidade" GridPane.columnIndex="2" styleClass="header-text" maxWidth="Infinity"/>
+    </GridPane>
+
+    <Region styleClass="bold-row" />
+
+    <VBox fx:id="rowsContainer" styleClass="row-container" VBox.vgrow="ALWAYS" />
+
+        <HBox styleClass="pagination-container" alignment="CENTER" spacing="15">
+            <Button styleClass="btn-pagination" onMouseClicked="#previousPage">
+                <graphic>
+                    <SVGPath fill="#1D1756" content="M22.9999 3.83331C12.4583 3.83331 3.83325 12.4583 3.83325 23C3.83325 33.5416 12.4583 42.1666 22.9999 42.1666C33.5416 42.1666 42.1666 33.5416 42.1666 23C42.1666 12.4583 33.5416 3.83331 22.9999 3.83331ZM22.9999 38.3333C14.5666 38.3333 7.66659 31.4333 7.66659 23C7.66659 14.5666 14.5666 7.66665 22.9999 7.66665C31.4333 7.66665 38.3333 14.5666 38.3333 23C38.3333 31.4333 31.4333 38.3333 22.9999 38.3333Z M26.2583 15.9083C25.4917 15.1416 24.3417 15.1416 23.575 15.9083L17.825 21.6583C17.0583 22.425 17.0583 23.575 17.825 24.3416L23.575 30.0916C23.9583 30.475 24.5333 30.6666 24.9167 30.6666C25.3 30.6666 25.875 30.475 26.2583 30.0916C27.025 29.325 27.025 28.175 26.2583 27.4083L21.85 23L26.2583 18.5916C27.025 17.825 27.025 16.675 26.2583 15.9083Z"/>
+                </graphic>
+            </Button>
+
+            <Label fx:id="infoPagination" text="1 de 1" styleClass="text-pagination" />
+
+            <Button styleClass="btn-pagination" onMouseClicked="#nextPage">
+                <graphic>
+                    <SVGPath fill="#1D1756" content="M23.0001 42.1667C33.5417 42.1667 42.1667 33.5417 42.1667 23C42.1667 12.4584 33.5417 3.83335 23.0001 3.83335C12.4584 3.83335 3.83342 12.4584 3.83342 23C3.83342 33.5417 12.4584 42.1667 23.0001 42.1667ZM23.0001 7.66669C31.4334 7.66669 38.3334 14.5667 38.3334 23C38.3334 31.4334 31.4334 38.3334 23.0001 38.3334C14.5667 38.3334 7.66675 31.4334 7.66675 23C7.66675 14.5667 14.5667 7.66669 23.0001 7.66669Z M19.7417 30.0917C20.5083 30.8584 21.6583 30.8584 22.425 30.0917L28.175 24.3417C28.9417 23.575 28.9417 22.425 28.175 21.6584L22.425 15.9084C22.0417 15.525 21.4667 15.3334 21.0833 15.3334C20.7 15.3334 20.125 15.525 19.7417 15.9084C18.975 16.675 18.975 17.825 19.7417 18.5917L24.15 23L19.7417 27.4084C18.975 28.175 18.975 29.325 19.7417 30.0917Z"/>
+                </graphic>
+            </Button>
+        </HBox>
+    </VBox>
+
+</VBox>
+
