@@ -62,4 +62,35 @@ public class TeamEntity implements Serializable {
 //        return new ArrayList<>(lineup);
 //    }
 
+//    public int getLineupSize() {
+//        return lineup.size();
+//    }
+
+//    public void addPlayer(PlayerEntity player) {
+//        if (player == null) return;
+//        if (player.getTeamId != null) return;
+//        if (TeamEntity.hasPlayer(player)) return;
+//        if (lineup.size() >= MAX_PLAYERS) return;
+//        lineup.add(player);
+//        player.setTeamId(id);
+//    }
+
+//    public void removePlayer(PlayerEntity player) {
+//        if (player == null) return;
+//        if (!TeamEntity.hasPlayer(player)) return;
+//        lineup.remove(player);
+//        player.setTeamId(null);
+//    }
+
+//    public boolean hasPlayer(PlayerEntity player) {
+//        return lineup.contains(player);
+//    }
+
+//    public boolean isLineupFull() {
+//        return lineup.size() >= MAX_PLAYERS;
+//    }
+
+//    public boolean hasMinimumPlayers() {
+//        return lineup.size() >= MIN_PLAYERS;
+//    }
 }
