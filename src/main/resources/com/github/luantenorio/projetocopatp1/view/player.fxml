@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.github.luantenorio.projetocopatp1.player.PlayerController"
+      stylesheets="@../css/filter.css,@../css/pagination-table.css"
+      maxWidth="1440"
+      spacing="30">
+
+    <padding>
+        <Insets top="30" right="30" bottom="30" left="30"/>
+    </padding>
+
+    <VBox styleClass="filters" spacing="24">
+        <Label text="CADASTRO DE JOGADORES" styleClass="title-filter"/>
+
+        <GridPane hgap="30" vgap="20">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="50"/>
+                <ColumnConstraints percentWidth="50"/>
+            </columnConstraints>
+
+            <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                <Label text="Nome" styleClass="label-filter"/>
+                <TextField fx:id="nameField" promptText="Nome do jogador" styleClass="field-filter"/>
+            </VBox>
+
+            <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                <Label text="Posição" styleClass="label-filter"/>
+                <ComboBox fx:id="positionComboBox" promptText="Selecione a posição" maxWidth="Infinity" styleClass="field-filter">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="Goleiro"/>
+                            <String fx:value="Zagueiro"/>
+                            <String fx:value="Lateral"/>
+                            <String fx:value="Volante"/>
+                            <String fx:value="Meia"/>
+                            <String fx:value="Atacante"/>
+                        </FXCollections>
+                    </items>
+                </ComboBox>
+            </VBox>
+
+            <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                <Label text="Número" styleClass="label-filter"/>
+                <TextField fx:id="numberField" promptText="10" styleClass="field-filter"/>
+            </VBox>
+
+            <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <Label text="Idade" styleClass="label-filter"/>
+                <TextField fx:id="ageField" promptText="24" styleClass="field-filter"/>
+            </VBox>
+
+            <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                <Label text="Status" styleClass="label-filter"/>
+                <ComboBox fx:id="statusComboBox" promptText="Selecione o status" maxWidth="Infinity" styleClass="field-filter">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="Ativo"/>
+                            <String fx:value="Lesionado"/>
+                            <String fx:value="Suspenso"/>
+                        </FXCollections>
+                    </items>
+                </ComboBox>
+            </VBox>
+        </GridPane>
+
+        <HBox alignment="CENTER_RIGHT" spacing="15">
+            <Button fx:id="clearButton" text="LIMPAR" minWidth="120"
+                    style="-fx-background-color: #F8F9FA; -fx-background-radius: 8px; -fx-text-fill: #20195F; -fx-font-weight: bold; -fx-padding: 12px 18px; -fx-cursor: hand;"/>
+            <Button fx:id="saveButton" text="SALVAR" minWidth="120"
+                    style="-fx-background-color: #D5B256; -fx-background-radius: 8px; -fx-text-fill: #20195F; -fx-font-weight: bold; -fx-padding: 12px 18px; -fx-cursor: hand;"/>
+        </HBox>
+    </VBox>
+
+    <VBox styleClass="card-table" spacing="20">
+        <Label text="JOGADORES CADASTRADOS" styleClass="header-text"/>
+
+        <GridPane styleClass="header-table">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="30"/>
+                <ColumnConstraints percentWidth="20"/>
+                <ColumnConstraints percentWidth="15"/>
+                <ColumnConstraints percentWidth="15"/>
+                <ColumnConstraints percentWidth="20"/>
+            </columnConstraints>
+
+            <Label text="Nome" GridPane.columnIndex="0" styleClass="header-text" maxWidth="Infinity"/>
+            <Label text="Posição" GridPane.columnIndex="1" styleClass="header-text" maxWidth="Infinity"/>
+            <Label text="Número" GridPane.columnIndex="2" styleClass="header-text" maxWidth="Infinity"/>
+            <Label text="Idade" GridPane.columnIndex="3" styleClass="header-text" maxWidth="Infinity"/>
+            <Label text="Status" GridPane.columnIndex="4" styleClass="header-text" maxWidth="Infinity"/>
+        </GridPane>
+
+        <Region styleClass="bold-row"/>
+
+        <VBox fx:id="playersContainer" styleClass="row-container" minHeight="260" VBox.vgrow="ALWAYS"/>
+    </VBox>
+
+</VBox>
