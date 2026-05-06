@@ -38,4 +38,5 @@ public class PanelController {
         Router.NavigateTo(this.routerOutlet, ViewName.STADIUM);
     }
 
+    public void navigateToPlayer() {Router.NavigateTo(this.routerOutlet, ViewName.PLAYER);}
 }
