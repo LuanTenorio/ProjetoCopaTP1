@@ -20,10 +20,10 @@ public class Router {
             outlet.getChildren().clear();
             outlet.getChildren().add(newScene);
         } catch (IOException e) {
-            System.err.println("Rota não encontrada" + filename);
+            System.err.println("Rota não encontrada " + filename);
             e.printStackTrace();
         } catch (NullPointerException e) {
-            System.err.println("Arquivo não encontrado" + PATH + filename);
+            System.err.println("Arquivo não encontrado " + PATH + filename);
             e.printStackTrace();
         }
     }
