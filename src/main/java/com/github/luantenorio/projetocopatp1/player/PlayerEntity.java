@@ -10,7 +10,7 @@ public class PlayerEntity implements Serializable {
     private int num;
     private int age;
     private PlayerStatus status;
-//    String teamId;
+    String teamId;
 
     public PlayerEntity(String name, String pos, int num, int age, PlayerStatus status) {
         this.id = UUID.randomUUID().toString();
@@ -19,6 +19,7 @@ public class PlayerEntity implements Serializable {
         this.num = num;
         this.age = age;
         this.status = status;
+        this.teamId = null;
     }
 
     public PlayerEntity(String id, String name, String pos, int num, int age, PlayerStatus status) {
@@ -28,6 +29,17 @@ public class PlayerEntity implements Serializable {
         this.num = num;
         this.age = age;
         this.status = status;
+        this.teamId = null;
+    }
+
+    public PlayerEntity(String name, String pos, int num, int age, PlayerStatus status, String teamId) {
+        this.id = UUID.randomUUID().toString();
+        this.name = name;
+        this.pos = pos;
+        this.num = num;
+        this.age = age;
+        this.status = status;
+        this.teamId = teamId;
     }
 
     public String getId() {
@@ -72,5 +84,13 @@ public class PlayerEntity implements Serializable {
 
     public void setStatus(PlayerStatus status) {
         this.status = status;
+    }
+
+    public String getTeamId() {
+        return teamId;
+    }
+
+    public void setTeamId(String teamId) {
+        this.teamId = teamId;
     }
 }
