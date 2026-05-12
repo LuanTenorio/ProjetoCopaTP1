@@ -1,0 +1,7 @@
+.btn-bottom {
+    -fx-background-color: "#465EFF";
+    -fx-background-radius: 10px;
+    -fx-font-family: "Poppins", sans-serif;
+    -fx-font-size: 30px;
+    -fx-font-weight: semibold;
+}
