@@ -16,7 +16,7 @@
                     <Button maxWidth="Infinity" styleClass="menu-button, menu-button-first" text="GESTÃO" />
 
                     <Button maxWidth="Infinity" styleClass="menu-button" text="SELEÇÕES" />
-                    <Button maxWidth="Infinity" styleClass="menu-button" text="JOGADORES" />
+                    <Button maxWidth="Infinity" styleClass="menu-button" text="JOGADORES" onMouseClicked="#navigateToPlayer"/>
                     <Button maxWidth="Infinity" styleClass="menu-button" text="ESTÁDIOS" onMouseClicked="#navigateToEstadium"/>
                     <Button maxWidth="Infinity" styleClass="menu-button" text="ARBITRAGEM" />
                     <Button maxWidth="Infinity" styleClass="menu-button" text="PARTIDAS" />
