@@ -1,7 +1,6 @@
 package com.github.luantenorio.projetocopatp1.util;
 
 import com.github.luantenorio.projetocopatp1.match.MatchDAO;
-import com.github.luantenorio.projetocopatp1.match.MatchEntity;
 import com.github.luantenorio.projetocopatp1.stadium.StadiumDAO;
 import com.github.luantenorio.projetocopatp1.stadium.StadiumEntity;
 
