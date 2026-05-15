@@ -80,15 +80,15 @@ public class TeamEntity implements Serializable {
         player.setTeamId(null);
     }
 
-//    public boolean hasPlayer(PlayerEntity player) {
-//        return lineup.contains(player);
-//    }
+    public boolean hasPlayer(PlayerEntity player) {
+        return lineup.contains(player);
+    }
 
-//    public boolean isLineupFull() {
-//        return lineup.size() >= MAX_PLAYERS;
-//    }
+    public boolean isLineupFull() {
+        return lineup.size() >= MAX_PLAYERS;
+    }
 
-//    public boolean hasMinimumPlayers() {
-//        return lineup.size() >= MIN_PLAYERS;
-//    }
+    public boolean hasMinimumPlayers() {
+        return lineup.size() >= MIN_PLAYERS;
+    }
 }
