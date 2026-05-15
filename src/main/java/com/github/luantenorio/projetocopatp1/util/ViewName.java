@@ -4,6 +4,7 @@ public enum ViewName {
     STADIUM("stadium.fxml|Estádios"),
     CREATE_STADIUM("create_stadium.fxml|Criar estádio"),
     PLAYER("player.fxml|Jogadores");
+    MATCH("match.fxml|Partidas");
 
     private final String fileFxmlName;
 

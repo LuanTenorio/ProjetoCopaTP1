@@ -40,4 +40,6 @@ public class PanelController {
     }
 
     public void navigateToPlayer() {Router.NavigateTo(ViewName.PLAYER);}
+
+    public void navigateToMatch() {Router.NavigateTo(ViewName.MATCH);}
 }

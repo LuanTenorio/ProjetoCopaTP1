@@ -1,14 +1,18 @@
 package com.github.luantenorio.projetocopatp1.util;
 
+import com.github.luantenorio.projetocopatp1.match.MatchDAO;
+import com.github.luantenorio.projetocopatp1.match.MatchEntity;
 import com.github.luantenorio.projetocopatp1.stadium.StadiumDAO;
 import com.github.luantenorio.projetocopatp1.stadium.StadiumEntity;
 
 public class Mocking {
 
     static StadiumDAO stadiumDAO = new StadiumDAO();
+    static MatchDAO matchDAO = new MatchDAO();
 
     public static void main(String[] args) {
         mockEstadium();
+        mockMatch();
     }
 
     public static void mockEstadium(){
@@ -59,5 +63,9 @@ public class Mocking {
         stadiumDAO.create(new StadiumEntity("Heriberto Hülse", "Criciúma - SC", 19225));
         stadiumDAO.create(new StadiumEntity("Baenão", "Belém - PA", 13792));
         System.out.println("Mock dos estádios...");
+    }
+
+    public static void mockMatch(){
+        /* TODO: A ser feito assim que existir um mockTeam() */
     }
 }

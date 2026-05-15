@@ -6,6 +6,7 @@ module com.github.luantenorio.projetocopatp1 {
     requires com.dlsc.formsfx;
     requires net.synedra.validatorfx;
     requires org.kordamp.bootstrapfx.core;
+    requires org.jetbrains.annotations;
 
     opens com.github.luantenorio.projetocopatp1 to javafx.fxml;
     exports com.github.luantenorio.projetocopatp1;
@@ -17,6 +18,8 @@ module com.github.luantenorio.projetocopatp1 {
     opens com.github.luantenorio.projetocopatp1.stadium to javafx.fxml;
     exports com.github.luantenorio.projetocopatp1.player;
     opens com.github.luantenorio.projetocopatp1.player to javafx.fxml;
+    exports com.github.luantenorio.projetocopatp1.match;
+    opens com.github.luantenorio.projetocopatp1.match to javafx.fxml;
     exports com.github.luantenorio.projetocopatp1.util;
     opens com.github.luantenorio.projetocopatp1.util to javafx.fxml;
 }

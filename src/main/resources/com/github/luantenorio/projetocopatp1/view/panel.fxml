@@ -19,7 +19,7 @@
                     <Button maxWidth="Infinity" styleClass="menu-button" text="JOGADORES" onMouseClicked="#navigateToPlayer"/>
                     <Button maxWidth="Infinity" styleClass="menu-button" text="ESTÁDIOS" onMouseClicked="#navigateToEstadium"/>
                     <Button maxWidth="Infinity" styleClass="menu-button" text="ARBITRAGEM" />
-                    <Button maxWidth="Infinity" styleClass="menu-button" text="PARTIDAS" />
+                    <Button maxWidth="Infinity" styleClass="menu-button" text="PARTIDAS" onMouseClicked="#navigateToMatch" />
                 </children>
             </VBox>
         </VBox>
