@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:controller="com.github.luantenorio.projetocopatp1.stadium.CreateStadiumController" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #FAF9F3;" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+    <children>
+        <VBox layoutX="50.0" layoutY="50.0" spacing="30.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+            <children>
+
+                <VBox spacing="10.0">
+                    <children>
+                        <StackPane alignment="CENTER" maxWidth="150.0" prefHeight="45.0" styleClass="yellow-label">
+                            <children>
+                                <Label styleClass="blue-text" text="NOME" />
+                            </children>
+                        </StackPane>
+                        <TextField fx:id="txtName" promptText="Mané Garrincha..." styleClass="input" />
+                    </children>
+                </VBox>
+
+                <HBox spacing="40.0">
+                    <children>
+                        <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                            <children>
+                                <StackPane alignment="CENTER" maxWidth="200.0" prefHeight="45.0" styleClass="yellow-label">
+                                    <children>
+                                        <Label styleClass="blue-text" text="LOCALIZAÇÃO" />
+                                    </children>
+                                </StackPane>
+                                <TextField fx:id="txtLocation" promptText="Rio de Janeiro..." styleClass="input" />
+                            </children>
+                        </VBox>
+
+                        <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                            <children>
+                                <StackPane alignment="CENTER" maxWidth="200.0" prefHeight="45.0" styleClass="yellow-label">
+                                    <children>
+                                        <Label styleClass="blue-text" text="CAPACIDADE" />
+                                    </children>
+                                </StackPane>
+                                <TextField fx:id="txtCapacity" promptText="150.000..." styleClass="input" />
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+
+        <Button onMouseClicked="#register" layoutX="634.0" layoutY="530.0" mnemonicParsing="false" styleClass="button" text="REGISTRAR" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="50.0" />
+    </children>
+</AnchorPane>

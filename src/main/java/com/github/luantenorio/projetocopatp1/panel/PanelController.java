@@ -31,12 +31,13 @@ public class PanelController {
         clip.setArcHeight(40);
 
         panel.setClip(clip);
+        Router.setOutlet(this.routerOutlet);
         navigateToEstadium();
     }
 
     public void navigateToEstadium(){
-        Router.NavigateTo(this.routerOutlet, ViewName.STADIUM);
+        Router.NavigateTo(ViewName.STADIUM);
     }
 
-    public void navigateToPlayer() {Router.NavigateTo(this.routerOutlet, ViewName.PLAYER);}
+    public void navigateToPlayer() {Router.NavigateTo(ViewName.PLAYER);}
 }
