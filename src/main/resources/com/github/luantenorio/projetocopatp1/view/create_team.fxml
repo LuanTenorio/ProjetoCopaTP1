@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:controller="com.github.luantenorio.projetocopatp1.team.CreateTeamController" prefHeight="768.0" prefWidth="900.0" style="-fx-background-color: #FAF9F3;" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <VBox layoutX="50.0" layoutY="50.0" spacing="30.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+            <children>
+
+                <VBox spacing="10.0">
+                    <children>
+                        <StackPane alignment="CENTER" maxWidth="150.0" prefHeight="45.0" styleClass="yellow-label">
+                            <children>
+                                <Label styleClass="blue-text" text="NOME" />
+                            </children>
+                        </StackPane>
+                        <TextField fx:id="txtName" promptText="Brasil..." styleClass="input" />
+                    </children>
+                </VBox>
+
+                <HBox spacing="40.0">
+                    <children>
+                        <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                            <children>
+                                <StackPane alignment="CENTER" maxWidth="200.0" prefHeight="45.0" styleClass="yellow-label">
+                                    <children>
+                                        <Label styleClass="blue-text" text="GRUPO" />
+                                    </children>
+                                </StackPane>
+                                <ComboBox fx:id="groupComboBox" promptText="Selecione o grupo" maxWidth="Infinity" styleClass="input">
+                                    <items>
+                                        <FXCollections fx:factory="observableArrayList">
+                                            <String fx:value="A" />
+                                            <String fx:value="B" />
+                                            <String fx:value="C" />
+                                            <String fx:value="D" />
+                                            <String fx:value="E" />
+                                            <String fx:value="F" />
+                                            <String fx:value="G" />
+                                            <String fx:value="H" />
+                                            <String fx:value="I" />
+                                            <String fx:value="J" />
+                                            <String fx:value="K" />
+                                            <String fx:value="L" />
+                                        </FXCollections>
+                                    </items>
+                                </ComboBox>
+                            </children>
+                        </VBox>
+
+                        <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                            <children>
+                                <StackPane alignment="CENTER" maxWidth="200.0" prefHeight="45.0" styleClass="yellow-label">
+                                    <children>
+                                        <Label styleClass="blue-text" text="TÉCNICO" />
+                                    </children>
+                                </StackPane>
+                                <TextField fx:id="txtCoach" promptText="Nome do técnico..." styleClass="input" />
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+
+                <VBox spacing="10.0">
+                    <children>
+                        <StackPane alignment="CENTER" maxWidth="260.0" prefHeight="45.0" styleClass="yellow-label">
+                            <children>
+                                <Label styleClass="blue-text" text="JOGADORES" />
+                            </children>
+                        </StackPane>
+
+                        <HBox spacing="20.0">
+                            <children>
+                                <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <Label styleClass="blue-text" text="JOGADORES CADASTRADOS" />
+                                        <ListView fx:id="availablePlayersList" prefHeight="240.0" />
+                                    </children>
+                                </VBox>
+
+                                <VBox alignment="CENTER" spacing="15.0">
+                                    <children>
+                                        <Button fx:id="addPlayerButton" mnemonicParsing="false" styleClass="button" text="ADICIONAR" />
+                                        <Button fx:id="removePlayerButton" mnemonicParsing="false" styleClass="button" text="REMOVER" />
+                                    </children>
+                                </VBox>
+
+                                <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <Label styleClass="blue-text" text="JOGADORES DA SELEÇÃO" />
+                                        <ListView fx:id="selectedPlayersList" prefHeight="240.0" />
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+
+        <Button layoutX="734.0" layoutY="630.0" mnemonicParsing="false" styleClass="button" text="REGISTRAR" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="50.0" />
+    </children>
+</AnchorPane>
