@@ -1,7 +1,6 @@
 package com.github.luantenorio.projetocopatp1.team;
 
 import com.github.luantenorio.projetocopatp1.player.PlayerEntity;
-
 import java.io.Serializable;
 import java.util.*;
 
