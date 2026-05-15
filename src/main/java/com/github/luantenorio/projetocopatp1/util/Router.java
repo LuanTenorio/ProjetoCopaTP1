@@ -11,14 +11,19 @@ public class Router {
     private static String PATH = "/com/github/luantenorio/projetocopatp1/view/";
 
     public static void NavigateTo(StackPane outlet, ViewName name) {
-        String filename = name.getFileFxmlName();
-
+        String filename = null;
         try {
+            String[] texts = name.getFileFxmlName().split("\\|");
+            filename = texts[0];
+            String title = texts[1];
+
             FXMLLoader loader = new FXMLLoader(Router.class.getResource(PATH + filename));
             Parent newScene = loader.load();
 
             outlet.getChildren().clear();
             outlet.getChildren().add(newScene);
+
+            Window.setWindowTitle(outlet, title);
         } catch (IOException e) {
             System.err.println("Rota não encontrada " + filename);
             e.printStackTrace();
