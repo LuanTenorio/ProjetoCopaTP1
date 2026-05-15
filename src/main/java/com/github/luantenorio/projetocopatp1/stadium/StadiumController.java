@@ -11,8 +11,8 @@ import javafx.scene.layout.VBox;
 
 public class StadiumController extends Table<StadiumEntity> {
 
-    private StadiumDAO stadiumDAO = new StadiumDAO();
-    private StadiumEntity activedFilters = new StadiumEntity("", "", 0);
+    private final StadiumService stadiumService = new StadiumService();
+    private final StadiumEntity activedFilters = new StadiumEntity("", "", 0);
 
     private String nameFormated, locationFormated, capacityFormated;
 
@@ -37,14 +37,13 @@ public class StadiumController extends Table<StadiumEntity> {
 
     @FXML
     public void initialize() {
-        this.objetcs = this.stadiumDAO.findAll();
+        this.objetcs = this.stadiumService.findAll();
         this.renderTable();
         this.formatCapacityField();
     }
 
     protected Label[] getLabels(StadiumEntity stadium) {
-        Label[] labels = {new Label(stadium.getName()), new Label(stadium.getLocation()), new Label(String.format("%d pessoas", stadium.getCapacity()))};
-        return labels;
+        return new Label[]{new Label(stadium.getName()), new Label(stadium.getLocation()), new Label(String.format("%d pessoas", stadium.getCapacity()))};
     }
 
     public void filterName(){
