@@ -4,10 +4,11 @@ public enum EventType {
     GOAL,
     OWN_GOAL,
     FOUL,
-    FOUL_YELLOW,
-    FOUL_RED,
-    SUBSTITUTION,
+    YELLOW_CARD,
+    RED_CARD,
+    SUB,
     INJURY,
     MATCH_START,
-    MATCH_END
+    MATCH_END,
+    EXTRA_TIME,
 }

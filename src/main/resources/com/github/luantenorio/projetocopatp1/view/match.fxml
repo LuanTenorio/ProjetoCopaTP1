@@ -18,22 +18,22 @@
 
             <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="0">
                 <Label styleClass="label-filter" text="Seleção 1" />
-                <TextField fx:id="filterSelecao1" onInputMethodTextChanged="#filterSelecao1" onKeyReleased="#filterSelecao1" promptText="Brasil..." styleClass="field-filter" />
+                <TextField fx:id="filterTeam1" onInputMethodTextChanged="#recreateTable" onKeyReleased="#recreateTable" promptText="Brasil..." styleClass="field-filter" />
             </VBox>
 
             <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="0">
                 <Label styleClass="label-filter" text="Seleção 2" />
-                <TextField fx:id="filterSelecao2" onKeyReleased="#filterSelecao2" promptText="Alemanha..." styleClass="field-filter" />
+                <TextField fx:id="filterTeam2" onKeyReleased="#recreateTable" promptText="Alemanha..." styleClass="field-filter" />
             </VBox>
 
             <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="1">
                 <Label styleClass="label-filter" text="Fase" />
-                <TextField fx:id="filterFase" onKeyReleased="#filterFase" promptText="Semifinal..." styleClass="field-filter" />
+                <ComboBox fx:id="filterStage" onAction="#recreateTable" promptText="Semifinal..." styleClass="field-filter" />
             </VBox>
 
             <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="1">
                 <Label styleClass="label-filter" text="Data" />
-                <TextField fx:id="filterData" onKeyReleased="#filterData" promptText="DD/MM" styleClass="field-filter" />
+                <TextField fx:id="filterDate" onKeyReleased="#recreateTable" promptText="DD/MM" styleClass="field-filter" />
             </VBox>
          <rowConstraints>
             <RowConstraints />
@@ -84,8 +84,10 @@
         </HBox>
     </VBox>
     <AnchorPane prefHeight="93.0" prefWidth="512.0">
-        <Button styleClass="btn-bottom" layoutX="360.0" layoutY="13.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="137.0"
-                text="Nova Partida"/>
+        <Button text="Nova Partida"
+                styleClass="botao-novo"
+                stylesheets="@../css/main.css"
+                xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" onMouseClicked="#navigateToCreateMatch"/>
     </AnchorPane>
 
 </VBox>

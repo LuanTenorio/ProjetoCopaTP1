@@ -1,5 +1,6 @@
 package com.github.luantenorio.projetocopatp1.match;
 
+import com.github.luantenorio.projetocopatp1.team.TeamDAO;
 import com.github.luantenorio.projetocopatp1.team.TeamEntity;
 import org.jetbrains.annotations.NotNull;
 
@@ -77,6 +78,16 @@ public class MatchEntity implements Serializable {
 
     public String getTeam2Id() {
         return team2Id;
+    }
+
+    public TeamEntity getTeam1() {
+        TeamDAO dao = new TeamDAO();
+        return dao.findById(team1Id);
+    }
+
+    public TeamEntity getTeam2() {
+        TeamDAO dao = new TeamDAO();
+        return dao.findById(team2Id);
     }
 
     public ZonedDateTime getDate() {
