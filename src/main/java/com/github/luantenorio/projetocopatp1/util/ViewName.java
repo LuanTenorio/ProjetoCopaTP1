@@ -1,10 +1,10 @@
 package com.github.luantenorio.projetocopatp1.util;
 
 public enum ViewName {
-    STADIUM("stadium.fxml"),
-    CREATE_STADIUM("create_stadium.fxml"),
-    PLAYER("player.fxml"),
-    MATCH("match.fxml");
+    STADIUM("stadium.fxml|Estádios"),
+    CREATE_STADIUM("create_stadium.fxml|Criar estádio"),
+    PLAYER("player.fxml|Jogadores");
+    MATCH("match.fxml|Partidas");
 
     private final String fileFxmlName;
 
