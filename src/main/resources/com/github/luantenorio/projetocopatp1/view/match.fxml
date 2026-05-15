@@ -28,7 +28,7 @@
 
             <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="1">
                 <Label styleClass="label-filter" text="Fase" />
-                <ComboBox fx:id="filterStage" onAction="#recreateTable" promptText="Semifinal..." styleClass="field-filter" />
+                <ComboBox fx:id="filterStage" onAction="#recreateTable" promptText="Escolha" styleClass="field-filter" />
             </VBox>
 
             <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="1">

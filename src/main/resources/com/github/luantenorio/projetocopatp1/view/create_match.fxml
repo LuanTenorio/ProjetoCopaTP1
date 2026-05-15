@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #FAF9F3;" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.luantenorio.projetocopatp1.match.CreateMatchController">
+    <VBox layoutX="50.0" layoutY="50.0" spacing="30.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+        <HBox spacing="40.0">
+            <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                <StackPane maxWidth="200.0" prefHeight="45.0" styleClass="yellow-label">
+                    <Label styleClass="blue-text" text="SELEÇÃO 1" />
+                </StackPane>
+                <ComboBox fx:id="inputTeam1" promptText="Escolha..." styleClass="input" />
+            </VBox>
+
+            <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                <StackPane maxWidth="200.0" prefHeight="45.0" styleClass="yellow-label">
+                    <Label styleClass="blue-text" text="SELEÇÃO 2" />
+                </StackPane>
+                <ComboBox fx:id="inputTeam2" promptText="Escolha..." styleClass="input" />
+            </VBox>
+        </HBox>
+
+        <HBox spacing="40.0">
+            <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                <StackPane maxWidth="200.0" prefHeight="45.0" styleClass="yellow-label">
+                    <Label styleClass="blue-text" text="FASE" />
+                </StackPane>
+                <ComboBox fx:id="inputStage" promptText="Escolha..." styleClass="input" />
+            </VBox>
+
+            <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                <StackPane maxWidth="200.0" prefHeight="45.0" styleClass="yellow-label">
+                    <Label styleClass="blue-text" text="DATA" />
+                </StackPane>
+                <DatePicker fx:id="inputDate" styleClass="input" />
+            </VBox>
+        </HBox>
+
+        <HBox spacing="40.0">
+            <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                <StackPane maxWidth="200.0" prefHeight="45.0" styleClass="yellow-label">
+                    <Label styleClass="blue-text" text="FASE" />
+                </StackPane>
+                <TextField fx:id="inputTime" promptText="hh:mm" styleClass="input" />
+            </VBox>
+
+            <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                <StackPane maxWidth="200.0" prefHeight="45.0" styleClass="yellow-label">
+                    <Label styleClass="blue-text" text="DATA" />
+                </StackPane>
+                <ComboBox fx:id="inputStadium" promptText="Escolha..." styleClass="input" />
+            </VBox>
+        </HBox>
+
+    </VBox>
+
+    <Button layoutX="634.0" layoutY="530.0" mnemonicParsing="false" onMouseClicked="#register" styleClass="button" text="REGISTRAR" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="50.0" />
+
+    <Button layoutX="50.0" layoutY="513.0" mnemonicParsing="false" onMouseClicked="#back" styleClass="button" text="Adicionar Resultado" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="558.0" />
+</AnchorPane>
