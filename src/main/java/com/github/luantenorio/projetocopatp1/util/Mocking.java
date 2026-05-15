@@ -3,7 +3,9 @@ package com.github.luantenorio.projetocopatp1.util;
 import com.github.luantenorio.projetocopatp1.stadium.StadiumDAO;
 import com.github.luantenorio.projetocopatp1.stadium.StadiumEntity;
 
-public class Mocking {
+public class
+
+Mocking {
 
     static StadiumDAO stadiumDAO = new StadiumDAO();
 

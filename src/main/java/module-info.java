@@ -6,6 +6,8 @@ module com.github.luantenorio.projetocopatp1 {
     requires com.dlsc.formsfx;
     requires net.synedra.validatorfx;
     requires org.kordamp.bootstrapfx.core;
+    requires java.desktop;
+    requires jbcrypt;
 
     opens com.github.luantenorio.projetocopatp1 to javafx.fxml;
     exports com.github.luantenorio.projetocopatp1;
