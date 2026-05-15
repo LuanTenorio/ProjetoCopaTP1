@@ -10,7 +10,13 @@ public class Router {
 
     private static String PATH = "/com/github/luantenorio/projetocopatp1/view/";
 
-    public static void NavigateTo(StackPane outlet, ViewName name) {
+    private static StackPane outlet;
+
+    public static void setOutlet(StackPane pane) {
+        Router.outlet = pane;
+    }
+
+    public static void NavigateTo(ViewName name) {
         String filename = name.getFileFxmlName();
 
         try {
