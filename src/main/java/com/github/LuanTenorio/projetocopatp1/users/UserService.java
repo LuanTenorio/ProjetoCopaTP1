@@ -29,4 +29,10 @@ public class UserService {
         return null;
     }
 
+    public void register(UserEntity newUser){
+        String password = newUser.getPassword();
+        String hashedPassword = PasswordHasher.hash(password);
+        userDAO.create(newUser);
+    }
+
 }

@@ -2,12 +2,13 @@ package com.github.luantenorio.projetocopatp1.util;
 
 import com.github.luantenorio.projetocopatp1.stadium.StadiumDAO;
 import com.github.luantenorio.projetocopatp1.stadium.StadiumEntity;
+import com.github.luantenorio.projetocopatp1.users.*;
 
-public class
-
-Mocking {
+public class Mocking {
 
     static StadiumDAO stadiumDAO = new StadiumDAO();
+    static UserService userService = new UserService();
+    static UserDAO userDAO = new UserDAO();
 
     public static void main(String[] args) {
         mockEstadium();
@@ -61,5 +62,16 @@ Mocking {
         stadiumDAO.create(new StadiumEntity("Heriberto Hülse", "Criciúma - SC", 19225));
         stadiumDAO.create(new StadiumEntity("Baenão", "Belém - PA", 13792));
         System.out.println("Mock dos estádios...");
+    }
+
+    public static void mockUser(){
+        userDAO.clearAll();
+        userService.register(new AdminEntity("Luan Tenorio", "admin@copa.com", "Brasil", "admin123", UserStatus.ACTIVE));
+        userService.register(new OrganizerEntity("Ana Silva", "organizer@copa.com", "Argentina", "org2026", UserStatus.ACTIVE));
+        RefereeEntity ref = new RefereeEntity("Howard Webb", "referee@copa.com", "Inglaterra", "ref123", UserStatus.ACTIVE);
+        ref.setExperience("15 anos - FIFA");
+        userService.register(ref);
+
+        System.out.println("Mock dos usuários...");
     }
 }
