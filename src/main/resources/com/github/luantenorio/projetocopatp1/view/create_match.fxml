@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import com.github.luantenorio.projetocopatp1.util.TimeTextField?>
 
 <AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #FAF9F3;" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.luantenorio.projetocopatp1.match.CreateMatchController">
     <VBox layoutX="50.0" layoutY="50.0" spacing="30.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
@@ -42,7 +43,7 @@
                 <StackPane maxWidth="200.0" prefHeight="45.0" styleClass="yellow-label">
                     <Label styleClass="blue-text" text="FASE" />
                 </StackPane>
-                <TextField fx:id="inputTime" promptText="hh:mm" styleClass="input" />
+                <TimeTextField fx:id="inputTime" promptText="hh:mm" styleClass="input" />
             </VBox>
 
             <VBox spacing="10.0" HBox.hgrow="ALWAYS">

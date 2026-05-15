@@ -20,7 +20,6 @@ import java.util.stream.Collectors;
 public class MatchController {
     private MatchDAO matchDAO = new MatchDAO();
     private List<MatchEntity> filteredMatches;
-    private List<MatchEntity> tableMatches = new ArrayList<>();
     private final int SIZE_PAGINATION = 10;
     private int totPages;
     private int curPage = 1;
@@ -99,9 +98,9 @@ public class MatchController {
         int initIndex = (this.curPage - 1) * this.SIZE_PAGINATION;
         int endIndex = Math.min(initIndex + this.SIZE_PAGINATION, filteredMatches.size());
 
-        this.tableMatches = filteredMatches.subList(initIndex, endIndex);
+        List<MatchEntity> tableMatches = filteredMatches.subList(initIndex, endIndex);
 
-        for (MatchEntity e : this.tableMatches) {
+        for (MatchEntity e : tableMatches) {
             GridPane linha = createRowTable(e);
             this.rowsContainer.getChildren().add(linha);
         }
