@@ -1,6 +1,8 @@
 package com.github.luantenorio.projetocopatp1.stadium;
 
+import com.github.luantenorio.projetocopatp1.util.Router;
 import com.github.luantenorio.projetocopatp1.util.Table;
+import com.github.luantenorio.projetocopatp1.util.ViewName;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -87,6 +89,10 @@ public class StadiumController extends Table<StadiumEntity> {
         this.capacityFormated = this.filterCapacity.getText().trim();
 
         return nameFormated.isEmpty() && locationFormated.isEmpty() && capacityFormated.isEmpty();
+    }
+
+    public void navigateToCreateStadium(){
+        Router.NavigateTo(ViewName.CREATE_STADIUM);
     }
 
 }
