@@ -78,7 +78,7 @@
         </HBox>
     </VBox>
 
-    <Button text="Novo árbitro"
+    <Button text="Novo Estádio"
             styleClass="botao-novo"
             stylesheets="@../css/main.css"
             xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" onMouseClicked="#navigateToCreateStadium"/>
