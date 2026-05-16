@@ -18,6 +18,8 @@ public class CreateStadiumController implements DataController<StadiumEntity> {
     private TextField txtCapacity;
     @FXML
     private Button buttonOperate;
+    @FXML
+    private Button buttonDelete;
 
     private final StadiumService stadiumService = new StadiumService();
     private StadiumEntity stadiumSelected;
@@ -26,6 +28,7 @@ public class CreateStadiumController implements DataController<StadiumEntity> {
     @FXML
     public void initialize(){
         this.formatCapacityField();
+        this.setVisibleDeleteButton(false);
     }
 
     public void operate(){
@@ -73,11 +76,22 @@ public class CreateStadiumController implements DataController<StadiumEntity> {
         this.isEdit = true;
         this.setStadium();
         this.buttonOperate.setText("Atualizar");
+        this.setVisibleDeleteButton(true);
     }
 
     private void setStadium(){
         txtName.setText(stadiumSelected.getName());
         txtLocation.setText(stadiumSelected.getLocation());
         txtCapacity.setText(String.valueOf(stadiumSelected.getCapacity()));
+    }
+
+    public void delete(){
+        this.stadiumService.deleteStadium(this.stadiumSelected.getId());
+        this.backToStadiums();
+    }
+
+    private void setVisibleDeleteButton(boolean value) {
+        this.buttonDelete.setVisible(value);
+        this.buttonDelete.setManaged(value);
     }
 }
