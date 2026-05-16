@@ -1,7 +1,5 @@
 package com.github.luantenorio.projetocopatp1.match;
 
-import com.github.luantenorio.projetocopatp1.util.Router;
-import com.github.luantenorio.projetocopatp1.util.ViewName;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
