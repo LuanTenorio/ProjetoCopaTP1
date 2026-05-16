@@ -16,7 +16,11 @@ public class Router {
         Router.outlet = pane;
     }
 
-    public static void NavigateTo(ViewName name) {
+    public static void navigateTo(ViewName name){
+        navigateTo(name, null);
+    }
+
+    public static void navigateTo(ViewName name, Object dados) {
         String filename = null;
         try {
             String[] texts = name.getFileFxmlName().split("\\|");
@@ -25,6 +29,13 @@ public class Router {
 
             FXMLLoader loader = new FXMLLoader(Router.class.getResource(PATH + filename));
             Parent newScene = loader.load();
+
+            if (dados != null) {
+                Object controller = loader.getController();
+                if (controller instanceof DataController) {
+                    ((DataController) controller).getData(dados);
+                }
+            }
 
             outlet.getChildren().clear();
             outlet.getChildren().add(newScene);

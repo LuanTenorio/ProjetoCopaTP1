@@ -36,10 +36,10 @@ public class PanelController {
     }
 
     public void navigateToEstadium(){
-        Router.NavigateTo(ViewName.STADIUM);
+        Router.navigateTo(ViewName.STADIUM);
     }
 
-    public void navigateToPlayer() {Router.NavigateTo(ViewName.PLAYER);}
+    public void navigateToPlayer() {Router.navigateTo(ViewName.PLAYER);}
 
-    public void navigateToMatch() {Router.NavigateTo(ViewName.MATCH);}
+    public void navigateToMatch() {Router.navigateTo(ViewName.MATCH);}
 }
