@@ -1,8 +1,11 @@
 package com.github.luantenorio.projetocopatp1.referee;
 
+import com.github.luantenorio.projetocopatp1.util.Countries;
 import com.github.luantenorio.projetocopatp1.util.DataController;
 import com.github.luantenorio.projetocopatp1.util.Router;
 import com.github.luantenorio.projetocopatp1.util.ViewName;
+import javafx.collections.FXCollections;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
@@ -15,7 +18,7 @@ public class CreateRefereeController implements DataController<RefereeEntity> {
     @FXML
     public TextField txtName;
     @FXML
-    public TextField txtNationality;
+    public ComboBox<String> txtNationality;
     @FXML
     public TextField txtPerformanceTime;
     @FXML
@@ -30,6 +33,7 @@ public class CreateRefereeController implements DataController<RefereeEntity> {
     public void initialize(){
         this.formatCapacityField();
         this.setVisibleDeleteButton(false);
+        this.filterCountries();
     }
 
     public void operate(){
@@ -54,7 +58,7 @@ public class CreateRefereeController implements DataController<RefereeEntity> {
 
     private RefereeEntity getCurrentEntity(){
         String name = txtName.getText();
-        String nationality = txtNationality.getText();
+        String nationality = txtNationality.getEditor().getText().trim();
         int performanceTime = Integer.parseInt(txtPerformanceTime.getText());
         String history = txtHistory.getText();
 
@@ -86,7 +90,7 @@ public class CreateRefereeController implements DataController<RefereeEntity> {
 
     private void setStadium(){
         txtName.setText(refereeSelected.getName().trim());
-        txtNationality.setText(refereeSelected.getNationality().trim());
+        txtNationality.setValue(refereeSelected.getNationality().trim());
         txtPerformanceTime.setText(String.valueOf(refereeSelected.getPerformanceTime()));
         txtHistory.setText(refereeSelected.getHistory().trim());
     }
@@ -107,8 +111,13 @@ public class CreateRefereeController implements DataController<RefereeEntity> {
         if (txtName.getText() == null || txtName.getText().trim().isEmpty())
             error += "O campo 'Nome' é obrigatório.\n";
 
-        if (txtNationality.getText() == null || txtNationality.getText().trim().isEmpty())
+        String typedNationality = txtNationality.getEditor().getText();
+
+        if (typedNationality == null || typedNationality.trim().isEmpty()) {
             error += "O campo 'Nacionalidade' é obrigatório.\n";
+        } else if (!Countries.countries.contains(typedNationality.trim())) {
+            error += String.format("%s não é uma nacionalidade válida\n", typedNationality);
+        }
 
         if (txtPerformanceTime.getText() == null || txtPerformanceTime.getText().trim().isEmpty())
             error += "O campo 'Tempo de atuação' é obrigatório.\n";
@@ -128,6 +137,38 @@ public class CreateRefereeController implements DataController<RefereeEntity> {
         alert.setTitle("Campos inválidos");
         alert.setContentText(error);
         alert.showAndWait();
+    }
+
+    private void filterCountries() {
+        FilteredList<String> filteredCountries = new FilteredList<>(
+                FXCollections.observableArrayList(Countries.countries), p -> true
+        );
+
+        txtNationality.setItems(filteredCountries);
+        TextField editor = txtNationality.getEditor();
+
+        editor.textProperty().addListener((observable, oldValue, newValue) -> {
+            String selectedItem = txtNationality.getSelectionModel().getSelectedItem();
+            if (selectedItem != null && selectedItem.equals(newValue)) {
+                return;
+            }
+
+            int caretPosition = editor.getCaretPosition();
+
+            filteredCountries.setPredicate(country -> {
+                if (newValue == null || newValue.isEmpty())
+                    return true;
+
+                String searchTerm = newValue.toLowerCase().trim();
+                return country.toLowerCase().contains(searchTerm);
+            });
+
+            editor.positionCaret(caretPosition);
+
+            if (!txtNationality.isShowing() && txtNationality.isFocused() && !filteredCountries.isEmpty()) {
+                txtNationality.show();
+            }
+        });
     }
 
 }

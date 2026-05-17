@@ -76,3 +76,61 @@
 .textarea .content {
     -fx-background-color: transparent;
 }
+
+.combobox {
+    -fx-background-color: white;
+    -fx-background-radius: 12px;
+    -fx-border-color: #465EFF;
+    -fx-border-radius: 12px 12px 0px 0px;
+    -fx-border-width: 1.5px;
+    -fx-padding: 0;
+    -fx-pref-height: 50px;
+    -fx-min-height: 50px;
+    -fx-max-height: 50px;
+}
+
+.combobox > .text-field {
+    -fx-background-color: transparent;
+    -fx-font-family: "Poppins";
+    -fx-font-size: 16px;
+    -fx-text-fill: #333333;
+    -fx-padding: 0 10px;
+}
+
+.combobox > .arrow-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0 15px 0 10px;
+}
+
+.combobox > .arrow-button > .arrow {
+    -fx-background-color: #465EFF;
+}
+
+.combobox:contains-focus {
+    -fx-background-color: #F0F2FF;
+    -fx-border-width: 2.5px;
+}
+
+.combobox .combo-box-popup .list-view {
+    -fx-background-color: white;
+    -fx-border-color: #465EFF;
+    -fx-border-width: 1.5px;
+    -fx-border-radius: 0px 0px 8px 8px;
+    -fx-background-radius: 0px 0px 8px 8px;
+    -fx-translate-y: 2px;
+}
+
+.combobox .combo-box-popup .list-cell {
+    -fx-padding: 8px 10px;
+    -fx-font-family: "Poppins";
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333;
+    -fx-background-color: transparent;
+}
+
+.combobox .combo-box-popup .list-cell:filled:hover,
+.combobox .combo-box-popup .list-cell:filled:selected {
+    -fx-background-color: #F0F2FF;
+    -fx-text-fill: #465EFF;
+    -fx-cursor: hand;
+}

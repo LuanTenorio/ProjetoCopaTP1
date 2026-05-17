@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ComboBox?>
 <AnchorPane fx:controller="com.github.luantenorio.projetocopatp1.referee.CreateRefereeController" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #FAF9F3;" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
     <children>
         <VBox layoutX="50.0" layoutY="50.0" spacing="30.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
@@ -25,31 +26,32 @@
                     </children>
                 </VBox>
 
-                <HBox spacing="40.0">
+                <VBox spacing="10.0" HBox.hgrow="ALWAYS">
                     <children>
-                        <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                        <StackPane alignment="CENTER" maxWidth="200.0" prefHeight="45.0" styleClass="yellow-label">
                             <children>
-                                <StackPane alignment="CENTER" maxWidth="200.0" prefHeight="45.0" styleClass="yellow-label">
-                                    <children>
-                                            <Label styleClass="blue-text" text="NACIONALIDADE" />
-                                    </children>
-                                </StackPane>
-                                <TextField fx:id="txtNationality" promptText="Brasileiro..." styleClass="input" />
+                                    <Label styleClass="blue-text" text="NACIONALIDADE" />
                             </children>
-                        </VBox>
-
-                        <VBox spacing="10.0" HBox.hgrow="ALWAYS">
-                            <children>
-                                <StackPane alignment="CENTER" maxWidth="200.0" prefHeight="45.0" styleClass="yellow-label">
-                                    <children>
-                                        <Label styleClass="blue-text" text="Tempo de atuação" />
-                                    </children>
-                                </StackPane>
-                                <TextField fx:id="txtPerformanceTime" promptText="8..." styleClass="input" />
-                            </children>
-                        </VBox>
+                        </StackPane>
+                        <ComboBox fx:id="txtNationality"
+                                  editable="true"
+                                  promptText="Digite para buscar o país..."
+                                  prefHeight="50.0"
+                                  maxWidth="1.7976931348623157E308"
+                                  styleClass="combobox" />
                     </children>
-                </HBox>
+                </VBox>
+
+                <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                    <children>
+                        <StackPane alignment="CENTER" maxWidth="200.0" prefHeight="45.0" styleClass="yellow-label">
+                            <children>
+                                <Label styleClass="blue-text" text="Tempo de atuação" />
+                            </children>
+                        </StackPane>
+                        <TextField fx:id="txtPerformanceTime" promptText="8..." styleClass="input" />
+                    </children>
+                </VBox>
             </children>
 
             <VBox spacing="10.0">
