@@ -9,7 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 
-public class CreateStadiumController implements DataController<StadiumEntity> {
+public class FormStadiumController implements DataController<StadiumEntity> {
 
     @FXML
     private TextField txtName;

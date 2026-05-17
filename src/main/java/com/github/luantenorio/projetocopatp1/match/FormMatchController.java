@@ -5,7 +5,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
-public class CreateMatchController {
+public class FormMatchController {
 
     MatchDAO dao = new MatchDAO();
 

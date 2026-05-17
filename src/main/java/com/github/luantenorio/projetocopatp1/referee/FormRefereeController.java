@@ -9,7 +9,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-public class CreateRefereeController implements DataController<RefereeEntity> {
+public class FormRefereeController implements DataController<RefereeEntity> {
 
     private boolean isEdit = false;
     private final RefereeService refereeService = new RefereeService();
