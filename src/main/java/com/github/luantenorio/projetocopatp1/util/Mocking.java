@@ -5,8 +5,8 @@ import com.github.luantenorio.projetocopatp1.match.MatchEntity;
 import com.github.luantenorio.projetocopatp1.match.MatchStatus;
 import com.github.luantenorio.projetocopatp1.referee.RefereeDAO;
 import com.github.luantenorio.projetocopatp1.referee.RefereeEntity;
-import com.github.luantenorio.projetocopatp1.referee.RefereeMatchDAO;
-import com.github.luantenorio.projetocopatp1.referee.RefereeMatchEntity;
+import com.github.luantenorio.projetocopatp1.refereeMatch.RefereeMatchDAO;
+import com.github.luantenorio.projetocopatp1.refereeMatch.RefereeMatchEntity;
 import com.github.luantenorio.projetocopatp1.stadium.StadiumDAO;
 import com.github.luantenorio.projetocopatp1.stadium.StadiumEntity;
 
@@ -113,7 +113,6 @@ public class Mocking {
         matchDAO.create(new MatchEntity("qf-uuid-2", "team_netherlands", "team_argentina", createDate(7, 5, 16), "stadium_metlife", "Quarter-finals", MatchStatus.SCHEDULED));
         matchDAO.create(new MatchEntity("team_argentina", "team_croatia", createDate(7, 9, 16), "stadium_azteca", "Semi-finals", MatchStatus.SCHEDULED));
         matchDAO.create(new MatchEntity("team_argentina", "team_france", createDate(7, 14, 16), "stadium_metlife", "Final", MatchStatus.SCHEDULED));
-        matchDAO.findAll().stream().forEach(m -> System.out.println(m.getId()));
         System.out.println("Mock das partidas...");
     }
 

@@ -1,4 +1,4 @@
-package com.github.luantenorio.projetocopatp1.referee;
+package com.github.luantenorio.projetocopatp1.refereeMatch;
 
 import com.github.luantenorio.projetocopatp1.util.DAO;
 
