@@ -2,6 +2,7 @@ package com.github.luantenorio.projetocopatp1.panel;
 
 import com.github.luantenorio.projetocopatp1.util.Router;
 import com.github.luantenorio.projetocopatp1.util.ViewName;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -18,6 +19,7 @@ public class PanelController {
     @FXML
     public void initialize() {
         this.forceRoundedEdges();
+        Platform.runLater(this::initialRouter);
     }
 
     private void forceRoundedEdges(){
@@ -32,7 +34,10 @@ public class PanelController {
 
         panel.setClip(clip);
         Router.setOutlet(this.routerOutlet);
-        navigateToEstadium();
+    }
+
+    private void initialRouter(){
+        this.navigateToEstadium();
     }
 
     public void navigateToEstadium(){
