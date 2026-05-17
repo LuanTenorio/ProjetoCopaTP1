@@ -35,10 +35,10 @@ public class RefereeController extends Table<RefereeEntity>  {
     }
 
     protected boolean filterCondition(RefereeEntity object) {
-        if(!this.nameFormated.isEmpty() && !object.getName().trim().toLowerCase().startsWith(this.nameFormated))
+        if(!this.nameFormated.isEmpty() && !object.getName().trim().toLowerCase().startsWith(this.nameFormated.toLowerCase()))
             return false;
 
-        if(!this.nationalityFormated.isEmpty() && !object.getNationality().trim().toLowerCase().startsWith(this.nationalityFormated))
+        if(!this.nationalityFormated.isEmpty() && !object.getNationality().trim().toLowerCase().startsWith(this.nationalityFormated.toLowerCase()))
             return false;
 
         if(!this.performanceTimeFormated.equals("0") && !String.format("%d", object.getPerformanceTime()).startsWith(this.performanceTimeFormated))
@@ -85,5 +85,9 @@ public class RefereeController extends Table<RefereeEntity>  {
         );
 
         this.filterPerformanceTime.setTextFormatter(numberFormatter);
+    }
+
+    public void navigateToCreateReferee(){
+        Router.navigateTo(ViewName.UPDATE_REFEREE);
     }
 }
