@@ -11,9 +11,11 @@ public class TeamEntity implements Serializable {
     private String name;
     private String group;
     private String coach;
+    private String country;
     private Set<PlayerEntity> lineup;
 
-    public TeamEntity(String name, String  group, String coach) {
+    public TeamEntity(String name, String  group, String coach, String country) {
+        this.country = country;
         this.id = UUID.randomUUID().toString();
         this.name = name;
         this.group = group;
@@ -21,11 +23,12 @@ public class TeamEntity implements Serializable {
         lineup = new HashSet<>();
     }
 
-    public TeamEntity(String id, String name, String  group, String coach) {
+    public TeamEntity(String id, String name, String  group, String coach, String country) {
         this.id = id;
         this.name = name;
         this.group = group;
         this.coach = coach;
+        this.country = country;
         lineup = new HashSet<>();
     }
 
@@ -89,5 +92,9 @@ public class TeamEntity implements Serializable {
 
     public boolean hasMinimumPlayers() {
         return lineup.size() >= MIN_PLAYERS;
+    }
+
+    public String getCountry() {
+        return country;
     }
 }

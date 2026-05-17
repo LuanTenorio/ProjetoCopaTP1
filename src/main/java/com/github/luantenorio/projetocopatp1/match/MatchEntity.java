@@ -30,7 +30,7 @@ public class MatchEntity implements Serializable {
     }
 
     public MatchEntity(String team1Id, String team2Id, ZonedDateTime date, String stadiumId, String stage, MatchStatus status) {
-        this.id = this.id = UUID.randomUUID().toString();
+        this.id = UUID.randomUUID().toString();
         this.team1Id = team1Id;
         this.team2Id = team2Id;
         this.date = date;
@@ -119,7 +119,7 @@ public class MatchEntity implements Serializable {
         this.team2Id = team2.getId();
     }
 
-    private class Result {
+    private class Result implements Serializable {
         private String score;
         private final HashSet<MatchEvent> history = new HashSet<>();
 

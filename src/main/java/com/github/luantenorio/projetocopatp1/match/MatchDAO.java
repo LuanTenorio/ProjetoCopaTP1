@@ -38,6 +38,7 @@ public class MatchDAO extends DAO<MatchEntity> {
         return true;
     }
 
+    //Verificar operações em cascata
     public boolean delete(String id) {
         List<MatchEntity> matches = this.readFile();
         int sizeOld = matches.size();

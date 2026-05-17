@@ -1,11 +1,13 @@
 package com.github.luantenorio.projetocopatp1.referee;
 
-import com.github.luantenorio.projetocopatp1.stadium.StadiumEntity;
+import com.github.luantenorio.projetocopatp1.refereeMatch.RefereeMatchDAO;
 import com.github.luantenorio.projetocopatp1.util.DAO;
 
 import java.util.List;
 
 public class RefereeDAO extends DAO<RefereeEntity>  {
+
+    private final RefereeMatchDAO refereeMatchDAO = new RefereeMatchDAO();
 
     public RefereeDAO() {
         super("referee.bin");
@@ -46,6 +48,8 @@ public class RefereeDAO extends DAO<RefereeEntity>  {
 
     public boolean delete(String id) {
         List<RefereeEntity> refereers = this.findAll();
+
+        this.refereeMatchDAO.deleteAllByReferee(id);
 
         for (int i = 0; i < refereers.size(); i++) {
             if (refereers.get(i).getId().equals(id)) {
