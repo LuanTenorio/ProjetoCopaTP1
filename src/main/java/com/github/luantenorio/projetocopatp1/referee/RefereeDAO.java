@@ -11,11 +11,16 @@ public class RefereeDAO extends DAO<RefereeEntity>  {
     }
 
     public RefereeEntity create(RefereeEntity entity) {
-        return null;
+        List<RefereeEntity> referee = this.readFile();
+
+        referee.add(entity);
+        saveFile(referee);
+
+        return entity;
     }
 
     public List<RefereeEntity> findAll() {
-        return List.of();
+        return this.readFile();
     }
 
     public RefereeEntity findById(String id) {
