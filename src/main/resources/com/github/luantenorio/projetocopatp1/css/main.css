@@ -66,3 +66,13 @@
     -fx-background-color: #F0F2FF;
     -fx-border-width: 2.5px;
 }
+
+.textarea {
+    -fx-pref-height: 200px;
+    -fx-padding: 10px;
+}
+
+.textarea .viewport,
+.textarea .content {
+    -fx-background-color: transparent;
+}

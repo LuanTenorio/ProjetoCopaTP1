@@ -86,4 +86,8 @@ public class RefereeController extends Table<RefereeEntity>  {
 
         this.filterPerformanceTime.setTextFormatter(numberFormatter);
     }
+
+    public void navigateToCreateReferee(){
+        Router.navigateTo(ViewName.UPDATE_REFEREE);
+    }
 }
