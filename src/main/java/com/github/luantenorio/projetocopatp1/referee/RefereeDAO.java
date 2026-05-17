@@ -1,0 +1,37 @@
+package com.github.luantenorio.projetocopatp1.referee;
+
+import com.github.luantenorio.projetocopatp1.util.DAO;
+
+import java.util.List;
+
+public class RefereeDAO extends DAO<RefereeEntity>  {
+
+    public RefereeDAO() {
+        super("referee.bin");
+    }
+
+    public RefereeEntity create(RefereeEntity entity) {
+        List<RefereeEntity> referee = this.readFile();
+
+        referee.add(entity);
+        saveFile(referee);
+
+        return entity;
+    }
+
+    public List<RefereeEntity> findAll() {
+        return this.readFile();
+    }
+
+    public RefereeEntity findById(String id) {
+        return null;
+    }
+
+    public boolean update(RefereeEntity entity) {
+        return false;
+    }
+
+    public boolean delete(String id) {
+        return false;
+    }
+}

@@ -22,4 +22,6 @@ module com.github.luantenorio.projetocopatp1 {
     opens com.github.luantenorio.projetocopatp1.match to javafx.fxml;
     exports com.github.luantenorio.projetocopatp1.util;
     opens com.github.luantenorio.projetocopatp1.util to javafx.fxml;
+    exports com.github.luantenorio.projetocopatp1.referee;
+    opens com.github.luantenorio.projetocopatp1.referee to javafx.fxml;
 }
