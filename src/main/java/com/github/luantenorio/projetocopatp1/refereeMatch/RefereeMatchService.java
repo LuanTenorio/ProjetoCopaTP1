@@ -4,22 +4,22 @@ import com.github.luantenorio.projetocopatp1.match.MatchDAO;
 import com.github.luantenorio.projetocopatp1.match.MatchEntity;
 import com.github.luantenorio.projetocopatp1.referee.RefereeDAO;
 import com.github.luantenorio.projetocopatp1.referee.RefereeEntity;
+import com.github.luantenorio.projetocopatp1.referee.RefereeService;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class RefereeMatchService {
 
-    private final RefereeMatchDAO refereeMatchDAO = new RefereeMatchDAO();
+    private final RefereeMatchDAO refereeMatchDAO = new RefereeMatchDAO(); // tirar os DAOs e deixar só os services
+    private final RefereeService refereeService = new RefereeService();
     private final RefereeDAO refereeDAO = new RefereeDAO();
     private final MatchDAO matchDAO = new MatchDAO();
 
     public boolean assignRefereeToMatch(RefereeEntity referee, MatchEntity match){
-        if(
-            match.getTeam1().getCountry().trim().equalsIgnoreCase(referee.getNationality().trim()) ||
-            match.getTeam2().getCountry().trim().equalsIgnoreCase(referee.getNationality().trim())
-        )
-            return false;
+        //precisa dos times
+//        if(!this.refereeService.checksIfRefereeCanRefereeMatch(referee, match))
+//            return false;
 
         RefereeMatchEntity refereeMatch = new RefereeMatchEntity(referee.getId(), match.getId());
 

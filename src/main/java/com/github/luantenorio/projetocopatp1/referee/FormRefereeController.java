@@ -1,19 +1,36 @@
 package com.github.luantenorio.projetocopatp1.referee;
 
-import com.github.luantenorio.projetocopatp1.util.Countries;
-import com.github.luantenorio.projetocopatp1.util.DataController;
-import com.github.luantenorio.projetocopatp1.util.Router;
-import com.github.luantenorio.projetocopatp1.util.ViewName;
+import com.github.luantenorio.projetocopatp1.match.MatchDAO;
+import com.github.luantenorio.projetocopatp1.match.MatchEntity;
+import com.github.luantenorio.projetocopatp1.users.AccessLevel;
+import com.github.luantenorio.projetocopatp1.util.*;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
+
+import java.time.ZonedDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class FormRefereeController implements DataController<RefereeEntity> {
 
     private boolean isEdit = false;
     private final RefereeService refereeService = new RefereeService();
+    private final MatchDAO matchDAO = new MatchDAO(); // mudar para matchService futuramente
+
     private RefereeEntity refereeSelected;
+
+    private List<String> selectedMatches = new ArrayList<>();
+
+    private List<String> availableMatches = Arrays.asList(
+            "Brasil x Sérvia", "Argentina x Arábia Saudita", "França x Austrália",
+            "Espanha x Costa Rica", "Portugal x Gana"
+    );
 
     @FXML
     public TextField txtName;
@@ -27,6 +44,10 @@ public class FormRefereeController implements DataController<RefereeEntity> {
     public Button buttonDelete;
     @FXML
     public TextArea txtHistory;
+    @FXML
+    public FlowPane chipContainer;
+    @FXML
+    public ComboBox<String> cbMatches;
 
 
     @FXML
@@ -34,6 +55,12 @@ public class FormRefereeController implements DataController<RefereeEntity> {
         this.formatCapacityField();
         this.setVisibleDeleteButton(false);
         this.filterCountries();
+        this.setupMatchSelector();
+
+        //Implementar melhor lógica de hieratquia
+//        if(Global.getAccessLevel().equals(AccessLevel.ADMIN)){
+//            this.setAvailableMatches();
+//        }
     }
 
     public void operate(){
@@ -170,5 +197,78 @@ public class FormRefereeController implements DataController<RefereeEntity> {
             }
         });
     }
+
+    private void setupMatchSelector() {
+        FilteredList<String> filteredMatches = new FilteredList<>(
+                FXCollections.observableArrayList(availableMatches), p -> true
+        );
+
+        cbMatches.setItems(filteredMatches);
+        cbMatches.setVisibleRowCount(5);
+        TextField editor = cbMatches.getEditor();
+
+        editor.textProperty().addListener((observable, oldValue, newValue) -> {
+            String selectedItem = cbMatches.getSelectionModel().getSelectedItem();
+            if (selectedItem != null && selectedItem.equals(newValue))
+                return;
+
+            int caretPosition = editor.getCaretPosition();
+
+            filteredMatches.setPredicate(match -> {
+                if (newValue == null || newValue.isEmpty())
+                    return true;
+                return match.toLowerCase().contains(newValue.toLowerCase().trim());
+            });
+
+            editor.positionCaret(caretPosition);
+
+            if (!cbMatches.isShowing() && cbMatches.isFocused() && !filteredMatches.isEmpty())
+                cbMatches.show();
+        });
+
+        cbMatches.setOnAction(event -> {
+            String selected = cbMatches.getSelectionModel().getSelectedItem();
+
+            if (selected != null && !selected.trim().isEmpty() && !selectedMatches.contains(selected)) {
+                this.addChip(selected);
+
+                Platform.runLater(() -> {
+                    cbMatches.getSelectionModel().clearSelection();
+                    cbMatches.getEditor().clear();
+                });
+            }
+        });
+    }
+
+    private void addChip(String matchName) {
+        selectedMatches.add(matchName);
+
+        HBox chip = new HBox();
+        chip.getStyleClass().add("chip");
+
+        Label label = new Label(matchName);
+        label.getStyleClass().add("chip-label");
+
+        Button closeButton = new Button("X");
+        closeButton.getStyleClass().add("chip-close");
+
+        closeButton.setOnAction(e -> {
+            chipContainer.getChildren().remove(chip);
+            selectedMatches.remove(matchName);
+        });
+
+        chip.getChildren().addAll(label, closeButton);
+        chipContainer.getChildren().add(chip);
+    }
+
+    // precisa do time
+//    private void setAvailableMatches(){
+//        List<MatchEntity> matches = this.matchDAO.findAll();
+//        ZonedDateTime now = ZonedDateTime.now();
+//
+//        for(MatchEntity m : matches)
+//            if(m.getDate().isAfter(now) && this.refereeService.checksIfRefereeCanRefereeMatch(this.refereeSelected, m))
+//                this.availableMatches.add(m.getName());
+//    }
 
 }

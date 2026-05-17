@@ -134,3 +134,44 @@
     -fx-text-fill: #465EFF;
     -fx-cursor: hand;
 }
+
+.chips-container {
+    -fx-background-color: #F4F6FF;
+    -fx-border-color: #1E3A8A;
+    -fx-border-radius: 12px;
+    -fx-background-radius: 12px;
+    -fx-border-width: 1.5px;
+    -fx-padding: 20px;
+}
+
+.chip {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 20px;
+    -fx-border-color: #E2E8F0;
+    -fx-border-radius: 20px;
+    -fx-border-width: 1px;
+    -fx-padding: 8px 16px;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.06), 4, 0, 0, 2);
+}
+
+.chip-label {
+    -fx-font-family: "Poppins";
+    -fx-font-size: 13px;
+    -fx-text-fill: #334155;
+    -fx-font-weight: bold;
+}
+
+.chip-close {
+    -fx-background-color: transparent;
+    -fx-text-fill: #EF4444;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 0 0 0 10px;
+    -fx-cursor: hand;
+}
+
+.chip-close:hover {
+    -fx-background-color: transparent;
+    -fx-text-fill: #B91C1C;
+}
