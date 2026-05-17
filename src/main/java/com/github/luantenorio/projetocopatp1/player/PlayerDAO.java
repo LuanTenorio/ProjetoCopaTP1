@@ -20,17 +20,14 @@ public class PlayerDAO extends DAO<PlayerEntity> {
         return List.of();
     }
 
-    @Override
     public PlayerEntity findById(String id) {
         return null;
     }
 
-    @Override
     public boolean update(PlayerEntity entity) {
         return false;
     }
 
-    @Override
     public boolean delete(String id) {
         return false;
     }

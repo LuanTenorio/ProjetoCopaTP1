@@ -10,6 +10,11 @@ public class RefereeMatchDAO extends DAO<RefereeMatchEntity> {
     }
 
     public RefereeMatchEntity create(RefereeMatchEntity entity) {
+        var refereeMatch = this.find(entity);
+
+        if(refereeMatch != null)
+            return refereeMatch;
+
         List<RefereeMatchEntity> referee = this.readFile();
 
         referee.add(entity);
@@ -22,13 +27,12 @@ public class RefereeMatchDAO extends DAO<RefereeMatchEntity> {
         return this.readFile();
     }
 
-    public RefereeMatchEntity findById(String id) {
-        RefereeMatchEntity refereeMatchEntity = this.findByIdReferee(id);
+    public RefereeMatchEntity find(RefereeMatchEntity refereeMatch) {
+        List<RefereeMatchEntity> referee = this.readFile();
 
-        if(refereeMatchEntity == null)
-            refereeMatchEntity = this.findByIdMatch(id);
-
-        return refereeMatchEntity;
+        return referee.stream()
+                .filter(s -> s.getIdReferee().equals(refereeMatch.getIdReferee()) && s.getIdMatch().equals(refereeMatch.getIdMatch()))
+                .findFirst().orElse(null);
     }
 
     public RefereeMatchEntity findByIdReferee(String id) {
@@ -44,7 +48,7 @@ public class RefereeMatchDAO extends DAO<RefereeMatchEntity> {
     }
 
     public boolean update(RefereeMatchEntity entity) {
-        boolean isDeleted = this.delete(entity.getIdReferee());
+        boolean isDeleted = this.delete(entity);
 
         if(!isDeleted)
             return false;
@@ -54,41 +58,36 @@ public class RefereeMatchDAO extends DAO<RefereeMatchEntity> {
         return true;
     }
 
-    public boolean delete(String id) {
-        boolean isDeleted = this.deleteByReferee(id);
-
-        if(!isDeleted)
-            isDeleted = this.deleteByMatch(id);
-
-        return isDeleted;
-    }
-
-    public boolean deleteByReferee(String id) {
+    public boolean delete(RefereeMatchEntity refereeMatch) {
         List<RefereeMatchEntity> refereers = this.findAll();
 
-        for (int i = 0; i < refereers.size(); i++) {
-            if (refereers.get(i).getIdReferee().equals(id)) {
+        for (int i = 0; i < refereers.size(); i++)
+            if (refereers.get(i).getIdReferee().equals(refereeMatch.getIdReferee()) && refereers.get(i).getIdMatch().equals(refereeMatch.getIdMatch()))
                 refereers.remove(i);
-                this.saveFile(refereers);
-                return true;
-            }
-        }
 
-        return false;
+        this.saveFile(refereers);
+        return true;
     }
 
-    public boolean deleteByMatch(String id) {
+    public void deleteAllByReferee(String id) {
         List<RefereeMatchEntity> refereers = this.findAll();
 
-        for (int i = 0; i < refereers.size(); i++) {
-            if (refereers.get(i).getIdReferee().equals(id)) {
+        for (int i = 0; i < refereers.size(); i++)
+            if (refereers.get(i).getIdReferee().equals(id))
                 refereers.remove(i);
-                this.saveFile(refereers);
-                return true;
-            }
-        }
 
-        return false;
+        this.saveFile(refereers);
+    }
+
+    public boolean deletAllByMatch(String id) {
+        List<RefereeMatchEntity> refereers = this.findAll();
+
+        for (int i = 0; i < refereers.size(); i++)
+            if (refereers.get(i).getIdReferee().equals(id))
+                refereers.remove(i);
+
+        this.saveFile(refereers);
+        return true;
     }
 
 }
