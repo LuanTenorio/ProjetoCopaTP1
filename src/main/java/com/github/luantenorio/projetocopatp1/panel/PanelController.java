@@ -42,4 +42,7 @@ public class PanelController {
     public void navigateToPlayer() {Router.navigateTo(ViewName.PLAYER);}
 
     public void navigateToMatch() {Router.navigateTo(ViewName.MATCH);}
+
+    public void navigateToReferee() {Router.navigateTo(ViewName.REFEREE);}
+
 }
