@@ -44,8 +44,10 @@ public class PanelController {
         Router.navigateTo(ViewName.STADIUM);
     }
 
-    public void navigateToPlayer() {Router.navigateTo(ViewName.PLAYER);}
+    public void navigateToPlayer() {Router.NavigateTo(ViewName.PLAYER);}
 
+    public void navigateToTeam() {Router.NavigateTo(ViewName.TEAM);}
+  
     public void navigateToMatch() {Router.navigateTo(ViewName.MATCH);}
 
     public void navigateToReferee() {Router.navigateTo(ViewName.REFEREE);}
