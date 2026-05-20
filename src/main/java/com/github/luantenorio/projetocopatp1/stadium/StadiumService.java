@@ -14,5 +14,12 @@ public class StadiumService {
         return this.stadiumDAO.create(stadium);
     }
 
+    public boolean updateStadium(StadiumEntity stadium){
+        return this.stadiumDAO.update(stadium);
+    }
+
+    public boolean deleteStadium(String id){
+        return this.stadiumDAO.delete(id);
+    }
 
 }

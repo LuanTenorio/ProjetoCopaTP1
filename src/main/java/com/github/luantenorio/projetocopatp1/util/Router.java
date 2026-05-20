@@ -16,15 +16,31 @@ public class Router {
         Router.outlet = pane;
     }
 
-    public static void NavigateTo(ViewName name) {
-        String filename = name.getFileFxmlName();
+    public static void navigateTo(ViewName name){
+        navigateTo(name, null);
+    }
 
+    public static void navigateTo(ViewName name, Object dados) {
+        String filename = null;
         try {
+            String[] texts = name.getFileFxmlName().split("\\|");
+            filename = texts[0];
+            String title = texts[1];
+
             FXMLLoader loader = new FXMLLoader(Router.class.getResource(PATH + filename));
             Parent newScene = loader.load();
 
+            if (dados != null) {
+                Object controller = loader.getController();
+                if (controller instanceof DataController) {
+                    ((DataController) controller).getData(dados);
+                }
+            }
+
             outlet.getChildren().clear();
             outlet.getChildren().add(newScene);
+
+            Window.setWindowTitle(outlet, title);
         } catch (IOException e) {
             System.err.println("Rota não encontrada " + filename);
             e.printStackTrace();

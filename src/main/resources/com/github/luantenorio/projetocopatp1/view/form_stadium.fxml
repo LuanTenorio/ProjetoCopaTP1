@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:controller="com.github.luantenorio.projetocopatp1.stadium.CreateStadiumController" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #FAF9F3;" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+<AnchorPane fx:controller="com.github.luantenorio.projetocopatp1.stadium.FormStadiumController" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #FAF9F3;" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
     <children>
         <VBox layoutX="50.0" layoutY="50.0" spacing="30.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
             <children>
@@ -52,6 +52,7 @@
             </children>
         </VBox>
 
-        <Button onMouseClicked="#register" layoutX="634.0" layoutY="530.0" mnemonicParsing="false" styleClass="button" text="REGISTRAR" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="50.0" />
+        <Button fx:id="buttonOperate" onMouseClicked="#operate" layoutX="634.0" layoutY="530.0" mnemonicParsing="false" styleClass="button" text="Registrar" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="50.0" />
+        <Button fx:id="buttonDelete" onMouseClicked="#delete" layoutX="634.0" layoutY="530.0" mnemonicParsing="false" styleClass="button-red" text="Deletar" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="50.0" />
     </children>
 </AnchorPane>

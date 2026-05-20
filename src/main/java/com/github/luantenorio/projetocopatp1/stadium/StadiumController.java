@@ -46,6 +46,10 @@ public class StadiumController extends Table<StadiumEntity> {
         return new Label[]{new Label(stadium.getName()), new Label(stadium.getLocation()), new Label(String.format("%d pessoas", stadium.getCapacity()))};
     }
 
+    protected void onRowClicked(StadiumEntity object) {
+        Router.navigateTo(ViewName.UPDATE_STADIUM, object);
+    }
+
     public void filterName(){
         this.activedFilters.setName(this.filterName.getText().trim());
         this.renderTable();
@@ -91,7 +95,7 @@ public class StadiumController extends Table<StadiumEntity> {
     }
 
     public void navigateToCreateStadium(){
-        Router.NavigateTo(ViewName.CREATE_STADIUM);
+        Router.navigateTo(ViewName.CREATE_STADIUM);
     }
 
 }

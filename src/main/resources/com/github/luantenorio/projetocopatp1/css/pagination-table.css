@@ -31,9 +31,13 @@
 
 .table-row {
     -fx-padding: 20px 0;
-    /* A linha fina entre os itens */
     -fx-border-color: rgba(32, 25, 95, 0.3);
     -fx-border-width: 0 0 1px 0;
+    -fx-cursor: hand;
+}
+
+.table-row:hover{
+    -fx-background-color: #EAECF9;
 }
 
 .text-row {
