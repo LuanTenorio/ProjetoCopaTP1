@@ -23,6 +23,21 @@ public class RefereeMatchDAO extends DAO<RefereeMatchEntity> {
         return entity;
     }
 
+    public void createMany(List<RefereeMatchEntity> entities){
+        List<RefereeMatchEntity> referee = this.readFile();
+
+        for(RefereeMatchEntity rm : entities){
+            var refereeMatch = this.find(rm);
+
+            if(refereeMatch != null)
+                continue;
+
+            referee.add(rm);
+        }
+
+        saveFile(referee);
+    }
+
     public List<RefereeMatchEntity> findAll() {
         return this.readFile();
     }
@@ -88,6 +103,10 @@ public class RefereeMatchDAO extends DAO<RefereeMatchEntity> {
 
         this.saveFile(refereers);
         return true;
+    }
+
+    public List<RefereeMatchEntity> findAllByRefereeId(String refereeId){
+        return this.readFile().stream().filter(rm -> rm.getIdReferee().equals(refereeId)).toList();
     }
 
 }

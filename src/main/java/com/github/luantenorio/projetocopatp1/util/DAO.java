@@ -43,7 +43,7 @@ public abstract class DAO<T> implements Persistence<T> {
         }
     }
 
-    protected void clearAll(){
+    public void clearAll(){
         this.saveFile(new ArrayList<>());
     }
 }
