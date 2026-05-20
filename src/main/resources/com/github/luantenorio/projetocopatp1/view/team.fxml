@@ -23,17 +23,17 @@
 
             <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="0">
                 <Label styleClass="label-filter" text="Nome" />
-                <TextField fx:id="filterName" promptText="Brasil" styleClass="field-filter" />
+                <TextField fx:id="filterName" promptText="Brasil" styleClass="field-filter" onKeyReleased="#filterName" />
             </VBox>
 
             <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="0">
                 <Label styleClass="label-filter" text="Grupo" />
-                <TextField fx:id="filterGroup" promptText="Grupo A" styleClass="field-filter" />
+                <TextField fx:id="filterGroup" promptText="Grupo A" styleClass="field-filter" onKeyReleased="#filterGroup" />
             </VBox>
 
             <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="1">
                 <Label styleClass="label-filter" text="Técnico" />
-                <TextField fx:id="filterCoach" promptText="Nome do técnico" styleClass="field-filter" />
+                <TextField fx:id="filterCoach" promptText="Nome do técnico" styleClass="field-filter" onKeyReleased="#filterCoach" />
             </VBox>
          <rowConstraints>
             <RowConstraints />
