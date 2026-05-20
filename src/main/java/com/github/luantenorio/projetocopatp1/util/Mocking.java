@@ -9,6 +9,8 @@ import com.github.luantenorio.projetocopatp1.refereeMatch.RefereeMatchDAO;
 import com.github.luantenorio.projetocopatp1.refereeMatch.RefereeMatchEntity;
 import com.github.luantenorio.projetocopatp1.stadium.StadiumDAO;
 import com.github.luantenorio.projetocopatp1.stadium.StadiumEntity;
+import com.github.luantenorio.projetocopatp1.team.TeamDAO;
+import com.github.luantenorio.projetocopatp1.team.TeamEntity;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -19,12 +21,14 @@ public class Mocking {
     static MatchDAO matchDAO = new MatchDAO();
     static RefereeDAO refereeDAO = new RefereeDAO();
     static RefereeMatchDAO refereeMatchDAO = new RefereeMatchDAO();
+    static TeamDAO teamDAO = new TeamDAO();
 
     public static void main(String[] args) {
         mockEstadium();
         mockMatch();
         mockReferee();
         mockRefereeMatch();
+        mockTeam();
     }
 
     public static void mockEstadium(){
@@ -180,5 +184,58 @@ public class Mocking {
         refereeMatchDAO.create(new RefereeMatchEntity("3107852f-5898-49cb-be15-be622cd5db38", "316de5e2-b25d-49a3-bf46-5f4e690bc75e"));
         refereeMatchDAO.create(new RefereeMatchEntity("ca4edd9a-1939-4903-9b24-805cdd4f363a", "5f4b782b-36b9-46e4-8379-5fd7da112524"));
         refereeMatchDAO.create(new RefereeMatchEntity("d700a803-17e7-41ba-a15b-3d82f3bd19f9", "4be3fb05-e280-4a24-8073-604ea4044d87"));
+    }
+
+    public static void mockTeam() {
+        teamDAO.clearAll();
+        teamDAO.create(new TeamEntity("Mexico", "A", "Javier Aguirre", "Mexico"));
+        teamDAO.create(new TeamEntity("South Africa", "A", "Hugo Broos", "South Africa"));
+        teamDAO.create(new TeamEntity("South Korea", "A", "Hong Myung-bo", "South Korea"));
+        teamDAO.create(new TeamEntity("Czechia", "A", "Ivan Hasek", "Czechia"));
+        teamDAO.create(new TeamEntity("Canada", "B", "Jesse Marsch", "Canada"));
+        teamDAO.create(new TeamEntity("Bosnia and Herzegovina", "B", "Sergej Barbarez", "Bosnia and Herzegovina"));
+        teamDAO.create(new TeamEntity("Qatar", "B", "Julen Lopetegui", "Qatar"));
+        teamDAO.create(new TeamEntity("Switzerland", "B", "Murat Yakin", "Switzerland"));
+        teamDAO.create(new TeamEntity("Brazil", "C", "Carlo Ancelotti", "Brazil"));
+        teamDAO.create(new TeamEntity("Morocco", "C", "Walid Regragui", "Morocco"));
+        teamDAO.create(new TeamEntity("Haiti", "C", "Sebastien Migne", "Haiti"));
+        teamDAO.create(new TeamEntity("Scotland", "C", "Steve Clarke", "Scotland"));
+        teamDAO.create(new TeamEntity("USA", "D", "Mauricio Pochettino", "USA"));
+        teamDAO.create(new TeamEntity("Paraguay", "D", "Gustavo Alfaro", "Paraguay"));
+        teamDAO.create(new TeamEntity("Australia", "D", "Tony Popovic", "Australia"));
+        teamDAO.create(new TeamEntity("Turkey", "D", "Vincenzo Montella", "Turkey"));
+        teamDAO.create(new TeamEntity("Germany", "E", "Julian Nagelsmann", "Germany"));
+        teamDAO.create(new TeamEntity("Curacao", "E", "Dick Advocaat", "Curacao"));
+        teamDAO.create(new TeamEntity("Ivory Coast", "E", "Emerse Fae", "Ivory Coast"));
+        teamDAO.create(new TeamEntity("Ecuador", "E", "Sebastian Beccacece", "Ecuador"));
+        teamDAO.create(new TeamEntity("Netherlands", "F", "Ronald Koeman", "Netherlands"));
+        teamDAO.create(new TeamEntity("Japan", "F", "Hajime Moriyasu", "Japan"));
+        teamDAO.create(new TeamEntity("Sweden", "F", "Jon Dahl Tomasson", "Sweden"));
+        teamDAO.create(new TeamEntity("Tunisia", "F", "Sami Trabelsi", "Tunisia"));
+        teamDAO.create(new TeamEntity("Belgium", "G", "Rudi Garcia", "Belgium"));
+        teamDAO.create(new TeamEntity("Egypt", "G", "Hossam Hassan", "Egypt"));
+        teamDAO.create(new TeamEntity("Iran", "G", "Amir Ghalenoei", "Iran"));
+        teamDAO.create(new TeamEntity("New Zealand", "G", "Darren Bazeley", "New Zealand"));
+        teamDAO.create(new TeamEntity("Spain", "H", "Luis de la Fuente", "Spain"));
+        teamDAO.create(new TeamEntity("Cape Verde", "H", "Bubista", "Cape Verde"));
+        teamDAO.create(new TeamEntity("Saudi Arabia", "H", "Herve Renard", "Saudi Arabia"));
+        teamDAO.create(new TeamEntity("Uruguay", "H", "Marcelo Bielsa", "Uruguay"));
+        teamDAO.create(new TeamEntity("France", "I", "Didier Deschamps", "France"));
+        teamDAO.create(new TeamEntity("Senegal", "I", "Pape Thiaw", "Senegal"));
+        teamDAO.create(new TeamEntity("Iraq", "I", "Graham Arnold", "Iraq"));
+        teamDAO.create(new TeamEntity("Norway", "I", "Stale Solbakken", "Norway"));
+        teamDAO.create(new TeamEntity("Argentina", "J", "Lionel Scaloni", "Argentina"));
+        teamDAO.create(new TeamEntity("Algeria", "J", "Vladimir Petkovic", "Algeria"));
+        teamDAO.create(new TeamEntity("Austria", "J", "Ralf Rangnick", "Austria"));
+        teamDAO.create(new TeamEntity("Jordan", "J", "Jamal Sellami", "Jordan"));
+        teamDAO.create(new TeamEntity("Portugal", "K", "Roberto Martinez", "Portugal"));
+        teamDAO.create(new TeamEntity("DR Congo", "K", "Sebastien Desabre", "DR Congo"));
+        teamDAO.create(new TeamEntity("Uzbekistan", "K", "Timur Kapadze", "Uzbekistan"));
+        teamDAO.create(new TeamEntity("Colombia", "K", "Nestor Lorenzo", "Colombia"));
+        teamDAO.create(new TeamEntity("England", "L", "Thomas Tuchel", "England"));
+        teamDAO.create(new TeamEntity("Croatia", "L", "Zlatko Dalic", "Croatia"));
+        teamDAO.create(new TeamEntity("Ghana", "L", "Otto Addo", "Ghana"));
+        teamDAO.create(new TeamEntity("Panama", "L", "Thomas Christiansen", "Panama"));
+        System.out.println("Mock das seleções...");
     }
 }
