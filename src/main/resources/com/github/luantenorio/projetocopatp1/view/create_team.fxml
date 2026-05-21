@@ -5,7 +5,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:controller="com.github.luantenorio.projetocopatp1.team.CreateTeamController" prefHeight="768.0" prefWidth="900.0" style="-fx-background-color: #FAF9F3;" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:controller="com.github.luantenorio.projetocopatp1.team.CreateTeamController" prefHeight="768.0" prefWidth="900.0" style="-fx-background-color: #FAF9F3;" stylesheets="@../css/main.css, @../css/list-view.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <VBox layoutX="50.0" layoutY="50.0" spacing="30.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
             <children>
@@ -77,7 +77,7 @@
                                 <VBox spacing="10.0" HBox.hgrow="ALWAYS">
                                     <children>
                                         <Label styleClass="blue-text" text="JOGADORES CADASTRADOS" />
-                                        <ListView fx:id="availablePlayersListView" prefHeight="240.0" />
+                                        <ListView fx:id="availablePlayersListView" prefHeight="240.0" styleClass="players-list" />
                                     </children>
                                 </VBox>
 
@@ -91,7 +91,7 @@
                                 <VBox spacing="10.0" HBox.hgrow="ALWAYS">
                                     <children>
                                         <Label styleClass="blue-text" text="JOGADORES DA SELEÇÃO" />
-                                        <ListView fx:id="selectedPlayersListView" prefHeight="240.0" />
+                                        <ListView fx:id="selectedPlayersListView" prefHeight="240.0" styleClass="players-list" />
                                     </children>
                                 </VBox>
                             </children>
