@@ -77,21 +77,21 @@
                                 <VBox spacing="10.0" HBox.hgrow="ALWAYS">
                                     <children>
                                         <Label styleClass="blue-text" text="JOGADORES CADASTRADOS" />
-                                        <ListView fx:id="availablePlayersList" prefHeight="240.0" />
+                                        <ListView fx:id="availablePlayersListView" prefHeight="240.0" />
                                     </children>
                                 </VBox>
 
                                 <VBox alignment="CENTER" spacing="15.0">
                                     <children>
-                                        <Button fx:id="addPlayerButton" mnemonicParsing="false" styleClass="button" text="ADICIONAR" />
-                                        <Button fx:id="removePlayerButton" mnemonicParsing="false" styleClass="button" text="REMOVER" />
+                                        <Button fx:id="addPlayerButton" mnemonicParsing="false" styleClass="button" text="ADICIONAR" onMouseClicked="#addSelectedPlayers"/>
+                                        <Button fx:id="removePlayerButton" mnemonicParsing="false" styleClass="button" text="REMOVER" onMouseClicked="#removeSelectedPlayers"/>
                                     </children>
                                 </VBox>
 
                                 <VBox spacing="10.0" HBox.hgrow="ALWAYS">
                                     <children>
                                         <Label styleClass="blue-text" text="JOGADORES DA SELEÇÃO" />
-                                        <ListView fx:id="selectedPlayersList" prefHeight="240.0" />
+                                        <ListView fx:id="selectedPlayersListView" prefHeight="240.0" />
                                     </children>
                                 </VBox>
                             </children>

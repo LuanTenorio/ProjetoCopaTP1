@@ -93,4 +93,9 @@ public class PlayerEntity implements Serializable {
     public void setTeamId(String teamId) {
         this.teamId = teamId;
     }
+
+    @Override
+    public String toString() {
+        return num + " " + name + " " + pos + " " + status;
+    }
 }
