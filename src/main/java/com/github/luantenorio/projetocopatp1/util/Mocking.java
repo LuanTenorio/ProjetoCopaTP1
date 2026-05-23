@@ -6,7 +6,6 @@ import com.github.luantenorio.projetocopatp1.match.MatchStatus;
 import com.github.luantenorio.projetocopatp1.player.PlayerDAO;
 import com.github.luantenorio.projetocopatp1.player.PlayerEntity;
 import com.github.luantenorio.projetocopatp1.player.PlayerStatus;
-import com.github.luantenorio.projetocopatp1.referee.RefereeDAO;
 import com.github.luantenorio.projetocopatp1.referee.RefereeEntity;
 import com.github.luantenorio.projetocopatp1.referee.RefereeService;
 import com.github.luantenorio.projetocopatp1.refereeMatch.RefereeMatchDAO;
