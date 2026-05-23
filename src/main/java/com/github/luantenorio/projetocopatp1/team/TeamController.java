@@ -11,7 +11,7 @@ import javafx.scene.layout.VBox;
 
 public class TeamController extends Table<TeamEntity> {
 
-    private TeamDAO teamDAO = new TeamDAO(); //todo: criar TeamService
+    private final TeamService teamService = new TeamService();
     private final TeamEntity activedFilters = new TeamEntity("", "", "", "");
 
     private String nameFormated, groupFormated, coachFormated;
@@ -31,7 +31,7 @@ public class TeamController extends Table<TeamEntity> {
     }
 
     public void initialize() {
-        this.objetcs = this.teamDAO.findAll();
+        this.objetcs = this.teamService.findAll();
         this.renderTable();
     }
 
@@ -45,12 +45,12 @@ public class TeamController extends Table<TeamEntity> {
     }
 
     public void filterGroup() {
-        this.activedFilters.setGroup(this.filterName.getText().trim());
+        this.activedFilters.setGroup(this.filterGroup.getText().trim());
         this.renderTable();
     }
 
     public void filterCoach() {
-        this.activedFilters.setCoach(this.filterName.getText().trim());
+        this.activedFilters.setCoach(this.filterCoach.getText().trim());
         this.renderTable();
     }
 

@@ -3,6 +3,10 @@ package com.github.luantenorio.projetocopatp1.util;
 import com.github.luantenorio.projetocopatp1.match.MatchDAO;
 import com.github.luantenorio.projetocopatp1.match.MatchEntity;
 import com.github.luantenorio.projetocopatp1.match.MatchStatus;
+import com.github.luantenorio.projetocopatp1.player.PlayerDAO;
+import com.github.luantenorio.projetocopatp1.player.PlayerEntity;
+import com.github.luantenorio.projetocopatp1.player.PlayerStatus;
+import com.github.luantenorio.projetocopatp1.referee.RefereeDAO;
 import com.github.luantenorio.projetocopatp1.referee.RefereeEntity;
 import com.github.luantenorio.projetocopatp1.referee.RefereeService;
 import com.github.luantenorio.projetocopatp1.refereeMatch.RefereeMatchDAO;
@@ -22,6 +26,7 @@ public class Mocking {
     static RefereeService refereeService = new RefereeService();
     static RefereeMatchDAO refereeMatchDAO = new RefereeMatchDAO();
     static TeamDAO teamDAO = new TeamDAO();
+    static PlayerDAO playerDAO = new PlayerDAO();
 
     public static void main(String[] args) {
         mockEstadium();
@@ -29,6 +34,7 @@ public class Mocking {
         mockReferee();
         mockRefereeMatch();
         mockTeam();
+        mockPlayer();
     }
 
     public static void mockEstadium(){
@@ -190,12 +196,12 @@ public class Mocking {
 
     public static void mockTeam() {
         teamDAO.clearAll();
-        teamDAO.create(new TeamEntity("6c473ace-a4a6-4500-93a3-71ae440b6224", "Mexico", "A", "Javier Aguirre"));
-        teamDAO.create(new TeamEntity("a64d611a-128b-4a5a-b043-c727724d78ba", "South Africa", "A", "Hugo Broos"));
-        teamDAO.create(new TeamEntity("dc7f4336-5d5b-4d8e-a34f-049a580d3d5f", "South Korea", "A", "Hong Myung-bo"));
-        teamDAO.create(new TeamEntity("ccdb54ee-2416-4377-8add-00e85a6e50d6", "Czechia", "A", "Ivan Hasek"));
-        teamDAO.create(new TeamEntity("735b7ab3-37ab-4aa1-a586-ab679a533d27", "Canada", "B", "Jesse Marsch"));
-        teamDAO.create(new TeamEntity("e49a6614-99b3-4c26-9c87-14b27f879920", "Bosnia and Herzegovina", "B", "Sergej Barbarez"));
+        teamDAO.create(new TeamEntity("Mexico", "A", "Javier Aguirre"));
+        teamDAO.create(new TeamEntity("South Africa", "A", "Hugo Broos"));
+        teamDAO.create(new TeamEntity("South Korea", "A", "Hong Myung-bo"));
+        teamDAO.create(new TeamEntity("Czechia", "A", "Ivan Hasek"));
+        teamDAO.create(new TeamEntity("Canada", "B", "Jesse Marsch"));
+        teamDAO.create(new TeamEntity("Bosnia and Herzegovina", "B", "Sergej Barbarez"));
         teamDAO.create(new TeamEntity("Qatar", "B", "Julen Lopetegui"));
         teamDAO.create(new TeamEntity("Switzerland", "B", "Murat Yakin"));
         teamDAO.create(new TeamEntity("Brazil", "C", "Carlo Ancelotti"));
@@ -240,4 +246,40 @@ public class Mocking {
         teamDAO.create(new TeamEntity("Panama", "L", "Thomas Christiansen"));
         System.out.println("Mock das seleções...");
     }
+
+    public static void mockPlayer() {
+        playerDAO.clearAll();
+        playerDAO.create(new PlayerEntity("Neymar Jr", "ATA", 10, 34, PlayerStatus.INJURED));
+        playerDAO.create(new PlayerEntity("Vini Jr", "ATA", 7, 25, PlayerStatus.ACTIVE));
+        playerDAO.create(new PlayerEntity("Rodrygo", "ATA", 11, 25, PlayerStatus.ACTIVE));
+        playerDAO.create(new PlayerEntity("Endrick", "ATA", 9, 19, PlayerStatus.ACTIVE));
+        playerDAO.create(new PlayerEntity("Gabriel Martinelli", "ATA", 21, 24, PlayerStatus.ACTIVE));
+        playerDAO.create(new PlayerEntity("Raphinha", "ATA", 19, 29, PlayerStatus.ACTIVE));
+        playerDAO.create(new PlayerEntity("Richarlison", "ATA", 20, 29, PlayerStatus.INJURED));
+        playerDAO.create(new PlayerEntity("Gabriel Jesus", "ATA", 18, 29, PlayerStatus.ACTIVE));
+        playerDAO.create(new PlayerEntity("Lucas Paquetá", "MEI", 8, 28, PlayerStatus.SUSPENDED));
+        playerDAO.create(new PlayerEntity("Bruno Guimarães", "MEI", 5, 28, PlayerStatus.ACTIVE));
+        playerDAO.create(new PlayerEntity("André", "MEI", 6, 24, PlayerStatus.ACTIVE));
+        playerDAO.create(new PlayerEntity("João Gomes", "MEI", 15, 25, PlayerStatus.ACTIVE));
+        playerDAO.create(new PlayerEntity("Douglas Luiz", "MEI", 16, 28, PlayerStatus.ACTIVE));
+        playerDAO.create(new PlayerEntity("Andreas Pereira", "MEI", 17, 30, PlayerStatus.ACTIVE));
+        playerDAO.create(new PlayerEntity("Casemiro", "MEI", 14, 34, PlayerStatus.INJURED));
+        playerDAO.create(new PlayerEntity("Marquinhos", "DEF", 4, 32, PlayerStatus.ACTIVE));
+        playerDAO.create(new PlayerEntity("Gabriel Magalhães", "DEF", 3, 28, PlayerStatus.ACTIVE));
+        playerDAO.create(new PlayerEntity("Éder Militão", "DEF", 13, 28, PlayerStatus.ACTIVE));
+        playerDAO.create(new PlayerEntity("Bremer", "DEF", 2, 29, PlayerStatus.ACTIVE));
+        playerDAO.create(new PlayerEntity("Beraldo", "DEF", 24, 22, PlayerStatus.ACTIVE));
+        playerDAO.create(new PlayerEntity("Danilo", "DEF", 22, 34, PlayerStatus.ACTIVE));
+        playerDAO.create(new PlayerEntity("Yan Couto", "DEF", 23, 24, PlayerStatus.ACTIVE));
+        playerDAO.create(new PlayerEntity("Guilherme Arana", "DEF", 26, 29, PlayerStatus.ACTIVE));
+        playerDAO.create(new PlayerEntity("Wendell", "DEF", 25, 32, PlayerStatus.INJURED));
+        playerDAO.create(new PlayerEntity("Alisson", "GOL", 1, 33, PlayerStatus.ACTIVE));
+        playerDAO.create(new PlayerEntity("Ederson", "GOL", 12, 32, PlayerStatus.ACTIVE));
+        playerDAO.create(new PlayerEntity("Bento", "GOL", 30, 26, PlayerStatus.ACTIVE));
+        playerDAO.create(new PlayerEntity("Savinho", "ATA", 27, 22, PlayerStatus.ACTIVE));
+        playerDAO.create(new PlayerEntity("Matheus Cunha", "ATA", 28, 27, PlayerStatus.ACTIVE));
+        playerDAO.create(new PlayerEntity("Pepê", "ATA", 29, 29, PlayerStatus.SUSPENDED));
+        System.out.println("Mock dos jogadores...");
+    }
+
 }
