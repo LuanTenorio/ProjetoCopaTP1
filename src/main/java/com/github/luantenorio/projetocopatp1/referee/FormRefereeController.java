@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.util.StringConverter;
 
 import java.time.ZonedDateTime;
@@ -48,12 +49,15 @@ public class FormRefereeController implements DataController<RefereeEntity> {
     public FlowPane chipContainer;
     @FXML
     public ComboBox<MatchChipDTO> cbMatches;
+    @FXML
+    public VBox formMatch;
 
 
     @FXML
     public void initialize(){
         this.formatCapacityField();
         this.setVisibleDeleteButton(false);
+        this.setVisibleFormMatch(false);
         this.filterCountries();
     }
 
@@ -112,6 +116,7 @@ public class FormRefereeController implements DataController<RefereeEntity> {
 
         //Implementar melhor a lógica de hieraquia
         if(Global.getAccessLevel().equals(AccessLevel.ADMIN)){
+            this.setVisibleFormMatch(true);
             ZonedDateTime now = ZonedDateTime.now();
             this.setAvailableMatches(now);
             this.drawInitialMatches(now);
@@ -129,6 +134,11 @@ public class FormRefereeController implements DataController<RefereeEntity> {
     public void delete(){
         this.refereeService.deleteReferee(this.refereeSelected.getId());
         this.backToStadiums();
+    }
+
+    private void setVisibleFormMatch(boolean value) {
+        this.formMatch.setVisible(value);
+        this.formMatch.setManaged(value);
     }
 
     private void setVisibleDeleteButton(boolean value) {

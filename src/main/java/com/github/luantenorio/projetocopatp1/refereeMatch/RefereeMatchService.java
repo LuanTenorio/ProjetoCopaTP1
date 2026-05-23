@@ -36,10 +36,10 @@ public class RefereeMatchService {
             return refereeEntities;
 
         for (RefereeMatchEntity rm : refereeMatchEntities) {
-            RefereeEntity arbitroReal = this.refereeService.findById(rm.getIdReferee());
+            RefereeEntity referee = this.refereeService.findById(rm.getIdReferee());
 
-            if (arbitroReal != null)
-                refereeEntities.add(arbitroReal);
+            if (referee != null)
+                refereeEntities.add(referee);
         }
 
         return refereeEntities;
