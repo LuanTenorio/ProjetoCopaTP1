@@ -10,15 +10,15 @@ public class TeamService {
         return this.teamDAO.findAll();
     }
 
-    public TeamEntity createStadium(TeamEntity team){
+    public TeamEntity createTeam(TeamEntity team){
         return this.teamDAO.create(team);
     }
 
-    public boolean updateStadium(TeamEntity team){
+    public boolean updateTeam(TeamEntity team){
         return this.teamDAO.update(team);
     }
 
-    public boolean deleteStadium(String id){
+    public boolean deleteTeam(String id){
         return this.teamDAO.delete(id);
     }
 
