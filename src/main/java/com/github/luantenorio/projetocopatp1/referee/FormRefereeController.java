@@ -222,8 +222,13 @@ public class FormRefereeController implements DataController<RefereeEntity> {
             int caretPosition = editor.getCaretPosition();
 
             filteredMatches.setPredicate(match -> {
+                if (selectedMatchIds.contains(match.id())) {
+                    return false;
+                }
+
                 if (newValue == null || newValue.isEmpty())
                     return true;
+
                 return match.name().toLowerCase().contains(newValue.toLowerCase().trim());
             });
 
@@ -280,6 +285,10 @@ public class FormRefereeController implements DataController<RefereeEntity> {
         closeButton.setOnAction(e -> {
             chipContainer.getChildren().remove(chip);
             selectedMatchIds.remove(matchDto.id());
+
+            String currentText = cbMatches.getEditor().getText();
+            cbMatches.getEditor().setText(currentText + " ");
+            cbMatches.getEditor().setText(currentText);
         });
 
         chip.getChildren().addAll(label, closeButton);
