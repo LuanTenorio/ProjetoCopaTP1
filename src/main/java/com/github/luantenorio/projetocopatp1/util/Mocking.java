@@ -87,8 +87,8 @@ public class Mocking {
 
     public static void mockMatch(){
         matchDAO.clearAll();
-        matchDAO.create(new MatchEntity("316de5e2-b25d-49a3-bf46-5f4e690bc75e", "6c473ace-a4a6-4500-93a3-71ae440b6224", "a64d611a-128b-4a5a-b043-c727724d78ba", createDate(6, 12, 16), "stadium_azteca", "Group Stage", MatchStatus.FINISHED));
-        matchDAO.create(new MatchEntity("5f4b782b-36b9-46e4-8379-5fd7da112524", "a64d611a-128b-4a5a-b043-c727724d78ba", "dc7f4336-5d5b-4d8e-a34f-049a580d3d5f", createDate(6, 12, 16), "stadium_metlife", "Group Stage", MatchStatus.FINISHED));
+        matchDAO.create(new MatchEntity("5f4b782b-36b9-46e4-8379-5fd7da112524", "6c473ace-a4a6-4500-93a3-71ae440b6224", "a64d611a-128b-4a5a-b043-c727724d78ba", createDate(6, 12, 16), "stadium_azteca", "Group Stage", MatchStatus.FINISHED));
+        matchDAO.create(new MatchEntity("316de5e2-b25d-49a3-bf46-5f4e690bc75e", "a64d611a-128b-4a5a-b043-c727724d78ba", "dc7f4336-5d5b-4d8e-a34f-049a580d3d5f", createDate(6, 12, 16), "stadium_metlife", "Group Stage", MatchStatus.FINISHED));
         matchDAO.create(new MatchEntity("4be3fb05-e280-4a24-8073-604ea4044d87", "dc7f4336-5d5b-4d8e-a34f-049a580d3d5f", "ccdb54ee-2416-4377-8add-00e85a6e50d6", createDate(6, 13, 13), "stadium_lusail", "Group Stage", MatchStatus.FINISHED));
         matchDAO.create(new MatchEntity("550b4a36-8fc4-4215-bd43-5b6c29639e8f", "ccdb54ee-2416-4377-8add-00e85a6e50d6", "735b7ab3-37ab-4aa1-a586-ab679a533d27", createDate(6, 14, 16), "stadium_wembley", "Group Stage", MatchStatus.FINISHED));
         matchDAO.create(new MatchEntity("54b81804-8b45-4de3-9572-98a10f1e5c84", "735b7ab3-37ab-4aa1-a586-ab679a533d27", "e49a6614-99b3-4c26-9c87-14b27f879920", createDate(6, 15, 13), "stadium_maracana", "Group Stage", MatchStatus.FINISHED));
@@ -122,7 +122,7 @@ public class Mocking {
 
     public static void mockReferee() {
         refereeService.deleteAll();
-        refereeService.createReferee(new RefereeEntity("3107852f-5898-49cb-be15-be622cd5db38","Sandro Meira Ricci", "Brasil", 15, "Representou o Brasil nas Copas de 2014 e 2018."));
+        refereeService.createReferee(new RefereeEntity("3107852f-5898-49cb-be15-be622cd5db38","Sandro Meira Ricci", "Inglaterra", 15, "Representou o Brasil nas Copas de 2014 e 2018."));
         refereeService.createReferee(new RefereeEntity("ca4edd9a-1939-4903-9b24-805cdd4f363a","Anderson Daronco", "Brasil", 12, "Conhecido pelo porte físico, apita na Libertadores e Brasileirão."));
         refereeService.createReferee(new RefereeEntity("d700a803-17e7-41ba-a15b-3d82f3bd19f9","Raphael Claus", "Brasil", 14, "Eleito melhor árbitro do Brasileirão diversas vezes, atuou na Copa do Mundo de 2022."));
         refereeService.createReferee(new RefereeEntity("b4630873-74b7-473f-b178-3773bf5d0a24","Wilton Pereira Sampaio", "Brasil", 16, "Árbitro FIFA, apitou as quartas de final da Copa do Mundo de 2022."));
@@ -181,6 +181,7 @@ public class Mocking {
     }
 
     public static void mockRefereeMatch(){
+        refereeMatchDAO.clearAll();
         refereeMatchDAO.create(new RefereeMatchEntity("3107852f-5898-49cb-be15-be622cd5db38", "316de5e2-b25d-49a3-bf46-5f4e690bc75e"));
         refereeMatchDAO.create(new RefereeMatchEntity("ca4edd9a-1939-4903-9b24-805cdd4f363a", "5f4b782b-36b9-46e4-8379-5fd7da112524"));
         refereeMatchDAO.create(new RefereeMatchEntity("d700a803-17e7-41ba-a15b-3d82f3bd19f9", "4be3fb05-e280-4a24-8073-604ea4044d87"));

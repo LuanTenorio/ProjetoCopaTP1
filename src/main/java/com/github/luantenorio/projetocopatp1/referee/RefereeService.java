@@ -21,8 +21,8 @@ public class RefereeService {
         return this.refereeDAO.create(referee);
     }
 
-    public boolean updateReferee(RefereeEntity stadium){
-        return this.refereeDAO.update(stadium);
+    public boolean updateReferee(RefereeEntity referee){
+        return this.refereeDAO.update(referee);
     }
 
     public boolean deleteReferee(String id){

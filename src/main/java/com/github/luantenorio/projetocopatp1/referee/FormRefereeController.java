@@ -1,7 +1,10 @@
 package com.github.luantenorio.projetocopatp1.referee;
 
+import com.github.luantenorio.projetocopatp1.match.MatchChipDTO;
 import com.github.luantenorio.projetocopatp1.match.MatchDAO;
 import com.github.luantenorio.projetocopatp1.match.MatchEntity;
+import com.github.luantenorio.projetocopatp1.refereeMatch.RefereeMatchEntity;
+import com.github.luantenorio.projetocopatp1.refereeMatch.RefereeMatchService;
 import com.github.luantenorio.projetocopatp1.users.AccessLevel;
 import com.github.luantenorio.projetocopatp1.util.*;
 import javafx.application.Platform;
@@ -11,10 +14,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
+import javafx.util.StringConverter;
 
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class FormRefereeController implements DataController<RefereeEntity> {
@@ -22,15 +25,12 @@ public class FormRefereeController implements DataController<RefereeEntity> {
     private boolean isEdit = false;
     private final RefereeService refereeService = new RefereeService();
     private final MatchDAO matchDAO = new MatchDAO(); // mudar para matchService futuramente
+    private final RefereeMatchService refereeMatchService = new RefereeMatchService();
 
     private RefereeEntity refereeSelected;
 
-    private List<String> selectedMatches = new ArrayList<>();
-
-    private List<String> availableMatches = Arrays.asList(
-            "Brasil x Sérvia", "Argentina x Arábia Saudita", "França x Austrália",
-            "Espanha x Costa Rica", "Portugal x Gana"
-    );
+    private final List<MatchChipDTO> availableMatches = new ArrayList<>();
+    private List<String> selectedMatchIds = new ArrayList<>();
 
     @FXML
     public TextField txtName;
@@ -47,7 +47,7 @@ public class FormRefereeController implements DataController<RefereeEntity> {
     @FXML
     public FlowPane chipContainer;
     @FXML
-    public ComboBox<String> cbMatches;
+    public ComboBox<MatchChipDTO> cbMatches;
 
 
     @FXML
@@ -55,12 +55,6 @@ public class FormRefereeController implements DataController<RefereeEntity> {
         this.formatCapacityField();
         this.setVisibleDeleteButton(false);
         this.filterCountries();
-        this.setupMatchSelector();
-
-        //Implementar melhor lógica de hieratquia
-//        if(Global.getAccessLevel().equals(AccessLevel.ADMIN)){
-//            this.setAvailableMatches();
-//        }
     }
 
     public void operate(){
@@ -81,6 +75,8 @@ public class FormRefereeController implements DataController<RefereeEntity> {
 
     private void update(){
         this.refereeService.updateReferee(this.getCurrentEntity());
+        List<RefereeMatchEntity> list = selectedMatchIds.stream().map(id -> new RefereeMatchEntity(this.refereeSelected.getId(), id)).toList();
+        this.refereeMatchService.assignRefereeToMatch(list, this.refereeSelected.getId());
     }
 
     private RefereeEntity getCurrentEntity(){
@@ -113,6 +109,14 @@ public class FormRefereeController implements DataController<RefereeEntity> {
         this.setStadium();
         this.buttonOperate.setText("Atualizar");
         this.setVisibleDeleteButton(true);
+
+        //Implementar melhor a lógica de hieraquia
+        if(Global.getAccessLevel().equals(AccessLevel.ADMIN)){
+            ZonedDateTime now = ZonedDateTime.now();
+            this.setAvailableMatches(now);
+            this.drawInitialMatches(now);
+            this.setupMatchSelector();
+        }
     }
 
     private void setStadium(){
@@ -199,38 +203,42 @@ public class FormRefereeController implements DataController<RefereeEntity> {
     }
 
     private void setupMatchSelector() {
-        FilteredList<String> filteredMatches = new FilteredList<>(
+        FilteredList<MatchChipDTO> filteredMatches = new FilteredList<>(
                 FXCollections.observableArrayList(availableMatches), p -> true
         );
 
         cbMatches.setItems(filteredMatches);
-        cbMatches.setVisibleRowCount(5);
         TextField editor = cbMatches.getEditor();
 
+        this.setConverter();
+
         editor.textProperty().addListener((observable, oldValue, newValue) -> {
-            String selectedItem = cbMatches.getSelectionModel().getSelectedItem();
-            if (selectedItem != null && selectedItem.equals(newValue))
+            MatchChipDTO selectedItem = cbMatches.getSelectionModel().getSelectedItem();
+
+            if (selectedItem != null && selectedItem.name().equals(newValue)) {
                 return;
+            }
 
             int caretPosition = editor.getCaretPosition();
 
             filteredMatches.setPredicate(match -> {
                 if (newValue == null || newValue.isEmpty())
                     return true;
-                return match.toLowerCase().contains(newValue.toLowerCase().trim());
+                return match.name().toLowerCase().contains(newValue.toLowerCase().trim());
             });
 
             editor.positionCaret(caretPosition);
 
-            if (!cbMatches.isShowing() && cbMatches.isFocused() && !filteredMatches.isEmpty())
+            if (!cbMatches.isShowing() && cbMatches.isFocused() && !filteredMatches.isEmpty()) {
                 cbMatches.show();
+            }
         });
 
         cbMatches.setOnAction(event -> {
-            String selected = cbMatches.getSelectionModel().getSelectedItem();
+            MatchChipDTO selectedDto = cbMatches.getSelectionModel().getSelectedItem();
 
-            if (selected != null && !selected.trim().isEmpty() && !selectedMatches.contains(selected)) {
-                this.addChip(selected);
+            if (selectedDto != null && !selectedMatchIds.contains(selectedDto.id())) {
+                this.addChip(selectedDto);
 
                 Platform.runLater(() -> {
                     cbMatches.getSelectionModel().clearSelection();
@@ -240,13 +248,30 @@ public class FormRefereeController implements DataController<RefereeEntity> {
         });
     }
 
-    private void addChip(String matchName) {
-        selectedMatches.add(matchName);
+    private void setConverter(){
+        cbMatches.setConverter(new StringConverter<>() {
+            @Override
+            public String toString(MatchChipDTO object) {
+                return object == null ? "" : object.name();
+            }
+
+            @Override
+            public MatchChipDTO fromString(String string) {
+                return cbMatches.getItems().stream()
+                        .filter(m -> m.name().equals(string))
+                        .findFirst()
+                        .orElse(null);
+            }
+        });
+    }
+
+    private void addChip(MatchChipDTO matchDto) {
+        selectedMatchIds.add(matchDto.id());
 
         HBox chip = new HBox();
         chip.getStyleClass().add("chip");
 
-        Label label = new Label(matchName);
+        Label label = new Label(matchDto.name());
         label.getStyleClass().add("chip-label");
 
         Button closeButton = new Button("X");
@@ -254,21 +279,26 @@ public class FormRefereeController implements DataController<RefereeEntity> {
 
         closeButton.setOnAction(e -> {
             chipContainer.getChildren().remove(chip);
-            selectedMatches.remove(matchName);
+            selectedMatchIds.remove(matchDto.id());
         });
 
         chip.getChildren().addAll(label, closeButton);
         chipContainer.getChildren().add(chip);
     }
 
-    // precisa do time
-//    private void setAvailableMatches(){
-//        List<MatchEntity> matches = this.matchDAO.findAll();
-//        ZonedDateTime now = ZonedDateTime.now();
-//
-//        for(MatchEntity m : matches)
-//            if(m.getDate().isAfter(now) && this.refereeService.checksIfRefereeCanRefereeMatch(this.refereeSelected, m))
-//                this.availableMatches.add(m.getName());
-//    }
+    private void setAvailableMatches(ZonedDateTime time){
+        List<MatchEntity> matches = this.matchDAO.findAll();
+
+        for(MatchEntity m : matches)
+            if(m.getDate().isAfter(time) && this.refereeService.checksIfRefereeCanRefereeMatch(this.refereeSelected, m))
+                this.availableMatches.add(new MatchChipDTO(m.getId(), m.getName()));
+    }
+
+    private void drawInitialMatches(ZonedDateTime time){
+        this.refereeMatchService.getMatchFromReferee(this.refereeSelected.getId()).stream()
+                .filter(m -> m.getDate().isAfter(time))
+                .map(m -> new MatchChipDTO(m.getId(), m.getName()))
+                .forEach(this::addChip);
+    }
 
 }

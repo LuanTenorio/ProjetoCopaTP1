@@ -76,20 +76,21 @@ public class RefereeMatchDAO extends DAO<RefereeMatchEntity> {
     public boolean delete(RefereeMatchEntity refereeMatch) {
         List<RefereeMatchEntity> refereers = this.findAll();
 
-        for (int i = 0; i < refereers.size(); i++)
-            if (refereers.get(i).getIdReferee().equals(refereeMatch.getIdReferee()) && refereers.get(i).getIdMatch().equals(refereeMatch.getIdMatch()))
-                refereers.remove(i);
+        boolean removed = refereers.removeIf(rm ->
+                rm.getIdReferee().equals(refereeMatch.getIdReferee()) &&
+                rm.getIdMatch().equals(refereeMatch.getIdMatch())
+        );
 
-        this.saveFile(refereers);
-        return true;
+        if (removed)
+            this.saveFile(refereers);
+
+        return removed;
     }
 
     public void deleteAllByReferee(String id) {
         List<RefereeMatchEntity> refereers = this.findAll();
 
-        for (int i = 0; i < refereers.size(); i++)
-            if (refereers.get(i).getIdReferee().equals(id))
-                refereers.remove(i);
+        refereers.removeIf(rm -> rm.getIdReferee().equals(id));
 
         this.saveFile(refereers);
     }
@@ -97,9 +98,7 @@ public class RefereeMatchDAO extends DAO<RefereeMatchEntity> {
     public boolean deletAllByMatch(String id) {
         List<RefereeMatchEntity> refereers = this.findAll();
 
-        for (int i = 0; i < refereers.size(); i++)
-            if (refereers.get(i).getIdReferee().equals(id))
-                refereers.remove(i);
+        refereers.removeIf(rm -> rm.getIdMatch().equals(id));
 
         this.saveFile(refereers);
         return true;
@@ -109,4 +108,7 @@ public class RefereeMatchDAO extends DAO<RefereeMatchEntity> {
         return this.readFile().stream().filter(rm -> rm.getIdReferee().equals(refereeId)).toList();
     }
 
+    public List<RefereeMatchEntity> findAllByMatchId(String matchId){
+        return this.readFile().stream().filter(rm -> rm.getIdMatch().equals(matchId)).toList();
+    }
 }
