@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
-<?import javafx.collections.FXCollections?>
+<?import java.lang.*?>
+<?import javafx.collections.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:controller="com.github.luantenorio.projetocopatp1.team.CreateTeamController" prefHeight="768.0" prefWidth="900.0" style="-fx-background-color: #FAF9F3;" stylesheets="@../css/main.css, @../css/list-view.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="768.0" prefWidth="900.0" style="-fx-background-color: #FAF9F3;" stylesheets="@../css/main.css, @../css/list-view.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.luantenorio.projetocopatp1.team.CreateTeamController">
     <children>
         <VBox layoutX="50.0" layoutY="50.0" spacing="30.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
             <children>
@@ -30,7 +30,7 @@
                                         <Label styleClass="blue-text" text="GRUPO" />
                                     </children>
                                 </StackPane>
-                                <ComboBox fx:id="groupComboBox" promptText="Selecione o grupo" maxWidth="Infinity" styleClass="input">
+                                <ComboBox fx:id="groupComboBox" maxWidth="Infinity" promptText="Selecione o grupo" styleClass="input">
                                     <items>
                                         <FXCollections fx:factory="observableArrayList">
                                             <String fx:value="A" />
@@ -83,8 +83,8 @@
 
                                 <VBox alignment="CENTER" spacing="15.0">
                                     <children>
-                                        <Button fx:id="addPlayerButton" mnemonicParsing="false" styleClass="button" text="ADICIONAR" onMouseClicked="#addSelectedPlayers"/>
-                                        <Button fx:id="removePlayerButton" mnemonicParsing="false" styleClass="button" text="REMOVER" onMouseClicked="#removeSelectedPlayers"/>
+                                        <Button fx:id="addPlayerButton" mnemonicParsing="false" onMouseClicked="#addSelectedPlayers" styleClass="button" text="ADICIONAR" />
+                                        <Button fx:id="removePlayerButton" mnemonicParsing="false" onMouseClicked="#removeSelectedPlayers" styleClass="button" text="REMOVER" />
                                     </children>
                                 </VBox>
 
@@ -92,6 +92,7 @@
                                     <children>
                                         <Label styleClass="blue-text" text="JOGADORES DA SELEÇÃO" />
                                         <ListView fx:id="selectedPlayersListView" prefHeight="240.0" styleClass="players-list" />
+                                        <Label fx:id="selectedPlayersCountLabel" styleClass="selected-players-count" text="Selecionados: 0" />
                                     </children>
                                 </VBox>
                             </children>
@@ -101,6 +102,6 @@
             </children>
         </VBox>
 
-        <Button layoutX="734.0" layoutY="630.0" mnemonicParsing="false" styleClass="button" text="REGISTRAR" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="50.0" />
+        <Button fx:id="buttonOperate" layoutX="734.0" layoutY="630.0" mnemonicParsing="false" onMouseClicked="#operate" styleClass="button" text="REGISTRAR" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="50.0" />
     </children>
 </AnchorPane>
