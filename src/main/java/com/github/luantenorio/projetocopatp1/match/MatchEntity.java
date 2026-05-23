@@ -97,7 +97,7 @@ public class MatchEntity implements Serializable {
         if(team1 == null || team2 == null)
             return null;
 
-        return String.format("%s vs %s", team1.getCountry(), team2.getCountry());
+        return String.format("%s vs %s", team1.getName(), team2.getName());
     }
 
     public ZonedDateTime getDate() {

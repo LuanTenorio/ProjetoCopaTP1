@@ -34,8 +34,8 @@ public class RefereeService {
         TeamEntity team2 = match.getTeam2();
 
         return  team1 != null && team2 != null &&
-                !team1.getCountry().trim().equalsIgnoreCase(referee.getNationality().trim()) &&
-                !team2.getCountry().trim().equalsIgnoreCase(referee.getNationality().trim());
+                !team1.getName().trim().equalsIgnoreCase(referee.getNationality().trim()) &&
+                !team2.getName().trim().equalsIgnoreCase(referee.getNationality().trim());
     }
 
     public void deleteAll(){

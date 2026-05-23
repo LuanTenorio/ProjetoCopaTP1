@@ -23,9 +23,6 @@ public class RefereeMatchService {
         if(list.isEmpty())
             return false;
 
-        list.forEach(m -> System.out.println(matchDAO.findById(m.getIdMatch()).getName()));
-
-
         this.refereeMatchDAO.createMany(list);
         return true;
     }
