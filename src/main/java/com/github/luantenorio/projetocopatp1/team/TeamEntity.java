@@ -11,11 +11,9 @@ public class TeamEntity implements Serializable {
     private String name;
     private String group;
     private String coach;
-    private String country;
     private Set<PlayerEntity> lineup;
 
-    public TeamEntity(String name, String  group, String coach, String country) {
-        this.country = country;
+    public TeamEntity(String name, String  group, String coach) {
         this.id = UUID.randomUUID().toString();
         this.name = name;
         this.group = group;
@@ -23,13 +21,28 @@ public class TeamEntity implements Serializable {
         lineup = new HashSet<>();
     }
 
-    public TeamEntity(String id, String name, String  group, String coach, String country) {
+    public TeamEntity(String id, String name, String  group, String coach) {
         this.id = id;
         this.name = name;
         this.group = group;
         this.coach = coach;
-        this.country = country;
         lineup = new HashSet<>();
+    }
+
+    public TeamEntity(String name, String group, String coach, Collection<PlayerEntity> players) {
+        this.id = UUID.randomUUID().toString();
+        this.name = name;
+        this.group = group;
+        this.coach = coach;
+        this.lineup = new HashSet<>(players);
+    }
+
+    public static int getMinPlayers() {
+        return MIN_PLAYERS;
+    }
+
+    public static int getMaxPlayers() {
+        return MAX_PLAYERS;
     }
 
     public String getId() {
@@ -65,21 +78,7 @@ public class TeamEntity implements Serializable {
     }
 
     public int getLineupSize() {
-        return  lineup.size();
-    }
-
-    public void addPlayer(PlayerEntity player) {
-        if (player == null) return;
-        if (player.getTeamId() != null) return;
-        if (lineup.size() >= MAX_PLAYERS) return;
-        lineup.add(player);
-        player.setTeamId(id);
-    }
-
-    public void removePlayer(PlayerEntity player) {
-        if (player == null) return;
-        lineup.remove(player);
-        player.setTeamId(null);
+        return lineup.size();
     }
 
     public boolean hasPlayer(PlayerEntity player) {
@@ -90,11 +89,4 @@ public class TeamEntity implements Serializable {
         return lineup.size() >= MAX_PLAYERS;
     }
 
-    public boolean hasMinimumPlayers() {
-        return lineup.size() >= MIN_PLAYERS;
-    }
-
-    public String getCountry() {
-        return country;
-    }
 }
