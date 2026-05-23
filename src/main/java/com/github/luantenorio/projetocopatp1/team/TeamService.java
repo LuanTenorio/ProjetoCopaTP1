@@ -10,7 +10,13 @@ public class TeamService {
         return this.teamDAO.findAll();
     }
 
-    public TeamEntity createTeam(TeamEntity team){
+    public TeamEntity createTeam(TeamEntity team) throws TeamException{
+        if (team.getLineupSize() < TeamEntity.getMinPlayers()) {
+            throw new TeamException.MinimumPlayersException();
+        }
+        if (team.getLineupSize() > TeamEntity.getMaxPlayers()) {
+            throw new TeamException.MaximumPlayersException();
+        }
         return this.teamDAO.create(team);
     }
 
