@@ -5,7 +5,7 @@ import com.github.luantenorio.projetocopatp1.util.DAO;
 
 import java.util.List;
 
-public class RefereeDAO extends DAO<RefereeEntity>  {
+class RefereeDAO extends DAO<RefereeEntity>  {
 
     private final RefereeMatchDAO refereeMatchDAO = new RefereeMatchDAO();
 

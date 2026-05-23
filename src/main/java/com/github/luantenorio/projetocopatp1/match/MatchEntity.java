@@ -90,6 +90,16 @@ public class MatchEntity implements Serializable {
         return dao.findById(team2Id);
     }
 
+    public String getName(){
+        TeamEntity team1 = this.getTeam1();
+        TeamEntity team2 = this.getTeam2();
+
+        if(team1 == null || team2 == null)
+            return null;
+
+        return String.format("%s vs %s", team1.getName(), team2.getName());
+    }
+
     public ZonedDateTime getDate() {
         return date;
     }

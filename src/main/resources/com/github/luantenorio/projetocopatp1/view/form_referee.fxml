@@ -71,7 +71,7 @@
                 </children>
             </VBox>
 
-            <VBox spacing="15.0" prefHeight="400.0">
+            <VBox fx:id="formMatch" spacing="15.0" prefHeight="400.0">
                 <children>
                     <StackPane alignment="CENTER" maxWidth="200.0" prefHeight="45.0" styleClass="yellow-label">
                         <children>
