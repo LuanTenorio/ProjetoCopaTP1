@@ -103,5 +103,6 @@
         </VBox>
 
         <Button fx:id="buttonOperate" layoutX="734.0" layoutY="630.0" mnemonicParsing="false" onMouseClicked="#operate" styleClass="button" text="REGISTRAR" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="50.0" />
+        <Button fx:id="buttonDelete" onMouseClicked="#delete" layoutX="634.0" layoutY="530.0" mnemonicParsing="false" styleClass="button-red" text="Deletar" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="50.0" />
     </children>
 </AnchorPane>

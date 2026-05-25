@@ -56,4 +56,14 @@ public class PlayerDAO extends DAO<PlayerEntity> {
     public boolean delete(String id) {
         return false;
     }
+
+    public void setThisTeamIdToNull(String teamId) {
+        List<PlayerEntity> players = this.readFile();
+
+        for (PlayerEntity player : players) {
+            if(teamId.equals(player.getTeamId())) player.setTeamId(null);
+        }
+
+        this.saveFile(players);
+    }
 }

@@ -43,4 +43,8 @@ public class PlayerService {
                 .filter(player -> teamId.equals(player.getTeamId()))
                 .toList();
     }
+
+    public void setThisTeamIdToNull(String teamId) {
+        playerDAO.setThisTeamIdToNull(teamId);
+    }
 }

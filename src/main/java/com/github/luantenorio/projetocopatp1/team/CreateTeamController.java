@@ -50,13 +50,10 @@ public class CreateTeamController implements DataController<TeamEntity> {
     private Label selectedPlayersCountLabel;
 
     @FXML
-    private Button addPlayerButton;
-
-    @FXML
-    private Button removePlayerButton;
-
-    @FXML
     private Button buttonOperate;
+
+    @FXML
+    private Button buttonDelete;
 
     public void initialize() {
         List<PlayerEntity> players = playerService.findPlayersWithoutTeam();
@@ -71,6 +68,8 @@ public class CreateTeamController implements DataController<TeamEntity> {
 
         this.availablePlayersListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         this.selectedPlayersListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
+        this.setVisibleDeleteButton(false);
     }
 
     public void addSelectedPlayers() {
@@ -117,6 +116,11 @@ public class CreateTeamController implements DataController<TeamEntity> {
     }
 
     private TeamEntity updateTeam() { return teamService.updateTeam(getCurrentEntity()); }
+
+    public void delete(){
+        this.teamService.deleteTeam(this.selectedTeam.getId());
+        this.backToPreviousView();
+    }
 
     private void updateTeamIdsForSelectedPlayers(String teamId) {playerService.updateTeamIds(selectedPlayers, teamId);}
     
@@ -167,7 +171,13 @@ public class CreateTeamController implements DataController<TeamEntity> {
         this.selectedTeam = data;
         this.isEdit = true;
         this.buttonOperate.setText("Atualizar");
+        this.setVisibleDeleteButton(true);
         setTeam();
+    }
+
+    private void setVisibleDeleteButton(boolean value) {
+        this.buttonDelete.setVisible(value);
+        this.buttonDelete.setManaged(value);
     }
 
     public void setTeam() {
