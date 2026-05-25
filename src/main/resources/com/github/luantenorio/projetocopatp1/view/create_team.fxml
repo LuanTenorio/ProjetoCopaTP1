@@ -23,7 +23,7 @@
 
                 <HBox spacing="40.0">
                     <children>
-                        <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                        <VBox prefHeight="105.0" prefWidth="0.0" spacing="10.0" HBox.hgrow="ALWAYS">
                             <children>
                                 <StackPane alignment="CENTER" maxWidth="200.0" prefHeight="45.0" styleClass="yellow-label">
                                     <children>
@@ -77,11 +77,11 @@
                                 <VBox spacing="10.0" HBox.hgrow="ALWAYS">
                                     <children>
                                         <Label styleClass="blue-text" text="JOGADORES CADASTRADOS" />
-                                        <ListView fx:id="availablePlayersListView" prefHeight="240.0" styleClass="players-list" />
+                                        <ListView fx:id="availablePlayersListView" prefHeight="465.0" prefWidth="271.0" styleClass="players-list" />
                                     </children>
                                 </VBox>
 
-                                <VBox alignment="CENTER" spacing="15.0">
+                                <VBox alignment="CENTER" prefHeight="615.0" prefWidth="130.0" spacing="15.0">
                                     <children>
                                         <Button fx:id="addPlayerButton" mnemonicParsing="false" onMouseClicked="#addSelectedPlayers" styleClass="button" text="ADICIONAR" />
                                         <Button fx:id="removePlayerButton" mnemonicParsing="false" onMouseClicked="#removeSelectedPlayers" styleClass="button" text="REMOVER" />
@@ -91,7 +91,7 @@
                                 <VBox spacing="10.0" HBox.hgrow="ALWAYS">
                                     <children>
                                         <Label styleClass="blue-text" text="JOGADORES DA SELEÇÃO" />
-                                        <ListView fx:id="selectedPlayersListView" prefHeight="240.0" styleClass="players-list" />
+                                        <ListView fx:id="selectedPlayersListView" prefHeight="465.0" prefWidth="271.0" styleClass="players-list" />
                                         <Label fx:id="selectedPlayersCountLabel" styleClass="selected-players-count" text="Selecionados: 0" />
                                     </children>
                                 </VBox>
@@ -103,6 +103,6 @@
         </VBox>
 
         <Button fx:id="buttonOperate" layoutX="734.0" layoutY="630.0" mnemonicParsing="false" onMouseClicked="#operate" styleClass="button" text="REGISTRAR" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="50.0" />
-        <Button fx:id="buttonDelete" onMouseClicked="#delete" layoutX="634.0" layoutY="530.0" mnemonicParsing="false" styleClass="button-red" text="Deletar" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="50.0" />
+        <Button fx:id="buttonDelete" layoutX="634.0" layoutY="530.0" mnemonicParsing="false" onMouseClicked="#delete" styleClass="button-red" text="Deletar" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="50.0" />
     </children>
 </AnchorPane>

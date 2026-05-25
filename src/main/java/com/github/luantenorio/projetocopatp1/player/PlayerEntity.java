@@ -96,6 +96,6 @@ public class PlayerEntity implements Serializable {
 
     @Override
     public String toString() {
-        return num + " " + name + " " + pos + " " + status;
+        return name + " " + pos + " " + status;
     }
 }
