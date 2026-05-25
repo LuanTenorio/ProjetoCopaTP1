@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.layout.FlowPane?>
+<AnchorPane fx:controller="com.github.luantenorio.projetocopatp1.referee.FormRefereeController" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #FAF9F3;" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+    <children>
+        <VBox layoutX="50.0" layoutY="50.0" spacing="30.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+            <children>
+
+                <VBox spacing="10.0">
+                    <children>
+                        <StackPane alignment="CENTER" maxWidth="150.0" prefHeight="45.0" styleClass="yellow-label">
+                            <children>
+                                <Label styleClass="blue-text" text="NOME" />
+                            </children>
+                        </StackPane>
+                        <TextField fx:id="txtName" promptText="Anderson..." styleClass="input" />
+                    </children>
+                </VBox>
+
+                <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                    <children>
+                        <StackPane alignment="CENTER" maxWidth="200.0" prefHeight="45.0" styleClass="yellow-label">
+                            <children>
+                                    <Label styleClass="blue-text" text="NACIONALIDADE" />
+                            </children>
+                        </StackPane>
+                        <ComboBox fx:id="txtNationality"
+                                  editable="true"
+                                  promptText="Digite para buscar o país..."
+                                  prefHeight="50.0"
+                                  maxWidth="1.7976931348623157E308"
+                                  styleClass="combobox" />
+                    </children>
+                </VBox>
+
+                <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                    <children>
+                        <StackPane alignment="CENTER" maxWidth="200.0" prefHeight="45.0" styleClass="yellow-label">
+                            <children>
+                                <Label styleClass="blue-text" text="TEMPO DE ATUAÇÃO" />
+                            </children>
+                        </StackPane>
+                        <TextField fx:id="txtPerformanceTime" promptText="8..." styleClass="input" />
+                    </children>
+                </VBox>
+            </children>
+
+            <VBox spacing="10.0">
+                <children>
+                    <StackPane alignment="CENTER" maxWidth="150.0" prefHeight="45.0" styleClass="yellow-label">
+                        <children>
+                            <Label styleClass="blue-text" text="HISTÓRICO" />
+                        </children>
+                    </StackPane>
+
+                    <TextArea fx:id="txtHistory"
+                              promptText="Cobriu a copa do mundo de 2014..."
+                              wrapText="true"
+                              styleClass="input, textarea"
+                    />
+                </children>
+            </VBox>
+
+            <VBox fx:id="formMatch" spacing="15.0" prefHeight="400.0">
+                <children>
+                    <StackPane alignment="CENTER" maxWidth="200.0" prefHeight="45.0" styleClass="yellow-label">
+                        <children>
+                            <Label styleClass="blue-text" text="PARTIDAS APITADAS" />
+                        </children>
+                    </StackPane>
+
+                    <ComboBox fx:id="cbMatches"
+                              editable="true"
+                              promptText="Busque uma partida (ex: Brasil x Sérvia)..."
+                              prefHeight="45.0"
+                              maxWidth="1.7976931348623157E308"
+                              styleClass="combobox" />
+
+                    <FlowPane fx:id="chipContainer"
+                              hgap="10.0"
+                              vgap="10.0"
+                              styleClass="chips-container" />
+                </children>
+            </VBox>
+        </VBox>
+
+
+        <Button fx:id="buttonOperate" onMouseClicked="#operate" layoutX="634.0" layoutY="530.0" mnemonicParsing="false" styleClass="button" text="Registrar" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="50.0" />
+        <Button fx:id="buttonDelete" onMouseClicked="#delete" layoutX="634.0" layoutY="530.0" mnemonicParsing="false" styleClass="button-red" text="Deletar" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="50.0" />
+    </children>
+</AnchorPane>

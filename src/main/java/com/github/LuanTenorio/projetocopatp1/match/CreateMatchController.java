@@ -19,6 +19,7 @@ import java.time.ZonedDateTime;
 import java.util.List;
 
 public class CreateMatchController {
+
     MatchDAO dao = new MatchDAO();
 
     ObservableList<String> teamOptions = FXCollections.observableArrayList();
@@ -88,6 +89,6 @@ public class CreateMatchController {
             team1id, team2id, zonedDateTime, stadiumId, selected
         );
         dao.create(match);
-        Router.NavigateTo(ViewName.MATCH);
+        Router.navigateTo(ViewName.MATCH);
     }
 }

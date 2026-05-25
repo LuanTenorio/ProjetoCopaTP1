@@ -6,7 +6,6 @@ import javafx.stage.Stage;
 
 public class Window {
 
-    //Resolver bug da troca inicial
     public static void setWindowTitle(Node node, String titulo) {
         Platform.runLater(() -> {
             if (node != null && node.getScene() != null && node.getScene().getWindow() != null) {
