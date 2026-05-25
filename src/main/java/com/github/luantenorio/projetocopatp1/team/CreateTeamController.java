@@ -29,6 +29,8 @@ public class CreateTeamController implements DataController<TeamEntity> {
 
     private TeamEntity selectedTeam;
 
+    private boolean isEdit = false;
+
     @FXML
     private TextField txtName;
 
@@ -96,9 +98,15 @@ public class CreateTeamController implements DataController<TeamEntity> {
             return;
         }
         try {
-            TeamEntity createdTeam = registerTeam();
-            updateTeamIdsForSelectedPlayers(createdTeam.getId());
-            backToPreviousView();
+            if (isEdit) {
+                TeamEntity updatedTeam = updateTeam();
+                updateTeamIdsForSelectedPlayers(updatedTeam.getId()); //todo: simplificar com currentEntity
+            }
+            else {
+                TeamEntity createdTeam = registerTeam();
+                updateTeamIdsForSelectedPlayers(createdTeam.getId());
+            }
+                backToPreviousView();
         } catch (TeamException e) {
             showInvalidMessage(e.getMessage());
         }
@@ -107,6 +115,8 @@ public class CreateTeamController implements DataController<TeamEntity> {
     private TeamEntity registerTeam() {
         return teamService.createTeam(getCurrentEntity());
     }
+
+    private TeamEntity updateTeam() { return teamService.updateTeam(getCurrentEntity()); }
 
     private void updateTeamIdsForSelectedPlayers(String teamId) {playerService.updateTeamIds(selectedPlayers, teamId);}
     
@@ -145,12 +155,18 @@ public class CreateTeamController implements DataController<TeamEntity> {
         String group = groupComboBox.getValue();
         String coach = txtCoach.getText();
 
+        if (isEdit) {
+            return new TeamEntity(selectedTeam.getId(), name, group, coach, this.selectedPlayers);
+        }
+
         return new TeamEntity(name, group, coach, this.selectedPlayers);
     }
 
     @Override
     public void getData(TeamEntity data) {
         this.selectedTeam = data;
+        this.isEdit = true;
+        this.buttonOperate.setText("Atualizar");
         setTeam();
     }
 

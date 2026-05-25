@@ -20,8 +20,14 @@ public class TeamService {
         return this.teamDAO.create(team);
     }
 
-    public boolean updateTeam(TeamEntity team){
-        return this.teamDAO.update(team);
+    public TeamEntity updateTeam(TeamEntity team) throws TeamException{
+        if (team.getLineupSize() < TeamEntity.getMinPlayers()) {
+            throw new TeamException.MinimumPlayersException();
+        }
+        if (team.getLineupSize() > TeamEntity.getMaxPlayers()) {
+            throw new TeamException.MaximumPlayersException();
+        }
+        if(this.teamDAO.update(team)) return team; else return null;
     }
 
     public boolean deleteTeam(String id){

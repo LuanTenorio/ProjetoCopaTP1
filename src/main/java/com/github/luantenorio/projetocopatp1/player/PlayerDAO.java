@@ -45,6 +45,8 @@ public class PlayerDAO extends DAO<PlayerEntity> {
         for (PlayerEntity player : players) {
             if (selectedPlayerIds.contains(player.getId())) {
                 player.setTeamId(teamId);
+            } else if (teamId.equals(player.getTeamId())) {
+                player.setTeamId(null);
             }
         }
 
