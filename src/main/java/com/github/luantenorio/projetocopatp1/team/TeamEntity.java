@@ -1,6 +1,8 @@
 package com.github.luantenorio.projetocopatp1.team;
 
 import com.github.luantenorio.projetocopatp1.player.PlayerEntity;
+import javafx.collections.ObservableList;
+
 import java.io.Serializable;
 import java.util.*;
 
@@ -11,14 +13,14 @@ public class TeamEntity implements Serializable {
     private String name;
     private String group;
     private String coach;
-    private Set<PlayerEntity> lineup;
+    private List<String> lineup;
 
     public TeamEntity(String name, String  group, String coach) {
         this.id = UUID.randomUUID().toString();
         this.name = name;
         this.group = group;
         this.coach = coach;
-        lineup = new HashSet<>();
+        lineup = new ArrayList<>();
     }
 
     public TeamEntity(String id, String name, String  group, String coach) {
@@ -26,7 +28,15 @@ public class TeamEntity implements Serializable {
         this.name = name;
         this.group = group;
         this.coach = coach;
-        lineup = new HashSet<>();
+        lineup = new ArrayList<>();
+    }
+
+    public TeamEntity(String name, String group, String coach, List<String> playerIds) {
+        this.id = UUID.randomUUID().toString();
+        this.name = name;
+        this.group = group;
+        this.coach = coach;
+        lineup = new ArrayList<>(playerIds);
     }
 
     public TeamEntity(String name, String group, String coach, Collection<PlayerEntity> players) {
@@ -34,7 +44,23 @@ public class TeamEntity implements Serializable {
         this.name = name;
         this.group = group;
         this.coach = coach;
-        this.lineup = new HashSet<>(players);
+        List<String> playerIds = new ArrayList<>();
+        for (PlayerEntity p : players) {
+            playerIds.add(p.getId());
+        }
+        this.lineup = playerIds;
+    }
+
+    public TeamEntity(String id, String name, String group, String coach, Collection<PlayerEntity> players) {
+        this.id = id;
+        this.name = name;
+        this.group = group;
+        this.coach = coach;
+        List<String> playerIds = new ArrayList<>();
+        for (PlayerEntity p : players) {
+            playerIds.add(p.getId());
+        }
+        this.lineup = playerIds;
     }
 
     public static int getMinPlayers() {
@@ -73,8 +99,8 @@ public class TeamEntity implements Serializable {
         this.group = group;
     }
 
-    public Set<PlayerEntity> getLineup() {
-        return new HashSet<>(lineup);
+    public List<String> getLineup() {
+        return new ArrayList<>(lineup);
     }
 
     public int getLineupSize() {

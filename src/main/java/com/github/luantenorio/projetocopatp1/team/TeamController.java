@@ -84,6 +84,6 @@ public class TeamController extends Table<TeamEntity> {
 
     @Override
     protected void onRowClicked(TeamEntity object) {
-        //todo
+        Router.navigateTo(ViewName.UPDATE_TEAM, object);
     }
 }

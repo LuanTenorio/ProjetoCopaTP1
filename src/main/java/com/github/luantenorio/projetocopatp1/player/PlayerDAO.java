@@ -1,9 +1,10 @@
 package com.github.luantenorio.projetocopatp1.player;
 
-import com.github.luantenorio.projetocopatp1.team.TeamEntity;
 import com.github.luantenorio.projetocopatp1.util.DAO;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class PlayerDAO extends DAO<PlayerEntity> {
 
@@ -34,7 +35,35 @@ public class PlayerDAO extends DAO<PlayerEntity> {
         return false;
     }
 
+    public boolean updateTeamIds(List<PlayerEntity> selectedPlayers, String teamId) {
+        List<PlayerEntity> players = this.readFile();
+
+        Set<String> selectedPlayerIds = selectedPlayers.stream()
+                .map(PlayerEntity::getId)
+                .collect(Collectors.toSet());
+
+        for (PlayerEntity player : players) {
+            if (selectedPlayerIds.contains(player.getId())) {
+                player.setTeamId(teamId);
+            } else if (teamId.equals(player.getTeamId())) {
+                player.setTeamId(null);
+            }
+        }
+
+        return this.saveFile(players);
+    }
+
     public boolean delete(String id) {
         return false;
+    }
+
+    public void setThisTeamIdToNull(String teamId) {
+        List<PlayerEntity> players = this.readFile();
+
+        for (PlayerEntity player : players) {
+            if(teamId.equals(player.getTeamId())) player.setTeamId(null);
+        }
+
+        this.saveFile(players);
     }
 }

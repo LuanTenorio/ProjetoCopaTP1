@@ -33,10 +33,28 @@ public class TeamDAO extends DAO<TeamEntity> {
     }
 
     public boolean update(TeamEntity entity) {
+        List<TeamEntity> teams = this.findAll();
+
+        for (int i=0; i<teams.size(); i++) {
+            if (teams.get(i).getId().equals(entity.getId())) {
+                teams.set(i, entity);
+                this.saveFile(teams);
+                return true;
+            }
+        }
         return false;
     }
 
-    public boolean delete(String id) {
+    public boolean delete(String teamId) {
+        List<TeamEntity> teams = this.findAll();
+
+        for (int i=0; i<teams.size(); i++) {
+            if (teams.get(i).getId().equals(teamId)) {
+                teams.remove(i);
+                this.saveFile(teams);
+                return true;
+            }
+        }
         return false;
     }
 }
