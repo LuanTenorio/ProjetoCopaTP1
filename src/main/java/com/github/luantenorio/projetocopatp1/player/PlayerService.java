@@ -1,25 +1,38 @@
 package com.github.luantenorio.projetocopatp1.player;
 
+import javafx.collections.ObservableList;
+
 import java.util.List;
 
 public class PlayerService {
 
-    private final PlayerDAO teamDAO = new PlayerDAO();
+    private final PlayerDAO playerDAO = new PlayerDAO();
 
     public List<PlayerEntity> findAll(){
-        return this.teamDAO.findAll();
+        return this.playerDAO.findAll();
     }
 
-    public PlayerEntity createStadium(PlayerEntity team){
-        return this.teamDAO.create(team);
+    public List<PlayerEntity> findPlayersWithoutTeam() {
+        List<PlayerEntity> players = this.playerDAO.findAll();
+
+        return players.stream()
+                .filter(player -> player.getTeamId() == null)
+                .toList();
     }
 
-    public boolean updateStadium(PlayerEntity team){
-        return this.teamDAO.update(team);
+    public PlayerEntity createPlayer(PlayerEntity team){
+        return this.playerDAO.create(team);
     }
 
-    public boolean deleteStadium(String id){
-        return this.teamDAO.delete(id);
+    public boolean updatePlayer(PlayerEntity team){
+        return this.playerDAO.update(team);
     }
 
+    public boolean deletePlayer(String id){
+        return this.playerDAO.delete(id);
+    }
+
+    public void updateTeamIds(List<PlayerEntity> selectedPlayers, String teamId) {
+        playerDAO.updateTeamIds(selectedPlayers, teamId);
+    }
 }

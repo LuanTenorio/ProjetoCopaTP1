@@ -19,9 +19,11 @@ import java.util.List;
 public class CreateTeamController {
 
     private final TeamService teamService = new TeamService();
+
     private final PlayerService playerService = new PlayerService();
 
     private ObservableList<PlayerEntity> availablePlayers;
+
     private ObservableList<PlayerEntity> selectedPlayers;
 
     @FXML
@@ -52,15 +54,15 @@ public class CreateTeamController {
     private Button buttonOperate;
 
     public void initialize() {
-        List<PlayerEntity> players = playerService.findAll();
+        List<PlayerEntity> players = playerService.findPlayersWithoutTeam();
 
         this.availablePlayers = FXCollections.observableArrayList(players);
         this.selectedPlayers = FXCollections.observableArrayList();
 
         this.availablePlayersListView.setItems(this.availablePlayers);
         this.selectedPlayersListView.setItems(this.selectedPlayers);
-        this.selectedPlayersCountLabel.textProperty()
-                .bind(Bindings.size(this.selectedPlayers).asString("Selecionados: %d"));
+
+        this.selectedPlayersCountLabel.textProperty().bind(Bindings.size(this.selectedPlayers).asString("Selecionados: %d"));
 
         this.availablePlayersListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         this.selectedPlayersListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
@@ -91,17 +93,21 @@ public class CreateTeamController {
             return;
         }
         try {
-            registerTeam();
+            TeamEntity createdTeam = registerTeam();
+            updateTeamIdsForSelectedPlayers(createdTeam.getId());
             backToPreviousView();
         } catch (TeamException e) {
             showInvalidMessage(e.getMessage());
         }
     }
 
-    private void registerTeam() {
-        teamService.createTeam(getCurrentEntity());
+    private TeamEntity registerTeam() {
+        return teamService.createTeam(getCurrentEntity());
     }
 
+    private void updateTeamIdsForSelectedPlayers(String teamId) {playerService.updateTeamIds(selectedPlayers, teamId);}
+
+    
     private void backToPreviousView() {
         Router.navigateTo(ViewName.TEAM);
     }
