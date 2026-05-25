@@ -35,4 +35,12 @@ public class PlayerService {
     public void updateTeamIds(List<PlayerEntity> selectedPlayers, String teamId) {
         playerDAO.updateTeamIds(selectedPlayers, teamId);
     }
+
+    public List<PlayerEntity> findTeamLineup(String teamId) {
+        List<PlayerEntity> players = this.playerDAO.findAll();
+
+        return players.stream()
+                .filter(player -> teamId.equals(player.getTeamId()))
+                .toList();
+    }
 }

@@ -4,6 +4,7 @@ import com.github.luantenorio.projetocopatp1.player.PlayerEntity;
 import com.github.luantenorio.projetocopatp1.player.PlayerService;
 import com.github.luantenorio.projetocopatp1.player.PlayerStatus;
 import com.github.luantenorio.projetocopatp1.stadium.StadiumEntity;
+import com.github.luantenorio.projetocopatp1.util.DataController;
 import com.github.luantenorio.projetocopatp1.util.Router;
 import com.github.luantenorio.projetocopatp1.util.ViewName;
 import javafx.beans.binding.Bindings;
@@ -16,7 +17,7 @@ import javafx.scene.input.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CreateTeamController {
+public class CreateTeamController implements DataController<TeamEntity> {
 
     private final TeamService teamService = new TeamService();
 
@@ -25,6 +26,8 @@ public class CreateTeamController {
     private ObservableList<PlayerEntity> availablePlayers;
 
     private ObservableList<PlayerEntity> selectedPlayers;
+
+    private TeamEntity selectedTeam;
 
     @FXML
     private TextField txtName;
@@ -106,7 +109,6 @@ public class CreateTeamController {
     }
 
     private void updateTeamIdsForSelectedPlayers(String teamId) {playerService.updateTeamIds(selectedPlayers, teamId);}
-
     
     private void backToPreviousView() {
         Router.navigateTo(ViewName.TEAM);
@@ -146,4 +148,18 @@ public class CreateTeamController {
         return new TeamEntity(name, group, coach, this.selectedPlayers);
     }
 
+    @Override
+    public void getData(TeamEntity data) {
+        this.selectedTeam = data;
+        setTeam();
+    }
+
+    public void setTeam() {
+        txtName.setText(selectedTeam.getName());
+        groupComboBox.setValue(selectedTeam.getGroup());
+        txtCoach.setText(selectedTeam.getCoach());
+
+        List<PlayerEntity> selectedTeamLineup = playerService.findTeamLineup(selectedTeam.getId());
+        this.selectedPlayers.addAll(selectedTeamLineup);
+    }
 }
