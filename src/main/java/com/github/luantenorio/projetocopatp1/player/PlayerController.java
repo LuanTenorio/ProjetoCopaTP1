@@ -1,11 +1,14 @@
 package com.github.luantenorio.projetocopatp1.player;
 
+import com.github.luantenorio.projetocopatp1.util.Router;
 import com.github.luantenorio.projetocopatp1.util.Table;
+import com.github.luantenorio.projetocopatp1.util.ViewName;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
 import java.util.Objects;
@@ -92,6 +95,10 @@ public class PlayerController extends Table<PlayerEntity> {
 
     @Override
     protected void onRowClicked(PlayerEntity object) {
+        Router.navigateTo(ViewName.UPDATE_PLAYER, object);
+    }
 
+    public void navigateToCreatePlayer() {
+        Router.navigateTo(ViewName.CREATE_PLAYER);
     }
 }
