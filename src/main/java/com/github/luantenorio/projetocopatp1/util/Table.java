@@ -54,14 +54,14 @@ public abstract class Table<T> {
         grid.setOnMouseClicked(event -> this.onRowClicked(object));
 
         Label[] labels = this.getLabels(object);
-        ColumnConstraints[] cols = {new ColumnConstraints(), new ColumnConstraints(), new ColumnConstraints()};
 
-        for(ColumnConstraints col : cols){
-            col.setPercentWidth(100/this.numCollumns);
+        for(int i = 0; i < this.numCollumns; i++){
+            ColumnConstraints col = new ColumnConstraints();
+            col.setPercentWidth(100.0 / this.numCollumns);
             grid.getColumnConstraints().add(col);
         }
 
-        for(int i = 0; i < 3; i++){
+        for(int i = 0; i < labels.length && i < this.numCollumns; i++){
             labels[i].getStyleClass().add("text-row");
             labels[i].setMaxWidth(Double.MAX_VALUE);
             grid.add(labels[i], i, 0);
