@@ -47,4 +47,18 @@ public class PlayerService {
     public void setThisTeamIdToNull(String teamId) {
         playerDAO.setThisTeamIdToNull(teamId);
     }
+
+    public PlayerStatus stringToPlayerStatus(String value) {
+        if (value == null || value.isBlank()) {
+            return null;
+        }
+
+        return switch (value) {
+            case "Ativo" -> PlayerStatus.ACTIVE;
+            case "Lesionado" -> PlayerStatus.INJURED;
+            case "Suspenso" -> PlayerStatus.SUSPENDED;
+            default -> null;
+        };
+
+    }
 }
