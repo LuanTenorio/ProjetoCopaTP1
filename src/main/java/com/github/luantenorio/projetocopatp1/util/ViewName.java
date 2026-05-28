@@ -4,6 +4,8 @@ public enum ViewName {
     //Nome do arquivo|Título da página
     TEAM("team.fxml|Seleções"),
     PLAYER("player.fxml|Jogadores"),
+    CREATE_PLAYER("create_player.fxml|Criar Jogador"),
+    UPDATE_PLAYER("create_player.fxml|Editar Jogador"),
     CREATE_TEAM("create_team.fxml|Criar Seleção"),
     UPDATE_TEAM("create_team.fxml|Editar Seleção"),
     STADIUM("stadium.fxml|Estádios"),
