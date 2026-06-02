@@ -12,12 +12,20 @@ import com.github.luantenorio.projetocopatp1.refereeMatch.RefereeMatchDAO;
 import com.github.luantenorio.projetocopatp1.refereeMatch.RefereeMatchEntity;
 import com.github.luantenorio.projetocopatp1.stadium.StadiumDAO;
 import com.github.luantenorio.projetocopatp1.stadium.StadiumEntity;
-import com.github.luantenorio.projetocopatp1.users.*;
+import com.github.luantenorio.projetocopatp1.users.UserEntity;
+import com.github.luantenorio.projetocopatp1.users.UserService;
+import com.github.luantenorio.projetocopatp1.users.RefereeUserEntity;
+import com.github.luantenorio.projetocopatp1.users.OrganizerEntity;
+import com.github.luantenorio.projetocopatp1.users.UserDAO;
+import com.github.luantenorio.projetocopatp1.users.AccessLevel;
+import com.github.luantenorio.projetocopatp1.users.UserStatus;
+import com.github.luantenorio.projetocopatp1.users.AdminEntity;
 import com.github.luantenorio.projetocopatp1.team.TeamDAO;
 import com.github.luantenorio.projetocopatp1.team.TeamEntity;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+
 
 public class Mocking {
 
@@ -289,8 +297,8 @@ public class Mocking {
         userDAO.clearAll();
         userService.register(new AdminEntity("Luan Tenorio", "admin@copa.com", "Brasil", "admin123", UserStatus.ACTIVE));
         userService.register(new OrganizerEntity("Ana Silva", "organizer@copa.com", "Argentina", "org2026", UserStatus.ACTIVE));
-        RefereeEntity ref = new RefereeEntity("Howard Webb", "referee@copa.com", "Inglaterra", "ref123", UserStatus.ACTIVE);
-        ref.setExperience("15 anos - FIFA");
+        RefereeUserEntity ref = new  RefereeUserEntity("Howard Webb", "referee@copa.com", "Inglaterra", "ref123", UserStatus.ACTIVE) ;
+        ref.setExperience("15");
         userService.register(ref);
 
         System.out.println("Mock dos usuários...");
