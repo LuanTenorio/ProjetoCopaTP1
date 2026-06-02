@@ -25,6 +25,7 @@ import com.github.luantenorio.projetocopatp1.team.TeamEntity;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.List;
 
 
 public class Mocking {
@@ -45,6 +46,7 @@ public class Mocking {
         mockRefereeMatch();
         mockTeam();
         mockPlayer();
+        mockUser();
     }
 
     public static void mockEstadium(){
@@ -293,14 +295,15 @@ public class Mocking {
     }
 
 
-    public static void mockUser(){
+    public static void mockUser() {
         userDAO.clearAll();
         userService.register(new AdminEntity("Luan Tenorio", "admin@copa.com", "Brasil", "admin123", UserStatus.ACTIVE));
         userService.register(new OrganizerEntity("Ana Silva", "organizer@copa.com", "Argentina", "org2026", UserStatus.ACTIVE));
-        RefereeUserEntity ref = new  RefereeUserEntity("Howard Webb", "referee@copa.com", "Inglaterra", "ref123", UserStatus.ACTIVE) ;
-        ref.setExperience("15");
-        userService.register(ref);
+        userService.register(new RefereeUserEntity("Howard Webb", "referee@copa.com", "Inglaterra", "ref123", UserStatus.ACTIVE, "15"));
+        ;
+
 
         System.out.println("Mock dos usuários...");
+
     }
 }
