@@ -41,14 +41,14 @@
         <HBox spacing="40.0">
             <VBox spacing="10.0" HBox.hgrow="ALWAYS">
                 <StackPane maxWidth="200.0" prefHeight="45.0" styleClass="yellow-label">
-                    <Label styleClass="blue-text" text="FASE" />
+                    <Label styleClass="blue-text" text="HORARIO" />
                 </StackPane>
                 <TimeTextField fx:id="inputTime" promptText="hh:mm" styleClass="input" />
             </VBox>
 
             <VBox spacing="10.0" HBox.hgrow="ALWAYS">
                 <StackPane maxWidth="200.0" prefHeight="45.0" styleClass="yellow-label">
-                    <Label styleClass="blue-text" text="DATA" />
+                    <Label styleClass="blue-text" text="ESTÁDIO" />
                 </StackPane>
                 <ComboBox fx:id="inputStadium" promptText="Escolha..." styleClass="input" />
             </VBox>
