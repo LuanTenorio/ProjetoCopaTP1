@@ -1,0 +1,22 @@
+ .root {
+    -fx-padding: 0;
+    -fx-background-color: white;
+}
+
+.image-view {
+    -fx-margin: 0;
+}
+
+
+.banner-topo {
+    -fx-alignment: top-center;
+}
+
+
+.login-card {
+    -fx-background-color: #f9f9f9;
+    -fx-border-color: #dcdcdc;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 40;
+}
