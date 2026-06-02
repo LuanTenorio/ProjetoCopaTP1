@@ -1,10 +1,12 @@
 package com.github.luantenorio.projetocopatp1.users;
 
+import com.github.luantenorio.projetocopatp1.referee.RefereeEntity;
 import com.github.luantenorio.projetocopatp1.users.UserDAO;
 import com.github.luantenorio.projetocopatp1.users.UserEntity;
 import com.github.luantenorio.projetocopatp1.util.PasswordHasher;
 import org.mindrot.jbcrypt.BCrypt;
 import java.util.List;
+
 
 public class UserService {
     private UserDAO userDAO;
@@ -34,6 +36,14 @@ public class UserService {
         String hashedPassword = PasswordHasher.hash(password);
         newUser.setPassword(hashedPassword);
         userDAO.create(newUser);
+    }
+
+    public boolean deleteUser(String id){
+        return this.userDAO.delete(id);
+    }
+
+    public boolean updateUser(UserEntity user){
+        return this.userDAO.update(user);
     }
 
 }

@@ -40,12 +40,12 @@
 
         <VBox alignment="CENTER_LEFT" spacing="15.0">
             <Label text="Usuário" />
-            <TextField promptText="Email" />
+            <TextField fx:id="campoEmail" promptText="Email" />
         </VBox>
 
         <VBox alignment="CENTER_LEFT" spacing="15.0">
             <Label text="Senha" />
-            <PasswordField promptText="Senha" />
+            <PasswordField fx:id="campoSenha" promptText="Senha" />
         </VBox>
 
         <Button fx:id="loginBtn" onAction="#login" text="Entrar"
