@@ -1,5 +1,7 @@
 package com.github.luantenorio.projetocopatp1.player;
 
+import com.github.luantenorio.projetocopatp1.stadium.StadiumEntity;
+import com.github.luantenorio.projetocopatp1.team.TeamEntity;
 import com.github.luantenorio.projetocopatp1.util.DAO;
 
 import java.util.List;
@@ -32,6 +34,16 @@ public class PlayerDAO extends DAO<PlayerEntity> {
     }
 
     public boolean update(PlayerEntity entity) {
+        List<PlayerEntity> players = this.findAll();
+
+        for (int i=0; i<players.size(); i++) {
+            if (players.get(i).getId().equals(entity.getId())) {
+                players.set(i, entity);
+                this.saveFile(players);
+                return true;
+            }
+        }
+
         return false;
     }
 
@@ -54,6 +66,16 @@ public class PlayerDAO extends DAO<PlayerEntity> {
     }
 
     public boolean delete(String id) {
+        List<PlayerEntity> players = this.findAll();
+
+        for (int i = 0; i < players.size(); i++) {
+            if (players.get(i).getId().equals(id)) {
+                players.remove(i);
+                this.saveFile(players);
+                return true;
+            }
+        }
+
         return false;
     }
 
