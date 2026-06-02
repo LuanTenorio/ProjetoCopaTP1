@@ -1,6 +1,8 @@
 package com.github.luantenorio.projetocopatp1.stadium;
 
+import com.github.luantenorio.projetocopatp1.util.Router;
 import com.github.luantenorio.projetocopatp1.util.Table;
+import com.github.luantenorio.projetocopatp1.util.ViewName;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -9,8 +11,8 @@ import javafx.scene.layout.VBox;
 
 public class StadiumController extends Table<StadiumEntity> {
 
-    private StadiumDAO stadiumDAO = new StadiumDAO();
-    private StadiumEntity activedFilters = new StadiumEntity("", "", 0);
+    private final StadiumService stadiumService = new StadiumService();
+    private final StadiumEntity activedFilters = new StadiumEntity("", "", 0);
 
     private String nameFormated, locationFormated, capacityFormated;
 
@@ -35,14 +37,17 @@ public class StadiumController extends Table<StadiumEntity> {
 
     @FXML
     public void initialize() {
-        this.objetcs = this.stadiumDAO.findAll();
+        this.objetcs = this.stadiumService.findAll();
         this.renderTable();
         this.formatCapacityField();
     }
 
     protected Label[] getLabels(StadiumEntity stadium) {
-        Label[] labels = {new Label(stadium.getName()), new Label(stadium.getLocation()), new Label(String.format("%d pessoas", stadium.getCapacity()))};
-        return labels;
+        return new Label[]{new Label(stadium.getName()), new Label(stadium.getLocation()), new Label(String.format("%d pessoas", stadium.getCapacity()))};
+    }
+
+    protected void onRowClicked(StadiumEntity object) {
+        Router.navigateTo(ViewName.UPDATE_STADIUM, object);
     }
 
     public void filterName(){
@@ -87,6 +92,10 @@ public class StadiumController extends Table<StadiumEntity> {
         this.capacityFormated = this.filterCapacity.getText().trim();
 
         return nameFormated.isEmpty() && locationFormated.isEmpty() && capacityFormated.isEmpty();
+    }
+
+    public void navigateToCreateStadium(){
+        Router.navigateTo(ViewName.CREATE_STADIUM);
     }
 
 }

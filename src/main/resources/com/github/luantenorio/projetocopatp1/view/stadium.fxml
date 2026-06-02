@@ -26,7 +26,7 @@
 
             <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="0">
                 <Label text="Nome" styleClass="label-filter" />
-                <TextField fx:id="filterName" promptText="Mané garrincha" styleClass="field-filter" onInputMethodTextChanged="#filterName" onKeyReleased="#filterName"/>
+                <TextField fx:id="filterName" promptText="Mané garrincha" styleClass="field-filter" onKeyReleased="#filterName"/>
             </VBox>
 
             <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="0">
@@ -77,6 +77,11 @@
             </Button>
         </HBox>
     </VBox>
+
+    <Button text="Novo Estádio"
+            styleClass="botao-novo"
+            stylesheets="@../css/main.css"
+            xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" onMouseClicked="#navigateToCreateStadium"/>
 
 </VBox>
 

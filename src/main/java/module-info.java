@@ -8,6 +8,7 @@ module com.github.luantenorio.projetocopatp1 {
     requires org.kordamp.bootstrapfx.core;
     requires java.desktop;
     requires jbcrypt;
+    requires static org.jetbrains.annotations;
 
     opens com.github.luantenorio.projetocopatp1 to javafx.fxml;
     exports com.github.luantenorio.projetocopatp1;
@@ -19,6 +20,14 @@ module com.github.luantenorio.projetocopatp1 {
     opens com.github.luantenorio.projetocopatp1.stadium to javafx.fxml;
     exports com.github.luantenorio.projetocopatp1.player;
     opens com.github.luantenorio.projetocopatp1.player to javafx.fxml;
+    exports com.github.luantenorio.projetocopatp1.team;
+    opens com.github.luantenorio.projetocopatp1.team to javafx.fxml;
     exports com.github.luantenorio.projetocopatp1.util;
     opens com.github.luantenorio.projetocopatp1.util to javafx.fxml;
+    exports com.github.luantenorio.projetocopatp1.match;
+    opens com.github.luantenorio.projetocopatp1.match to javafx.fxml;
+    exports com.github.luantenorio.projetocopatp1.referee;
+    opens com.github.luantenorio.projetocopatp1.referee to javafx.fxml;
+    exports com.github.luantenorio.projetocopatp1.refereeMatch;
+    opens com.github.luantenorio.projetocopatp1.refereeMatch to javafx.fxml;
 }

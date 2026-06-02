@@ -51,15 +51,17 @@ public abstract class Table<T> {
         GridPane grid = new GridPane();
         grid.getStyleClass().add("table-row");
 
-        Label[] labels = this.getLabels(object);
-        ColumnConstraints[] cols = {new ColumnConstraints(), new ColumnConstraints(), new ColumnConstraints()};
+        grid.setOnMouseClicked(event -> this.onRowClicked(object));
 
-        for(ColumnConstraints col : cols){
-            col.setPercentWidth(100/this.numCollumns);
+        Label[] labels = this.getLabels(object);
+
+        for(int i = 0; i < this.numCollumns; i++){
+            ColumnConstraints col = new ColumnConstraints();
+            col.setPercentWidth(100.0 / this.numCollumns);
             grid.getColumnConstraints().add(col);
         }
 
-        for(int i = 0; i < 3; i++){
+        for(int i = 0; i < labels.length && i < this.numCollumns; i++){
             labels[i].getStyleClass().add("text-row");
             labels[i].setMaxWidth(Double.MAX_VALUE);
             grid.add(labels[i], i, 0);
@@ -99,4 +101,6 @@ public abstract class Table<T> {
 
     // Pega todos os filtros
     protected abstract Label[] getLabels(T object);
+
+    protected abstract void onRowClicked(T object);
 }

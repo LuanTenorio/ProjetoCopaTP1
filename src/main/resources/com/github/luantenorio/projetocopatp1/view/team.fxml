@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
-<?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 
 <VBox maxWidth="1440"
-      spacing="40"
-      stylesheets="@../css/estadium.css"
-      xmlns="http://javafx.com/javafx/17.0.12"
-      xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.github.luantenorio.projetocopatp1.player.PlayerController">
+        spacing="40"
+        stylesheets="@../css/estadium.css"
+        xmlns="http://javafx.com/javafx/17.0.12"
+        xmlns:fx="http://javafx.com/fxml/1"
+        fx:controller="com.github.luantenorio.projetocopatp1.team.TeamController">
 
     <!-- Filtro -->
     <VBox maxHeight="100" spacing="20" styleClass="filters" stylesheets="@../css/filter.css">
@@ -25,51 +23,22 @@
 
             <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="0">
                 <Label styleClass="label-filter" text="Nome" />
-                <TextField fx:id="filterName" promptText="Nome do jogador" styleClass="field-filter" onKeyReleased="#filterName"/>
+                <TextField fx:id="filterName" promptText="Brasil" styleClass="field-filter" onKeyReleased="#filterName" />
             </VBox>
 
             <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="0">
-                <Label styleClass="label-filter" text="Posição" />
-                <ComboBox fx:id="filterPosition" maxWidth="Infinity" promptText="Selecione a posição" styleClass="field-filter" onAction="#filterPosition">
-                    <items>
-                        <FXCollections fx:factory="observableArrayList">
-                            <String fx:value="GOL" />
-                            <String fx:value="DEF" />
-                            <String fx:value="MEI" />
-                            <String fx:value="ATA" />
-                        </FXCollections>
-                    </items>
-                </ComboBox>
+                <Label styleClass="label-filter" text="Grupo" />
+                <TextField fx:id="filterGroup" promptText="Grupo A" styleClass="field-filter" onKeyReleased="#filterGroup" />
             </VBox>
 
             <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="1">
-                <Label styleClass="label-filter" text="Número" />
-                <TextField fx:id="filterNumber" promptText="10" styleClass="field-filter" onKeyReleased="#filterNumber" />
+                <Label styleClass="label-filter" text="Técnico" />
+                <TextField fx:id="filterCoach" promptText="Nome do técnico" styleClass="field-filter" onKeyReleased="#filterCoach" />
             </VBox>
-
-            <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                <Label styleClass="label-filter" text="Status" />
-                <ComboBox fx:id="filterStatus" maxWidth="Infinity" promptText="Selecione o status" styleClass="field-filter" onAction="#filterStatus">
-                    <items>
-                        <FXCollections fx:factory="observableArrayList">
-                            <String fx:value="Ativo" />
-                            <String fx:value="Lesionado" />
-                            <String fx:value="Suspenso" />
-                        </FXCollections>
-                    </items>
-                </ComboBox>
-            </VBox>
-
-            <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="2">
-                <Label styleClass="label-filter" text="Idade" />
-                <TextField fx:id="filterAge" promptText="24" styleClass="field-filter" onKeyReleased="#filterAge"/>
-            </VBox>
-
-            <rowConstraints>
-                <RowConstraints />
-                <RowConstraints />
-                <RowConstraints />
-            </rowConstraints>
+         <rowConstraints>
+            <RowConstraints />
+            <RowConstraints />
+         </rowConstraints>
         </GridPane>
     </VBox>
 
@@ -77,22 +46,17 @@
     <VBox minHeight="767" styleClass="card-table" stylesheets="@../css/pagination-table.css">
         <GridPane styleClass="header-table">
             <columnConstraints>
-                <ColumnConstraints percentWidth="20" />
-                <ColumnConstraints percentWidth="20" />
-                <ColumnConstraints percentWidth="20" />
-                <ColumnConstraints percentWidth="20" />
-                <ColumnConstraints percentWidth="20" />
+                <ColumnConstraints percentWidth="33.4" />
+                <ColumnConstraints percentWidth="33.3" />
+                <ColumnConstraints percentWidth="33.3" />
             </columnConstraints>
 
             <Label maxWidth="Infinity" styleClass="header-text" text="Nome" GridPane.columnIndex="0" />
-            <Label maxWidth="Infinity" styleClass="header-text" text="Posição" GridPane.columnIndex="1" />
-            <Label maxWidth="Infinity" styleClass="header-text" text="Número" GridPane.columnIndex="2" />
-            <Label maxWidth="Infinity" styleClass="header-text" text="Idade" GridPane.columnIndex="3" />
-            <Label maxWidth="Infinity" styleClass="header-text" text="Status" GridPane.columnIndex="4" />
-
-            <rowConstraints>
-                <RowConstraints />
-            </rowConstraints>
+            <Label maxWidth="Infinity" styleClass="header-text" text="Grupo" GridPane.columnIndex="1" />
+            <Label maxWidth="Infinity" styleClass="header-text" text="Técnico" GridPane.columnIndex="2" />
+         <rowConstraints>
+            <RowConstraints />
+         </rowConstraints>
         </GridPane>
 
         <Region styleClass="bold-row" />
@@ -116,5 +80,5 @@
         </HBox>
     </VBox>
 
-    <Button styleClass="botao-novo" stylesheets="@../css/main.css" text="NOVO JOGADOR" />
+    <Button styleClass="botao-novo" stylesheets="@../css/main.css" text="CADASTRAR SELEÇÃO" onMouseClicked="#navigateToCreateTeam"/>
 </VBox>

@@ -1,6 +1,7 @@
 package com.github.luantenorio.projetocopatp1.team;
 
 import com.github.luantenorio.projetocopatp1.player.PlayerEntity;
+import javafx.collections.ObservableList;
 
 import java.io.Serializable;
 import java.util.*;
@@ -12,14 +13,14 @@ public class TeamEntity implements Serializable {
     private String name;
     private String group;
     private String coach;
-    private Set<PlayerEntity> lineup;
+    private List<String> lineup;
 
     public TeamEntity(String name, String  group, String coach) {
         this.id = UUID.randomUUID().toString();
         this.name = name;
         this.group = group;
         this.coach = coach;
-        lineup = new HashSet<>();
+        lineup = new ArrayList<>();
     }
 
     public TeamEntity(String id, String name, String  group, String coach) {
@@ -27,7 +28,47 @@ public class TeamEntity implements Serializable {
         this.name = name;
         this.group = group;
         this.coach = coach;
-        lineup = new HashSet<>();
+        lineup = new ArrayList<>();
+    }
+
+    public TeamEntity(String name, String group, String coach, List<String> playerIds) {
+        this.id = UUID.randomUUID().toString();
+        this.name = name;
+        this.group = group;
+        this.coach = coach;
+        lineup = new ArrayList<>(playerIds);
+    }
+
+    public TeamEntity(String name, String group, String coach, Collection<PlayerEntity> players) {
+        this.id = UUID.randomUUID().toString();
+        this.name = name;
+        this.group = group;
+        this.coach = coach;
+        List<String> playerIds = new ArrayList<>();
+        for (PlayerEntity p : players) {
+            playerIds.add(p.getId());
+        }
+        this.lineup = playerIds;
+    }
+
+    public TeamEntity(String id, String name, String group, String coach, Collection<PlayerEntity> players) {
+        this.id = id;
+        this.name = name;
+        this.group = group;
+        this.coach = coach;
+        List<String> playerIds = new ArrayList<>();
+        for (PlayerEntity p : players) {
+            playerIds.add(p.getId());
+        }
+        this.lineup = playerIds;
+    }
+
+    public static int getMinPlayers() {
+        return MIN_PLAYERS;
+    }
+
+    public static int getMaxPlayers() {
+        return MAX_PLAYERS;
     }
 
     public String getId() {
@@ -58,26 +99,12 @@ public class TeamEntity implements Serializable {
         this.group = group;
     }
 
-    public Set<PlayerEntity> getLineup() {
-        return new HashSet<>(lineup);
+    public List<String> getLineup() {
+        return new ArrayList<>(lineup);
     }
 
     public int getLineupSize() {
-        return  lineup.size();
-    }
-
-    public void addPlayer(PlayerEntity player) {
-        if (player == null) return;
-        if (player.getTeamId() != null) return;
-        if (lineup.size() >= MAX_PLAYERS) return;
-        lineup.add(player);
-        player.setTeamId(id);
-    }
-
-    public void removePlayer(PlayerEntity player) {
-        if (player == null) return;
-        lineup.remove(player);
-        player.setTeamId(null);
+        return lineup.size();
     }
 
     public boolean hasPlayer(PlayerEntity player) {
@@ -88,7 +115,4 @@ public class TeamEntity implements Serializable {
         return lineup.size() >= MAX_PLAYERS;
     }
 
-    public boolean hasMinimumPlayers() {
-        return lineup.size() >= MIN_PLAYERS;
-    }
 }
