@@ -18,4 +18,11 @@ public enum MatchStage {
     public String toString() {
         return this.label;
     }
+
+    public static MatchStage findByName(String name){
+        for (MatchStage stage : MatchStage.values()){
+            if (stage.toString().contains(name.trim())) return stage;
+        }
+        return null;
+    }
 }

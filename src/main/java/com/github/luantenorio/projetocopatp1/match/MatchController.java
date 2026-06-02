@@ -1,5 +1,7 @@
 package com.github.luantenorio.projetocopatp1.match;
 
+import com.github.luantenorio.projetocopatp1.util.Router;
+import com.github.luantenorio.projetocopatp1.util.ViewName;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -20,7 +22,6 @@ import java.util.stream.Collectors;
 public class MatchController {
     private MatchDAO matchDAO = new MatchDAO();
     private List<MatchEntity> filteredMatches;
-    private List<MatchEntity> tableMatches = new ArrayList<>();
     private final int SIZE_PAGINATION = 10;
     private int totPages;
     private int curPage = 1;
@@ -99,9 +100,9 @@ public class MatchController {
         int initIndex = (this.curPage - 1) * this.SIZE_PAGINATION;
         int endIndex = Math.min(initIndex + this.SIZE_PAGINATION, filteredMatches.size());
 
-        this.tableMatches = filteredMatches.subList(initIndex, endIndex);
+        List<MatchEntity> tableMatches = filteredMatches.subList(initIndex, endIndex);
 
-        for (MatchEntity e : this.tableMatches) {
+        for (MatchEntity e : tableMatches) {
             GridPane linha = createRowTable(e);
             this.rowsContainer.getChildren().add(linha);
         }
@@ -134,6 +135,6 @@ public class MatchController {
 
     @FXML
     private void navigateToCreateMatch(){
-
+        Router.navigateTo(ViewName.CREATE_MATCH);
     }
 }
