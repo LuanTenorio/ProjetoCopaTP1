@@ -58,5 +58,5 @@
 
     <Button layoutX="634.0" layoutY="530.0" mnemonicParsing="false" onMouseClicked="#register" styleClass="button" text="REGISTRAR" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="50.0" />
 
-    <Button layoutX="50.0" layoutY="513.0" mnemonicParsing="false" onMouseClicked="#back" styleClass="button" text="Adicionar Resultado" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="558.0" />
+    <Button layoutX="50.0" layoutY="513.0" mnemonicParsing="false" styleClass="button" text="Adicionar Resultado" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="558.0" />
 </AnchorPane>

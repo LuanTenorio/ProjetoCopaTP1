@@ -124,7 +124,11 @@ public class MatchEntity implements Serializable {
         this.team2Id = team2.getId();
     }
 
-    private class Result {
+    public String getName() {
+        return getTeam1().getName() + " vs " + getTeam2().getName();
+    }
+
+    private class Result implements Serializable {
         private String score;
         private final HashSet<MatchEvent> history = new HashSet<>();
 

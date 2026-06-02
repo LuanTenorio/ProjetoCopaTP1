@@ -12,13 +12,14 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.input.MouseEvent;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.List;
 
-public class CreateMatchController {
+public class FormMatchController {
 
     MatchDAO dao = new MatchDAO();
 
@@ -47,6 +48,14 @@ public class CreateMatchController {
 
         List<StadiumEntity> stadiums = stadiumDAO.findAll();
         List<TeamEntity> teams = teamDAO.findAll();
+
+        // coloca em ordem alfabetica
+        stadiums.sort((lhs, rhs) ->
+                String.CASE_INSENSITIVE_ORDER.compare(lhs.getName(), rhs.getName())
+        );
+        teams.sort((lhs, rhs) ->
+                String.CASE_INSENSITIVE_ORDER.compare(lhs.getName(), rhs.getName())
+        );
 
         for (StadiumEntity stadium : stadiums) {
             stadiumOptions.add(stadium.getName());
@@ -90,5 +99,9 @@ public class CreateMatchController {
         );
         dao.create(match);
         Router.navigateTo(ViewName.MATCH);
+    }
+
+    public void back() {
+
     }
 }

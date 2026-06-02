@@ -1,5 +1,7 @@
 package com.github.luantenorio.projetocopatp1.match;
 
+import com.github.luantenorio.projetocopatp1.util.Router;
+import com.github.luantenorio.projetocopatp1.util.ViewName;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -133,6 +135,6 @@ public class MatchController {
 
     @FXML
     private void navigateToCreateMatch(){
-
+        Router.navigateTo(ViewName.CREATE_MATCH);
     }
 }
