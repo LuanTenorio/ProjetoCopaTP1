@@ -61,7 +61,7 @@ public class StadiumController extends Table<StadiumEntity> {
     }
 
     public void filterCapacity(){
-        this.activedFilters.setCapacity(this.activedFilters.getCapacity());
+        this.activedFilters.setCapacity(Integer.parseInt(this.filterCapacity.getText() == "" ? "0" : this.filterCapacity.getText()));
         this.renderTable();
     }
 
@@ -80,7 +80,7 @@ public class StadiumController extends Table<StadiumEntity> {
         if(!this.locationFormated.isEmpty() && !stadium.getLocation().trim().toLowerCase().startsWith(this.locationFormated))
             return false;
 
-        if(!this.capacityFormated.equals("0") && !String.format("%d", stadium.getCapacity()).startsWith(this.capacityFormated))
+        if(!this.capacityFormated.isEmpty() && !String.format("%d", stadium.getCapacity()).startsWith(this.capacityFormated))
             return false;
 
         return true;
@@ -90,6 +90,8 @@ public class StadiumController extends Table<StadiumEntity> {
         this.nameFormated = this.filterName.getText().trim().toLowerCase();
         this.locationFormated = this.filterLocation.getText().trim().toLowerCase();
         this.capacityFormated = this.filterCapacity.getText().trim();
+
+        System.out.println(this.capacityFormated);
 
         return nameFormated.isEmpty() && locationFormated.isEmpty() && capacityFormated.isEmpty();
     }
