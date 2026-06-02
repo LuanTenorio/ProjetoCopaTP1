@@ -4,10 +4,7 @@ import com.github.luantenorio.projetocopatp1.util.Router;
 import com.github.luantenorio.projetocopatp1.util.Table;
 import com.github.luantenorio.projetocopatp1.util.ViewName;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
@@ -38,6 +35,24 @@ public class PlayerController extends Table<PlayerEntity> {
     public void initialize() {
         this.objetcs = this.playerService.findAll();
         this.renderTable();
+        this.formatNumberField();
+        this.formatAgeField();
+    }
+
+    private void formatAgeField() {
+        TextFormatter<String> numberFormatter = new TextFormatter<>(change ->
+                change.getText().matches("\\d*") ? change : null
+        );
+
+        this.filterAge.setTextFormatter(numberFormatter);
+    }
+
+    private void formatNumberField() {
+        TextFormatter<String> numberFormatter = new TextFormatter<>(change ->
+                change.getText().matches("\\d*") ? change : null
+        );
+
+        this.filterNumber.setTextFormatter(numberFormatter);
     }
 
     public void filterName() {
@@ -51,11 +66,13 @@ public class PlayerController extends Table<PlayerEntity> {
     }
 
     public void filterNumber() {
-        //todo:
+        this.activedFilters.setNum(Integer.parseInt(this.filterNumber.getText() == "" ? "0" : this.filterNumber.getText()));
+        this.renderTable();
     }
 
     public void filterAge() {
-        //todo:
+        this.activedFilters.setAge(Integer.parseInt(this.filterAge.getText() == "" ? "0" : this.filterAge.getText()));
+        this.renderTable();
     }
 
     public void filterStatus() {
@@ -74,6 +91,13 @@ public class PlayerController extends Table<PlayerEntity> {
         if(statusFormated != null && object.getStatus() != playerService.stringToPlayerStatus(statusFormated)) {
             return false;
         }
+        if(!this.numberFormated.isEmpty() && !String.format("%d", object.getNum()).startsWith(this.numberFormated)) {
+            return false;
+        }
+        if(!this.ageFormated.isEmpty() && !String.format("%d", object.getAge()).startsWith(this.ageFormated)) {
+            return false;
+        }
+
         return true;
     }
 
@@ -101,4 +125,4 @@ public class PlayerController extends Table<PlayerEntity> {
     public void navigateToCreatePlayer() {
         Router.navigateTo(ViewName.CREATE_PLAYER);
     }
-}
+    }
