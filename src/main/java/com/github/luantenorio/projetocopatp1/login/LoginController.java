@@ -2,6 +2,7 @@ package com.github.luantenorio.projetocopatp1.login;
 
 import com.github.luantenorio.projetocopatp1.users.UserEntity;
 import com.github.luantenorio.projetocopatp1.users.UserService;
+import com.github.luantenorio.projetocopatp1.users.UserSession;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -51,11 +52,12 @@ public class LoginController implements Initializable {
             return;
         }
 
-        UserEntity usuarioLogado = userService.auth(emailDigitado, senhaDigitada);
+        UserEntity loggedUser = userService.auth(emailDigitado, senhaDigitada);
 
-        if (usuarioLogado != null) {
-            System.out.println("Login bem-sucedido! Bem-vindo, " + usuarioLogado.getNome());
-            System.out.println("Tipo de usuário: " + usuarioLogado.getClass().getSimpleName());
+        if (loggedUser != null) {
+            System.out.println("Login bem-sucedido! Bem-vindo, " + loggedUser.getNome());
+            System.out.println("Tipo de usuário: " + loggedUser.getClass().getSimpleName());
+            UserSession.getInstance().setLoggedUser(loggedUser);
 
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/github/luantenorio/projetocopatp1/view/panel.fxml"));
