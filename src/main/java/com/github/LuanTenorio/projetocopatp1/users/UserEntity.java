@@ -53,6 +53,8 @@ public abstract class UserEntity implements Serializable {
 
     public String getPassword() {return password;}
 
+    public void setPassword(String password){this.password = password;}
+
     public AccessLevel getAccessLevel(){return this.accessLevel;}
 
     public void setAccessLevel(AccessLevel accessLevel) {this.accessLevel = accessLevel;}

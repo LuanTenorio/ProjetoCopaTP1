@@ -32,6 +32,7 @@ public class UserService {
     public void register(UserEntity newUser){
         String password = newUser.getPassword();
         String hashedPassword = PasswordHasher.hash(password);
+        newUser.setPassword(hashedPassword);
         userDAO.create(newUser);
     }
 
