@@ -8,9 +8,12 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
-
+<?import javafx.scene.layout.StackPane?>
 <?import java.net.URL?>
-<VBox alignment="TOP_CENTER" fx:id="rootPane" xmlns:fx="http://javafx.com/fxml/1"
+
+<VBox alignment="TOP_CENTER"
+      fx:id="rootPane"
+      xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.github.luantenorio.projetocopatp1.login.LoginController"
       style="-fx-background-color: white;">
 
@@ -19,38 +22,49 @@
     </stylesheets>
 
     <children>
-    <ImageView pickOnBounds="true" fx:id="topoImagem" preserveRatio="true"  >
-        <image>
-            <Image url="@../image/banner_login.png" />
-        </image>
-    </ImageView>
 
-    <VBox alignment="CENTER" spacing="25.0"
-          style="-fx-border-color: #dcdcdc; -fx-border-radius: 10; -fx-background-radius: 10; -fx-background-color: #f9f9f9;">
+        <ImageView pickOnBounds="true" fx:id="topoImagem" preserveRatio="true">
+            <image>
+                <Image url="@../image/banner_login.png" />
+            </image>
+        </ImageView>
 
-        <padding>
-            <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
-        </padding>
+        <!-- card centralizado com largura fixa -->
+        <VBox fx:id="cardContainer" alignment="TOP_CENTER" VBox.vgrow="ALWAYS">
+            <padding>
+                <Insets top="10" />
+            </padding>
+            <children>
+                <VBox fx:id="loginCard"
+                      alignment="CENTER"
+                      spacing="25.0"
+                      prefWidth="450.0"
+                      maxWidth="450.0"
+                      style="-fx-border-color: #dcdcdc; -fx-border-radius: 10; -fx-background-radius: 10; -fx-background-color: #f9f9f9;">
 
-        <VBox.margin>
-            <Insets top="50.0" left="500.0" right="500.0" />
-        </VBox.margin>
+                    <padding>
+                        <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+                    </padding>
 
-        <Label text="Entrar" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+                    <Label text="Entrar" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
 
-        <VBox alignment="CENTER_LEFT" spacing="15.0">
-            <Label text="Usuário" />
-            <TextField fx:id="campoEmail" promptText="Email" />
+                    <VBox alignment="CENTER_LEFT" spacing="8.0" maxWidth="Infinity">
+                        <Label text="Usuário" />
+                        <TextField fx:id="campoEmail" promptText="Email" maxWidth="Infinity" />
+                    </VBox>
+
+                    <VBox alignment="CENTER_LEFT" spacing="8.0" maxWidth="Infinity">
+                        <Label text="Senha" />
+                        <PasswordField fx:id="campoSenha" promptText="Senha" maxWidth="Infinity" />
+                    </VBox>
+
+                    <Button fx:id="loginBtn" onAction="#login" text="Entrar"
+                            style="-fx-background-color: #7000FF; -fx-text-fill: white; -fx-font-weight: bold;"
+                            prefWidth="200.0" prefHeight="40.0" />
+
+                </VBox>
+            </children>
         </VBox>
 
-        <VBox alignment="CENTER_LEFT" spacing="15.0">
-            <Label text="Senha" />
-            <PasswordField fx:id="campoSenha" promptText="Senha" />
-        </VBox>
-
-        <Button fx:id="loginBtn" onAction="#login" text="Entrar"
-                style="-fx-background-color: #7000FF; -fx-text-fill: white; -fx-font-weight: bold;"
-                prefWidth="200.0" prefHeight="30" />
-    </VBox>
     </children>
 </VBox>

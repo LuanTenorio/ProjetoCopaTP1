@@ -3,6 +3,7 @@ package com.github.luantenorio.projetocopatp1.login;
 import com.github.luantenorio.projetocopatp1.users.UserEntity;
 import com.github.luantenorio.projetocopatp1.users.UserService;
 import com.github.luantenorio.projetocopatp1.users.UserSession;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -36,9 +37,24 @@ public class LoginController implements Initializable {
     @FXML
     private VBox rootPane;
 
+    @FXML
+    private VBox loginCard;
+
+    @FXML
+    private VBox cardContainer;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         topoImagem.fitWidthProperty().bind(rootPane.widthProperty());
+        loginCard.prefWidthProperty().bind(
+                rootPane.widthProperty().multiply(0.1)
+        );
+        cardContainer.paddingProperty().bind(
+                javafx.beans.binding.Bindings.createObjectBinding(
+                        () -> new javafx.geometry.Insets(rootPane.getHeight() * 0.08, 0, 0, 0),
+                        rootPane.heightProperty()
+                )
+        );
     }
 
     @FXML
