@@ -1,5 +1,7 @@
 package com.github.luantenorio.projetocopatp1.match;
 
+import com.github.luantenorio.projetocopatp1.stadium.StadiumDAO;
+import com.github.luantenorio.projetocopatp1.stadium.StadiumEntity;
 import com.github.luantenorio.projetocopatp1.team.TeamDAO;
 import com.github.luantenorio.projetocopatp1.team.TeamEntity;
 import javafx.css.Match;
@@ -124,6 +126,11 @@ public class MatchEntity implements Serializable {
         this.team2Id = team2.getId();
     }
 
+    public StadiumEntity getStadium() {
+        StadiumDAO dao = new StadiumDAO();
+        return dao.findById(this.stadiumId);
+    }
+
     public String getName() {
         return getTeam1().getName() + " vs " + getTeam2().getName();
     }
@@ -158,5 +165,13 @@ public class MatchEntity implements Serializable {
                     )
             );
         }
+    }
+
+    public void setDate(ZonedDateTime date) {
+        this.date = date;
+    }
+
+    public void setStadium(StadiumEntity stadium) {
+        this.stadiumId = stadium.getId();
     }
 }
