@@ -80,5 +80,5 @@
         </HBox>
     </VBox>
 
-    <Button styleClass="botao-novo" stylesheets="@../css/main.css" text="CADASTRAR SELEÇÃO" onMouseClicked="#navigateToCreateTeam"/>
+    <Button fx:id="btnCadastrar" styleClass="botao-novo" stylesheets="@../css/main.css" text="CADASTRAR SELEÇÃO" onMouseClicked="#navigateToCreateTeam"/>
 </VBox>

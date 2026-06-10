@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane fitToWidth="true" style="-fx-background-color: #FAF9F3; -fx-background: #FAF9F3;"
+            stylesheets="@../css/main.css, @../css/pagination-table.css"
+            xmlns="http://javafx.com/javafx/17.0.12"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.github.luantenorio.projetocopatp1.feed.FeedController">
+
+    <content>
+        <VBox spacing="30.0" style="-fx-padding: 50px; -fx-background-color: #FAF9F3;">
+
+            <!-- Título -->
+            <Label text="RELATÓRIOS" style="-fx-font-family: 'Poppins'; -fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #20195F;" />
+
+            <!-- Cards de resumo -->
+            <HBox spacing="20.0">
+
+                <VBox styleClass="card-table" HBox.hgrow="ALWAYS" spacing="8" style="-fx-alignment: center; -fx-padding: 30px;">
+                    <Label text="PARTIDAS REALIZADAS" style="-fx-font-family: 'Poppins'; -fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #D5B256;" />
+                    <Label fx:id="lblTotalMatches" text="0" style="-fx-font-family: 'Poppins'; -fx-font-size: 36px; -fx-font-weight: bold; -fx-text-fill: #20195F;" />
+                </VBox>
+
+                <VBox styleClass="card-table" HBox.hgrow="ALWAYS" spacing="8" style="-fx-alignment: center; -fx-padding: 30px;">
+                    <Label text="TOTAL DE GOLS" style="-fx-font-family: 'Poppins'; -fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #D5B256;" />
+                    <Label fx:id="lblTotalGoals" text="0" style="-fx-font-family: 'Poppins'; -fx-font-size: 36px; -fx-font-weight: bold; -fx-text-fill: #20195F;" />
+                </VBox>
+
+                <VBox styleClass="card-table" HBox.hgrow="ALWAYS" spacing="8" style="-fx-alignment: center; -fx-padding: 30px;">
+                    <Label text="MÉDIA DE GOLS POR PARTIDA" style="-fx-font-family: 'Poppins'; -fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #D5B256;" />
+                    <Label fx:id="lblAvgGoals" text="0.0" style="-fx-font-family: 'Poppins'; -fx-font-size: 36px; -fx-font-weight: bold; -fx-text-fill: #20195F;" />
+                </VBox>
+
+            </HBox>
+
+            <!-- Tabelas lado a lado -->
+            <HBox spacing="20.0">
+
+                <!-- Top goleadores -->
+                <VBox styleClass="card-table" HBox.hgrow="ALWAYS" spacing="0" minHeight="350">
+                    <Label text="TOP GOLEADORES" style="-fx-font-family: 'Poppins'; -fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #D5B256; -fx-padding: 0 0 15px 0;" />
+                    <Region styleClass="bold-row" />
+                    <GridPane style="-fx-padding: 10px 0 0 0;">
+                        <columnConstraints>
+                            <ColumnConstraints percentWidth="60" />
+                            <ColumnConstraints percentWidth="40" />
+                        </columnConstraints>
+                        <Label text="Jogador" styleClass="header-text" maxWidth="Infinity" GridPane.columnIndex="0" />
+                        <Label text="Gols" styleClass="header-text" maxWidth="Infinity" GridPane.columnIndex="1" />
+                    </GridPane>
+                    <VBox fx:id="topScorersContainer" />
+                </VBox>
+
+                <!-- Seleções que mais sofreram gols -->
+                <VBox styleClass="card-table" HBox.hgrow="ALWAYS" spacing="0" minHeight="350">
+                    <Label text="SELEÇÕES QUE MAIS SOFRERAM GOLS" style="-fx-font-family: 'Poppins'; -fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #D5B256; -fx-padding: 0 0 15px 0;" />
+                    <Region styleClass="bold-row" />
+                    <GridPane style="-fx-padding: 10px 0 0 0;">
+                        <columnConstraints>
+                            <ColumnConstraints percentWidth="60" />
+                            <ColumnConstraints percentWidth="40" />
+                        </columnConstraints>
+                        <Label text="Seleção" styleClass="header-text" maxWidth="Infinity" GridPane.columnIndex="0" />
+                        <Label text="Gols sofridos" styleClass="header-text" maxWidth="Infinity" GridPane.columnIndex="1" />
+                    </GridPane>
+                    <VBox fx:id="mostConcededContainer" />
+                </VBox>
+
+            </HBox>
+
+        </VBox>
+    </content>
+</ScrollPane>

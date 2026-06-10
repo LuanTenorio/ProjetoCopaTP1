@@ -84,7 +84,8 @@
         </HBox>
     </VBox>
     <AnchorPane prefHeight="93.0" prefWidth="512.0">
-        <Button text="Nova Partida"
+        <Button fx:id="btnCadastrar"
+                text="Nova Partida"
                 styleClass="botao-novo"
                 stylesheets="@../css/main.css"
                 xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" onMouseClicked="#navigateToCreateMatch"/>

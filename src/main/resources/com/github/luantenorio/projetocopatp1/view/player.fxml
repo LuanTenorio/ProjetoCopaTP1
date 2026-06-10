@@ -116,5 +116,5 @@
         </HBox>
     </VBox>
 
-    <Button styleClass="botao-novo" stylesheets="@../css/main.css" text="NOVO JOGADOR" onMouseClicked="#navigateToCreatePlayer"/>
+    <Button fx:id="btnCadastrar" styleClass="botao-novo" stylesheets="@../css/main.css" text="NOVO JOGADOR" onMouseClicked="#navigateToCreatePlayer"/>
 </VBox>

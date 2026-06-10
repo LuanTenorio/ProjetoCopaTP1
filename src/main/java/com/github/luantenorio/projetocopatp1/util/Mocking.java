@@ -1,9 +1,6 @@
 package com.github.luantenorio.projetocopatp1.util;
 
-import com.github.luantenorio.projetocopatp1.match.MatchDAO;
-import com.github.luantenorio.projetocopatp1.match.MatchEntity;
-import com.github.luantenorio.projetocopatp1.match.MatchStage;
-import com.github.luantenorio.projetocopatp1.match.MatchStatus;
+import com.github.luantenorio.projetocopatp1.match.*;
 import com.github.luantenorio.projetocopatp1.player.PlayerDAO;
 import com.github.luantenorio.projetocopatp1.player.PlayerEntity;
 import com.github.luantenorio.projetocopatp1.player.PlayerStatus;
@@ -48,6 +45,8 @@ public class Mocking {
         mockTeam();
         mockPlayer();
         mockUser();
+        mockMatchTest();
+
     }
 
     public static void mockEstadium(){
@@ -301,10 +300,65 @@ public class Mocking {
         userService.register(new AdminEntity("Luan Tenorio", "admin@copa.com", "Brasil", "admin123", UserStatus.ACTIVE));
         userService.register(new OrganizerEntity("Ana Silva", "organizer@copa.com", "Argentina", "org2026", UserStatus.ACTIVE));
         userService.register(new RefereeUserEntity("Howard Webb", "referee@copa.com", "Inglaterra", "ref123", UserStatus.ACTIVE, "15"));
-        ;
+
 
 
         System.out.println("Mock dos usuários...");
 
     }
+
+    public static void mockMatchTest() {
+        matchDAO.clearAll();
+
+        // Busca os times pelo nome para garantir IDs corretos
+        List<TeamEntity> allTeams = teamDAO.findAll();
+
+        TeamEntity brazil = allTeams.stream()
+                .filter(t -> t.getName().equals("Brazil")).findFirst().orElse(null);
+        TeamEntity argentina = allTeams.stream()
+                .filter(t -> t.getName().equals("Argentina")).findFirst().orElse(null);
+        TeamEntity france = allTeams.stream()
+                .filter(t -> t.getName().equals("France")).findFirst().orElse(null);
+        TeamEntity germany = allTeams.stream()
+                .filter(t -> t.getName().equals("Germany")).findFirst().orElse(null);
+
+        if (brazil == null || argentina == null || france == null || germany == null) {
+            System.out.println("Times não encontrados! Rode mockTeam() antes.");
+            return;
+        }
+
+        // Partida 1: Brazil 3 x 1 Argentina
+        MatchEntity match1 = new MatchEntity(
+                brazil.getId(), argentina.getId(),
+                createDate(6, 12, 16),
+                "stadium_mane_garrincha",
+                MatchStage.GROUP_STAGE,
+                MatchStatus.FINISHED
+        );
+        match1.setScore("3-1");
+        match1.addEvent("15", EventType.GOAL, "Vini Jr");
+        match1.addEvent("34", EventType.GOAL, "Endrick");
+        match1.addEvent("52", EventType.GOAL, "Vini Jr");
+        match1.addEvent("78", EventType.GOAL, "Rodrygo");   // gol contra — conta pro placar mas aqui é gol normal pra testar
+        matchDAO.create(match1);
+
+        // Partida 2: France 2 x 2 Germany
+        MatchEntity match2 = new MatchEntity(
+                france.getId(), germany.getId(),
+                createDate(6, 13, 16),
+                "stadium_maracana",
+                MatchStage.GROUP_STAGE,
+                MatchStatus.FINISHED
+        );
+        match2.setScore("2-2");
+        match2.addEvent("22", EventType.GOAL, "Vini Jr");
+        match2.addEvent("45", EventType.GOAL, "Endrick");
+        match2.addEvent("60", EventType.GOAL, "Rodrygo");
+        match2.addEvent("88", EventType.GOAL, "Rodrygo");
+        matchDAO.create(match2);
+
+        System.out.println("Mock de partidas...");
+    }
+
+
 }
