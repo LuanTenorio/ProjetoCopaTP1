@@ -5,9 +5,14 @@ import com.github.luantenorio.projetocopatp1.util.ViewName;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import com.github.luantenorio.projetocopatp1.users.UserSession;
+import com.github.luantenorio.projetocopatp1.users.UserEntity;
+import com.github.luantenorio.projetocopatp1.users.AdminEntity;
+import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
+
 
 public class PanelController{
 
@@ -15,12 +20,30 @@ public class PanelController{
     private VBox panel;
 
     @FXML
+    private Button btnGestao;
+
+    @FXML
     private StackPane routerOutlet;
 
     @FXML
     public void initialize() {
         this.forceRoundedEdges();
+        this.verificarAcessoMenu();
         Platform.runLater(this::initialRouter);
+    }
+
+    private void verificarAcessoMenu() {
+        UserSession sessao = UserSession.getInstance();
+
+        if (sessao.isLoggedIn() && sessao.getLoggedUser() instanceof AdminEntity) {
+            // se for admin, o botão fica visível e ativo no layout
+            btnGestao.setVisible(true);
+            btnGestao.setManaged(true);
+        } else {
+            // se for organizador, árbitro ou nulo, o botão some e o layout se ajusta
+            btnGestao.setVisible(false);
+            btnGestao.setManaged(false);
+        }
     }
 
     private void forceRoundedEdges(){
@@ -44,6 +67,8 @@ public class PanelController{
     public void navigateToEstadium(){
         Router.navigateTo(ViewName.STADIUM);
     }
+
+    public void navigateToUser() {Router.navigateTo(ViewName.USER);}
 
     public void navigateToPlayer() {Router.navigateTo(ViewName.PLAYER);}
 

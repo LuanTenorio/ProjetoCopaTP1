@@ -59,7 +59,7 @@
     -fx-text-fill: #20195F;
 }
 
-.btn-pagination {
+.card-table .btn-pagination {
     -fx-background-color: transparent;
     -fx-cursor: hand;
     -fx-padding: 0;

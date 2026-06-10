@@ -55,7 +55,7 @@ public class LoginController implements Initializable {
         UserEntity loggedUser = userService.auth(emailDigitado, senhaDigitada);
 
         if (loggedUser != null) {
-            System.out.println("Login bem-sucedido! Bem-vindo, " + loggedUser.getNome());
+            System.out.println("Login bem-sucedido! Bem-vindo, " + loggedUser.getName());
             System.out.println("Tipo de usuário: " + loggedUser.getClass().getSimpleName());
             UserSession.getInstance().setLoggedUser(loggedUser);
 

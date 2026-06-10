@@ -15,7 +15,9 @@ public enum ViewName {
     CREATE_MATCH("form_match.fxml|Criar Partida"),
     REFEREE("referee.fxml|Estádios"),
     CREATE_REFEREE("form_referee.fxml|Criar Arbitragem"),
-    UPDATE_REFEREE("form_referee.fxml|Editar Arbitragem");
+    UPDATE_REFEREE("form_referee.fxml|Editar Arbitragem"),
+    USER("user.fxml|Gestão de Usuários"),
+    USER_CREATE("user-create.fxml|Cadastrar Novo Usuário");
 
     private final String fileFxmlName;
 

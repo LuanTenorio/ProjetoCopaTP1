@@ -302,7 +302,7 @@ public class Mocking {
         userService.register(new AdminEntity("Luan Tenorio", "admin@copa.com", "Brasil", "admin123", UserStatus.ACTIVE));
         userService.register(new OrganizerEntity("Ana Silva", "organizer@copa.com", "Argentina", "org2026", UserStatus.ACTIVE));
         userService.register(new RefereeUserEntity("Howard Webb", "referee@copa.com", "Inglaterra", "ref123", UserStatus.ACTIVE, "15"));
-        ;
+
 
 
         System.out.println("Mock dos usuários...");

@@ -1,13 +1,11 @@
 package com.github.luantenorio.projetocopatp1.users;
 
-import com.github.luantenorio.projetocopatp1.util.PasswordHasher;
-
 import java.io.Serializable;
 import java.util.UUID;
 
 public abstract class UserEntity implements Serializable {
     private String id;
-    private String nome;
+    private String name;
     private String email;
     private String country;
     private String password;
@@ -17,7 +15,7 @@ public abstract class UserEntity implements Serializable {
 
     public UserEntity(String name, String email, String password, String country, AccessLevel accessLevel, UserStatus status){
         this.id = UUID.randomUUID().toString();
-        this.nome = name;
+        this.name = name;
         this.email = email;
         this.password = password;
         this.country = country;
@@ -27,7 +25,7 @@ public abstract class UserEntity implements Serializable {
 
     public UserEntity(String id,String name, String email, String password, String country, AccessLevel accessLevel, UserStatus status){
         this.id = id;
-        this.nome = name;
+        this.name = name;
         this.email = email;
         this.password = password;
         this.country = country;
@@ -39,9 +37,9 @@ public abstract class UserEntity implements Serializable {
 
     public String getId(){return this.id;}
 
-    public String getNome(){return this.nome;}
+    public String getName(){return this.name;}
 
-    public void setNome(String nome) {this.nome = nome;}
+    public void setName(String name) {this.name = name;}
 
     public String getEmail(){return this.email;}
 
