@@ -17,7 +17,7 @@
             stylesheets="@../css/main.css"
             xmlns="http://javafx.com/javafx/17.0.12"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.github.luantenorio.projetocopatp1.users.CreateUserController">
+            fx:controller="com.github.luantenorio.projetocopatp1.users.FormUserController">
 
     <children>
 
@@ -48,7 +48,7 @@
                     </children>
                 </VBox>
 
-                <!-- FUNÇÃO / STATUS -->
+                <!-- FUNÇÃO  -->
                 <HBox spacing="40.0">
 
                     <children>
@@ -74,7 +74,7 @@
                                     <items>
                                         <FXCollections fx:factory="observableArrayList">
                                             <String fx:value="Administrador"/>
-                                            <String fx:value="Operador"/>
+                                            <String fx:value="Organizador"/>
                                             <String fx:value="Árbitro"/>
                                         </FXCollections>
                                     </items>
@@ -83,7 +83,7 @@
 
                             </children>
                         </VBox>
-
+                        <!-- STATUS  -->
                         <VBox spacing="10.0" HBox.hgrow="ALWAYS">
                             <children>
 
@@ -119,10 +119,12 @@
 
                 </HBox>
 
-                <!-- PAÍS / SENHA -->
+
                 <HBox spacing="40.0">
 
                     <children>
+
+                        <!-- PAÍS  -->
 
                         <VBox spacing="10.0" HBox.hgrow="ALWAYS">
                             <children>
@@ -144,6 +146,25 @@
                             </children>
                         </VBox>
 
+
+                        <!-- EMAIL -->
+                        <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                            <children>
+                                <StackPane alignment="CENTER"
+                                           maxWidth="150.0"
+                                           prefHeight="45.0"
+                                           styleClass="yellow-label">
+                                    <children>
+                                        <Label text="EMAIL" styleClass="blue-text"/>
+                                    </children>
+                                </StackPane>
+                                <TextField fx:id="txtEmail"
+                                                   promptText="joao@email.com..."
+                                                   styleClass="input"/>
+                            </children>
+                        </VBox>
+
+                        <!-- SENHA -->
                         <VBox spacing="10.0" HBox.hgrow="ALWAYS">
                             <children>
 
@@ -179,6 +200,8 @@
                 text="REGISTRAR"
                 AnchorPane.bottomAnchor="40.0"
                 AnchorPane.rightAnchor="50.0"/>
+
+        <Button fx:id="buttonDelete" onMouseClicked="#delete" layoutX="634.0" layoutY="530.0" mnemonicParsing="false" styleClass="button-red" text="Deletar" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="50.0" />
 
     </children>
 

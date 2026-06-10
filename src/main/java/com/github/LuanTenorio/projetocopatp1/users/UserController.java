@@ -109,17 +109,17 @@ public class UserController implements Initializable {
         rowsContainer.getChildren().clear();
 
         int totalItens = filteredUsers.size();
-        int totalPaginas = (int) Math.ceil((double) totalItens / ITEMS_PAGE);
-        if (totalPaginas == 0) totalPaginas = 1;
+        int totalPages = (int) Math.ceil((double) totalItens / ITEMS_PAGE);
+        if (totalPages == 0) totalPages = 1;
 
-        infoPagination.setText(currentPage + " de " + totalPaginas);
-
-
-        int inicio = (currentPage - 1) * ITEMS_PAGE;
-        int fim = Math.min(inicio + ITEMS_PAGE, totalItens);
+        infoPagination.setText(currentPage + " de " + totalPages);
 
 
-        for (int i = inicio; i < fim; i++) {
+        int begin = (currentPage - 1) * ITEMS_PAGE;
+        int end = Math.min(begin + ITEMS_PAGE, totalItens);
+
+
+        for (int i = begin; i < end; i++) {
             UserEntity u = filteredUsers.get(i);
             rowsContainer.getChildren().add(createGridLine(u));
         }
@@ -130,6 +130,10 @@ public class UserController implements Initializable {
         grid.getStyleClass().add("table-row");
         grid.setMinHeight(40);
 
+        grid.setOnMouseClicked(event -> {
+            // navega para o formulário passando o usuário daquela linha
+            Router.navigateTo(ViewName.USER_CREATE, u);
+        });
 
         ColumnConstraints col1 = new ColumnConstraints(); col1.setPercentWidth(25);
         ColumnConstraints col2 = new ColumnConstraints(); col2.setPercentWidth(25);
@@ -150,7 +154,7 @@ public class UserController implements Initializable {
         lblCountry.getStyleClass().add("text-row");
         lblCountry.setMaxWidth(Double.MAX_VALUE);
 
-        Label lblType = new Label(translateLevel(u));
+        Label lblType = new Label(userService.translateLevel(u));
         lblType.getStyleClass().add("text-row");
         lblType.setMaxWidth(Double.MAX_VALUE);
 
@@ -162,12 +166,7 @@ public class UserController implements Initializable {
         return grid;
     }
 
-    private String translateLevel(UserEntity u) {
-        if (u instanceof AdminEntity) return "Administrador";
-        if (u instanceof OrganizerEntity) return "Organizador";
-        if (u instanceof RefereeUserEntity) return "Árbitro";
-        return "Desconhecido";
-    }
+
 
 
 

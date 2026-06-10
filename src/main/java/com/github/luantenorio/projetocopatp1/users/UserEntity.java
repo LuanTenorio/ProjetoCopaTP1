@@ -1,9 +1,13 @@
 package com.github.luantenorio.projetocopatp1.users;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.UUID;
 
 public abstract class UserEntity implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
     private String id;
     private String name;
     private String email;
@@ -61,6 +65,7 @@ public abstract class UserEntity implements Serializable {
 
     public void setStatus(UserStatus status){this.status = status;}
 
+    public void setId(String id) { this.id = id;}
 }
 
 
