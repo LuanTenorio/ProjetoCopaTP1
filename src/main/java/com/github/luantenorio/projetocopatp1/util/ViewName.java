@@ -2,6 +2,7 @@ package com.github.luantenorio.projetocopatp1.util;
 
 public enum ViewName {
     //Nome do arquivo|Título da página
+    FEED("feed.fxml|Início"),
     TEAM("team.fxml|Seleções"),
     PLAYER("player.fxml|Jogadores"),
     CREATE_PLAYER("create_player.fxml|Criar Jogador"),
@@ -17,7 +18,7 @@ public enum ViewName {
     CREATE_REFEREE("form_referee.fxml|Criar Arbitragem"),
     UPDATE_REFEREE("form_referee.fxml|Editar Arbitragem"),
     USER("user.fxml|Gestão de Usuários"),
-    USER_CREATE("create_user.fxml|Cadastrar Novo Usuário");
+    USER_CREATE("form_user.fxml|Cadastrar Novo Usuário");
 
     private final String fileFxmlName;
 

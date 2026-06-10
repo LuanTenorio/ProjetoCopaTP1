@@ -14,8 +14,8 @@
         <VBox fx:id="panel" prefWidth="300.0" spacing="10" styleClass="panel">
             <VBox prefWidth="295.0" styleClass="menu-lateral" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
                 <children>
+                    <Button maxWidth="Infinity" styleClass="menu-button" text="INÍCIO" onMouseClicked="#navigateToFeed" />
                     <Button fx:id="btnGestao" maxWidth="Infinity" styleClass="menu-button, menu-button-first" text="GESTÃO" onAction="#navigateToUser" />
-
                     <Button maxWidth="Infinity" styleClass="menu-button" text="SELEÇÕES" onMouseClicked="#navigateToTeam"/>
                     <Button maxWidth="Infinity" styleClass="menu-button" text="JOGADORES" onMouseClicked="#navigateToPlayer"/>
                     <Button maxWidth="Infinity" styleClass="menu-button" text="ESTÁDIOS" onMouseClicked="#navigateToEstadium"/>

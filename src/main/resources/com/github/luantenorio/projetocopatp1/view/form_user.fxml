@@ -33,44 +33,28 @@
                 <!-- NOME -->
                 <VBox spacing="10.0">
                     <children>
-                        <StackPane alignment="CENTER"
-                                   maxWidth="150.0"
-                                   prefHeight="45.0"
-                                   styleClass="yellow-label">
+                        <StackPane alignment="CENTER" maxWidth="150.0" prefHeight="45.0" styleClass="yellow-label">
                             <children>
                                 <Label text="NOME" styleClass="blue-text"/>
                             </children>
                         </StackPane>
-
-                        <TextField fx:id="txtName"
-                                   promptText="João da Silva..."
-                                   styleClass="input"/>
+                        <TextField fx:id="txtName" promptText="João da Silva..." styleClass="input"/>
                     </children>
                 </VBox>
 
-                <!-- FUNÇÃO  -->
+                <!-- FUNÇÃO e STATUS -->
                 <HBox spacing="40.0">
-
                     <children>
 
                         <VBox spacing="10.0" HBox.hgrow="ALWAYS">
                             <children>
-
-                                <StackPane alignment="CENTER"
-                                           maxWidth="170.0"
-                                           prefHeight="45.0"
-                                           styleClass="yellow-label">
+                                <StackPane alignment="CENTER" maxWidth="170.0" prefHeight="45.0" styleClass="yellow-label">
                                     <children>
-                                        <Label text="FUNÇÃO"
-                                               styleClass="blue-text"/>
+                                        <Label text="FUNÇÃO" styleClass="blue-text"/>
                                     </children>
                                 </StackPane>
-
-                                <ComboBox fx:id="txtRole"
-                                          maxWidth="Infinity"
-                                          promptText="Selecione uma função"
-                                          styleClass="input">
-
+                                <ComboBox fx:id="txtRole" maxWidth="Infinity" promptText="Selecione uma função"
+                                          styleClass="input" onAction="#onRoleChanged">
                                     <items>
                                         <FXCollections fx:factory="observableArrayList">
                                             <String fx:value="Administrador"/>
@@ -78,30 +62,18 @@
                                             <String fx:value="Árbitro"/>
                                         </FXCollections>
                                     </items>
-
                                 </ComboBox>
-
                             </children>
                         </VBox>
-                        <!-- STATUS  -->
+
                         <VBox spacing="10.0" HBox.hgrow="ALWAYS">
                             <children>
-
-                                <StackPane alignment="CENTER"
-                                           maxWidth="170.0"
-                                           prefHeight="45.0"
-                                           styleClass="yellow-label">
+                                <StackPane alignment="CENTER" maxWidth="170.0" prefHeight="45.0" styleClass="yellow-label">
                                     <children>
-                                        <Label text="STATUS"
-                                               styleClass="blue-text"/>
+                                        <Label text="STATUS" styleClass="blue-text"/>
                                     </children>
                                 </StackPane>
-
-                                <ComboBox fx:id="txtStatus"
-                                          maxWidth="Infinity"
-                                          promptText="Ativo..."
-                                          styleClass="input">
-
+                                <ComboBox fx:id="txtStatus" maxWidth="Infinity" promptText="Ativo..." styleClass="input">
                                     <items>
                                         <FXCollections fx:factory="observableArrayList">
                                             <String fx:value="Ativo"/>
@@ -109,85 +81,64 @@
                                             <String fx:value="Bloqueado"/>
                                         </FXCollections>
                                     </items>
-
                                 </ComboBox>
-
                             </children>
                         </VBox>
 
                     </children>
-
                 </HBox>
 
-
+                <!-- PAÍS, EMAIL e SENHA -->
                 <HBox spacing="40.0">
-
                     <children>
-
-                        <!-- PAÍS  -->
 
                         <VBox spacing="10.0" HBox.hgrow="ALWAYS">
                             <children>
-
-                                <StackPane alignment="CENTER"
-                                           maxWidth="170.0"
-                                           prefHeight="45.0"
-                                           styleClass="yellow-label">
+                                <StackPane alignment="CENTER" maxWidth="170.0" prefHeight="45.0" styleClass="yellow-label">
                                     <children>
-                                        <Label text="PAÍS"
-                                               styleClass="blue-text"/>
+                                        <Label text="PAÍS" styleClass="blue-text"/>
                                     </children>
                                 </StackPane>
-
-                                <TextField fx:id="txtCountry"
-                                           promptText="Brasil..."
-                                           styleClass="input"/>
-
+                                <TextField fx:id="txtCountry" promptText="Brasil..." styleClass="input"/>
                             </children>
                         </VBox>
 
-
-                        <!-- EMAIL -->
                         <VBox spacing="10.0" HBox.hgrow="ALWAYS">
                             <children>
-                                <StackPane alignment="CENTER"
-                                           maxWidth="150.0"
-                                           prefHeight="45.0"
-                                           styleClass="yellow-label">
+                                <StackPane alignment="CENTER" maxWidth="150.0" prefHeight="45.0" styleClass="yellow-label">
                                     <children>
                                         <Label text="EMAIL" styleClass="blue-text"/>
                                     </children>
                                 </StackPane>
-                                <TextField fx:id="txtEmail"
-                                                   promptText="joao@email.com..."
-                                                   styleClass="input"/>
+                                <TextField fx:id="txtEmail" promptText="joao@email.com..." styleClass="input"/>
                             </children>
                         </VBox>
 
-                        <!-- SENHA -->
                         <VBox spacing="10.0" HBox.hgrow="ALWAYS">
                             <children>
-
-                                <StackPane alignment="CENTER"
-                                           maxWidth="170.0"
-                                           prefHeight="45.0"
-                                           styleClass="yellow-label">
+                                <StackPane alignment="CENTER" maxWidth="170.0" prefHeight="45.0" styleClass="yellow-label">
                                     <children>
-                                        <Label text="SENHA"
-                                               styleClass="blue-text"/>
+                                        <Label text="SENHA" styleClass="blue-text"/>
                                     </children>
                                 </StackPane>
-
-                                <PasswordField fx:id="txtPassword"
-                                               promptText="Defina uma senha"
-                                               styleClass="input"/>
-
+                                <PasswordField fx:id="txtPassword" promptText="Defina uma senha" styleClass="input"/>
                             </children>
                         </VBox>
 
                     </children>
-
                 </HBox>
+
+                <!-- EXPERIÊNCIA (visível apenas para Árbitro) -->
+                <VBox fx:id="vboxExperience" spacing="10.0" visible="false" managed="false">
+                    <children>
+                        <StackPane alignment="CENTER" maxWidth="200.0" prefHeight="45.0" styleClass="yellow-label">
+                            <children>
+                                <Label text="EXPERIÊNCIA" styleClass="blue-text"/>
+                            </children>
+                        </StackPane>
+                        <TextField fx:id="txtExperience" promptText="Anos de experiência..." styleClass="input"/>
+                    </children>
+                </VBox>
 
             </children>
 
@@ -201,7 +152,13 @@
                 AnchorPane.bottomAnchor="40.0"
                 AnchorPane.rightAnchor="50.0"/>
 
-        <Button fx:id="buttonDelete" onMouseClicked="#delete" layoutX="634.0" layoutY="530.0" mnemonicParsing="false" styleClass="button-red" text="Deletar" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="50.0" />
+        <Button fx:id="buttonDelete"
+                onMouseClicked="#delete"
+                mnemonicParsing="false"
+                styleClass="button-red"
+                text="Deletar"
+                AnchorPane.bottomAnchor="40.0"
+                AnchorPane.leftAnchor="50.0"/>
 
     </children>
 

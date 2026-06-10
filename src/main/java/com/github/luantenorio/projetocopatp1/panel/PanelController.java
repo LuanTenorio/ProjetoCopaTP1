@@ -4,9 +4,7 @@ import com.github.luantenorio.projetocopatp1.util.Router;
 import com.github.luantenorio.projetocopatp1.util.ViewName;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import com.github.luantenorio.projetocopatp1.users.UserSession;
-import com.github.luantenorio.projetocopatp1.users.UserEntity;
 import com.github.luantenorio.projetocopatp1.users.AdminEntity;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
@@ -28,11 +26,11 @@ public class PanelController{
     @FXML
     public void initialize() {
         this.forceRoundedEdges();
-        this.verificarAcessoMenu();
+        this.verifyAccess();
         Platform.runLater(this::initialRouter);
     }
 
-    private void verificarAcessoMenu() {
+    private void verifyAccess() {
         UserSession sessao = UserSession.getInstance();
 
         if (sessao.isLoggedIn() && sessao.getLoggedUser() instanceof AdminEntity) {
@@ -40,7 +38,7 @@ public class PanelController{
             btnGestao.setVisible(true);
             btnGestao.setManaged(true);
         } else {
-            // se for organizador, árbitro ou nulo, o botão some e o layout se ajusta
+            // se for organizador ou árbitro  o botão some e o layout se ajusta
             btnGestao.setVisible(false);
             btnGestao.setManaged(false);
         }
@@ -61,8 +59,10 @@ public class PanelController{
     }
 
     private void initialRouter(){
-        this.navigateToEstadium();
+        this.navigateToFeed();
     }
+
+    public void navigateToFeed() { Router.navigateTo(ViewName.FEED); }
 
     public void navigateToEstadium(){
         Router.navigateTo(ViewName.STADIUM);

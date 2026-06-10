@@ -6,6 +6,7 @@ import com.github.luantenorio.projetocopatp1.util.Router;
 import com.github.luantenorio.projetocopatp1.util.ViewName;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.layout.VBox;
 
 public class FormUserController implements DataController<UserEntity> {
 
@@ -15,6 +16,8 @@ public class FormUserController implements DataController<UserEntity> {
     @FXML private PasswordField txtPassword;
     @FXML private ComboBox<String> txtRole;
     @FXML private ComboBox<String> txtStatus;
+    @FXML private TextField txtExperience;
+    @FXML private VBox vboxExperience;
     @FXML private Button buttonOperate;
     @FXML private Button buttonDelete;
 
@@ -36,6 +39,13 @@ public class FormUserController implements DataController<UserEntity> {
         fillFields();
     }
 
+    @FXML
+    public void onRoleChanged() {
+        boolean isReferee = "Árbitro".equals(txtRole.getValue());
+        vboxExperience.setVisible(isReferee);
+        vboxExperience.setManaged(isReferee);
+    }
+
     private UserEntity getCurrentEntity() {
         String name = txtName.getText();
         String email = txtEmail.getText();
@@ -43,31 +53,29 @@ public class FormUserController implements DataController<UserEntity> {
         String role = txtRole.getValue();
         String statusStr = txtStatus.getValue();
         String password = txtPassword.getText();
+        String experience = txtExperience.getText();
 
-        // Regra para a Senha na Edição:
-        // Se o campo estiver vazio e for uma edição, recuperamos a senha criptografada antiga
+        // regra para a senha
+        // se o campo estiver vazio e for uma edição, recuperamos a senha criptografada antiga
         if (this.isEdit && (password == null || password.isEmpty())) {
             password = this.userSelected.getPassword();
         }
 
-        // Mapeia o status selecionado para o seu Enum UserStatus
         UserStatus status = (statusStr != null && statusStr.equalsIgnoreCase("Ativo"))
                 ? UserStatus.ACTIVE
                 : UserStatus.INACTIVE;
 
         UserEntity user;
 
-        // Instancia o tipo exato de objeto baseado na função selecionada no ComboBox
+        // instancia o tipo exato de objeto
         switch (role) {
             case "Administrador":
                 user = new AdminEntity(name, email, country, password, status);
                 break;
             case "Organizador":
-            case "Operador": // Mapeia ambas as possibilidades do FXML
                 user = new OrganizerEntity(name, email, country, password, status);
                 break;
             case "Árbitro":
-                // Passa o parâmetro extra do árbitro se a sua classe RefereeUserEntity exigir
                 user = new RefereeUserEntity(name, email, country, password, status, "0");
                 break;
             default:
@@ -75,8 +83,7 @@ public class FormUserController implements DataController<UserEntity> {
                 break;
         }
 
-        // SE FOR EDIÇÃO: Preserva o ID original do usuário selecionado.
-        // Isso é vital para que o método userDAO.update() encontre o registro certo no arquivo .bin
+        // mantem o ID original do usuário selecionado se for edição.
         if (this.isEdit) {
             user.setId(this.userSelected.getId());
         }
@@ -94,6 +101,14 @@ public class FormUserController implements DataController<UserEntity> {
 
         txtStatus.setValue(userSelected.getStatus().toString());
         txtPassword.setPromptText("Deixe em branco para manter a atual");
+
+        // se for árbitro, preenche e exibe o campo de experiência
+        if (userSelected instanceof RefereeUserEntity) {
+            String exp = ((RefereeUserEntity) userSelected).getExperience();
+            txtExperience.setText(exp != null ? exp : "");
+            vboxExperience.setVisible(true);
+            vboxExperience.setManaged(true);
+        }
     }
 
     @FXML
@@ -121,7 +136,6 @@ public class FormUserController implements DataController<UserEntity> {
     }
 
     private boolean isInputValid() {
-
         return true;
     }
 

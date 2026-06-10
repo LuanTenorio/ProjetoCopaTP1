@@ -1,9 +1,11 @@
 package com.github.luantenorio.projetocopatp1.stadium;
 
+import com.github.luantenorio.projetocopatp1.util.Permission;
 import com.github.luantenorio.projetocopatp1.util.Router;
 import com.github.luantenorio.projetocopatp1.util.Table;
 import com.github.luantenorio.projetocopatp1.util.ViewName;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
@@ -31,6 +33,9 @@ public class StadiumController extends Table<StadiumEntity> {
     @FXML
     public Label infoPagination;
 
+    @FXML
+    private Button btnCadastrar;
+
     public StadiumController(){
         super(3);
     }
@@ -40,6 +45,7 @@ public class StadiumController extends Table<StadiumEntity> {
         this.objetcs = this.stadiumService.findAll();
         this.renderTable();
         this.formatCapacityField();
+        Permission.restrictToManagement(btnCadastrar);
     }
 
     protected Label[] getLabels(StadiumEntity stadium) {

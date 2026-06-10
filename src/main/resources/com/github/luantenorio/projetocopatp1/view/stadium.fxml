@@ -79,6 +79,7 @@
     </VBox>
 
     <Button text="Novo Estádio"
+            fx:id="btnCadastrar"
             styleClass="botao-novo"
             stylesheets="@../css/main.css"
             xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" onMouseClicked="#navigateToCreateStadium"/>

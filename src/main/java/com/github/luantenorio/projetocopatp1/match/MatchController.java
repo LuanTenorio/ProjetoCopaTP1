@@ -1,10 +1,15 @@
 package com.github.luantenorio.projetocopatp1.match;
 
+import com.github.luantenorio.projetocopatp1.util.Permission;
 import com.github.luantenorio.projetocopatp1.util.Router;
 import com.github.luantenorio.projetocopatp1.util.ViewName;
+import com.github.luantenorio.projetocopatp1.users.UserSession;
+import com.github.luantenorio.projetocopatp1.users.UserEntity;
+import com.github.luantenorio.projetocopatp1.users.RefereeUserEntity;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -45,12 +50,16 @@ public class MatchController {
     private Label infoPagination;
 
     @FXML
+    private Button btnCadastrar;
+
+    @FXML
     public void initialize(){
         ObservableList<String> stages = FXCollections.observableArrayList();
         for(MatchStage type : MatchStage.values()){
             stages.add(type.toString());
         }
         filterStage.setItems(stages);
+        Permission.restrictToManagement(btnCadastrar);
     }
 
     public void previousPage(){
@@ -66,6 +75,7 @@ public class MatchController {
         this.curPage++;
         this.recreateTable();
     }
+
 
     private List<MatchEntity> filter() {
         return matchDAO.findAll().stream().filter(
@@ -132,6 +142,8 @@ public class MatchController {
 
         return grid;
     }
+
+
 
     @FXML
     private void navigateToCreateMatch(){
