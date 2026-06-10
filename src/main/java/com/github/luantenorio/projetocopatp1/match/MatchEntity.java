@@ -2,6 +2,7 @@ package com.github.luantenorio.projetocopatp1.match;
 
 import com.github.luantenorio.projetocopatp1.team.TeamDAO;
 import com.github.luantenorio.projetocopatp1.team.TeamEntity;
+import javafx.css.Match;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.Serializable;
@@ -16,11 +17,11 @@ public class MatchEntity implements Serializable {
     private String team2Id;
     private ZonedDateTime date;
     private String stadiumId;
-    private String stage;
+    private MatchStage stage;
     private MatchStatus status;
     private final Result result = new Result("0-0");
 
-    public MatchEntity(String team1Id, String team2Id, ZonedDateTime date, String stadiumId, String stage) {
+    public MatchEntity(String team1Id, String team2Id, ZonedDateTime date, String stadiumId, MatchStage stage) {
         this.id = UUID.randomUUID().toString();
         this.team1Id = team1Id;
         this.team2Id = team2Id;
@@ -29,8 +30,8 @@ public class MatchEntity implements Serializable {
         this.stage = stage;
     }
 
-    public MatchEntity(String team1Id, String team2Id, ZonedDateTime date, String stadiumId, String stage, MatchStatus status) {
-        this.id = UUID.randomUUID().toString();
+    public MatchEntity(String team1Id, String team2Id, ZonedDateTime date, String stadiumId, MatchStage stage, MatchStatus status) {
+        this.id = this.id = UUID.randomUUID().toString();
         this.team1Id = team1Id;
         this.team2Id = team2Id;
         this.date = date;
@@ -39,7 +40,7 @@ public class MatchEntity implements Serializable {
         this.status = status;
     }
 
-    public MatchEntity(String id, String team1Id, String team2Id, ZonedDateTime date, String stadiumId, String stage, MatchStatus status) {
+    public MatchEntity(String id, String team1Id, String team2Id, ZonedDateTime date, String stadiumId, MatchStage stage, MatchStatus status) {
         this.id = id;
         this.team1Id = team1Id;
         this.team2Id = team2Id;
@@ -90,16 +91,6 @@ public class MatchEntity implements Serializable {
         return dao.findById(team2Id);
     }
 
-    public String getName(){
-        TeamEntity team1 = this.getTeam1();
-        TeamEntity team2 = this.getTeam2();
-
-        if(team1 == null || team2 == null)
-            return null;
-
-        return String.format("%s vs %s", team1.getName(), team2.getName());
-    }
-
     public ZonedDateTime getDate() {
         return date;
     }
@@ -108,7 +99,11 @@ public class MatchEntity implements Serializable {
         return stadiumId;
     }
 
-    public String getStage() {
+    public void setStage(MatchStage stage) {
+        this.stage = stage;
+    }
+
+    public MatchStage getStage() {
         return stage;
     }
 
@@ -127,6 +122,10 @@ public class MatchEntity implements Serializable {
 
     public void setTeam2(@NotNull TeamEntity team2) {
         this.team2Id = team2.getId();
+    }
+
+    public String getName() {
+        return getTeam1().getName() + " vs " + getTeam2().getName();
     }
 
     private class Result implements Serializable {

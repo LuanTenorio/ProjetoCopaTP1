@@ -20,12 +20,12 @@ public class PlayerService {
                 .toList();
     }
 
-    public PlayerEntity createPlayer(PlayerEntity team){
-        return this.playerDAO.create(team);
+    public PlayerEntity createPlayer(PlayerEntity player){
+        return this.playerDAO.create(player);
     }
 
-    public boolean updatePlayer(PlayerEntity team){
-        return this.playerDAO.update(team);
+    public boolean updatePlayer(PlayerEntity player){
+        return this.playerDAO.update(player);
     }
 
     public boolean deletePlayer(String id){
