@@ -14,6 +14,7 @@ public enum ViewName {
     UPDATE_STADIUM("form_stadium.fxml|Editar estádio"),
     MATCH("match.fxml|Partidas"),
     CREATE_MATCH("form_match.fxml|Criar Partida"),
+    UPDATE_MATCH("form_match.fxml|Editar Partida"),
     REFEREE("referee.fxml|Estádios"),
     CREATE_REFEREE("form_referee.fxml|Criar Arbitragem"),
     UPDATE_REFEREE("form_referee.fxml|Editar Arbitragem"),

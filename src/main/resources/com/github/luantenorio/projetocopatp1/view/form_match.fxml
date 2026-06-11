@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.github.luantenorio.projetocopatp1.util.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import com.github.luantenorio.projetocopatp1.util.TimeTextField?>
 
 <AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #FAF9F3;" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.luantenorio.projetocopatp1.match.FormMatchController">
     <VBox layoutX="50.0" layoutY="50.0" spacing="30.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
@@ -56,7 +56,7 @@
 
     </VBox>
 
-    <Button layoutX="634.0" layoutY="530.0" mnemonicParsing="false" onMouseClicked="#register" styleClass="button" text="REGISTRAR" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="50.0" />
-
-    <Button layoutX="50.0" layoutY="513.0" mnemonicParsing="false" styleClass="button" text="Adicionar Resultado" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="558.0" />
+    <Button fx:id="operateBtn" layoutX="634.0" layoutY="530.0" mnemonicParsing="false" onMouseClicked="#operate" styleClass="button" text="REGISTRAR" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="50.0" />
+    <Button fx:id="resultBtn" layoutX="304.0" layoutY="513.0" mnemonicParsing="false" styleClass="button" text="Adicionar Resultado" AnchorPane.bottomAnchor="40.60000000000002" AnchorPane.rightAnchor="304.0" />
+    <Button fx:id="deleteBtn" layoutX="634.0" layoutY="530.0" mnemonicParsing="false" onMouseClicked="#delete" styleClass="button-red" text="Deletar" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="50.0" />
 </AnchorPane>

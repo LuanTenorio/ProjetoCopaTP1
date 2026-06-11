@@ -33,7 +33,7 @@
 
             <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="1">
                 <Label styleClass="label-filter" text="Data" />
-                <TextField fx:id="filterDate" onKeyReleased="#recreateTable" promptText="DD/MM" styleClass="field-filter" />
+                <DatePicker fx:id="filterDate" onAction="#recreateTable" onKeyReleased="#recreateTable" styleClass="field-filter" />
             </VBox>
          <rowConstraints>
             <RowConstraints />

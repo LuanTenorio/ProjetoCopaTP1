@@ -105,37 +105,6 @@ public class Mocking {
 
     public static void mockMatch(){
         matchDAO.clearAll();
-        matchDAO.create(new MatchEntity("5f4b782b-36b9-46e4-8379-5fd7da112524", "6c473ace-a4a6-4500-93a3-71ae440b6224", "a64d611a-128b-4a5a-b043-c727724d78ba", createDate(6, 12, 16), "stadium_azteca", MatchStage.GROUP_STAGE, MatchStatus.FINISHED));
-        matchDAO.create(new MatchEntity("316de5e2-b25d-49a3-bf46-5f4e690bc75e", "a64d611a-128b-4a5a-b043-c727724d78ba", "dc7f4336-5d5b-4d8e-a34f-049a580d3d5f", createDate(6, 12, 16), "stadium_metlife", MatchStage.GROUP_STAGE, MatchStatus.FINISHED));
-        matchDAO.create(new MatchEntity("4be3fb05-e280-4a24-8073-604ea4044d87", "dc7f4336-5d5b-4d8e-a34f-049a580d3d5f", "ccdb54ee-2416-4377-8add-00e85a6e50d6", createDate(6, 13, 13), "stadium_lusail", MatchStage.GROUP_STAGE, MatchStatus.FINISHED));
-        matchDAO.create(new MatchEntity("550b4a36-8fc4-4215-bd43-5b6c29639e8f", "ccdb54ee-2416-4377-8add-00e85a6e50d6", "735b7ab3-37ab-4aa1-a586-ab679a533d27", createDate(6, 14, 16), "stadium_wembley", MatchStage.GROUP_STAGE, MatchStatus.FINISHED));
-        matchDAO.create(new MatchEntity("54b81804-8b45-4de3-9572-98a10f1e5c84", "735b7ab3-37ab-4aa1-a586-ab679a533d27", "e49a6614-99b3-4c26-9c87-14b27f879920", createDate(6, 15, 13), "stadium_maracana", MatchStage.GROUP_STAGE, MatchStatus.FINISHED));
-        matchDAO.create(new MatchEntity("baf56242-e087-4a3e-b625-c5a1e6a6030a", "6c473ace-a4a6-4500-93a3-71ae440b6224", "e49a6614-99b3-4c26-9c87-14b27f879920", createDate(6, 15, 16), "stadium_azteca", MatchStage.GROUP_STAGE, MatchStatus.FINISHED));
-        matchDAO.create(new MatchEntity("team_england", "team_iran", createDate(6, 16, 10), "stadium_metlife", MatchStage.GROUP_STAGE, MatchStatus.FINISHED));
-        matchDAO.create(new MatchEntity("team_usa", "team_wales", createDate(6, 16, 16), "stadium_lusail", MatchStage.GROUP_STAGE, MatchStatus.FINISHED));
-        matchDAO.create(new MatchEntity("team_portugal", "team_ghana", createDate(6, 17, 13), "stadium_wembley", MatchStage.GROUP_STAGE, MatchStatus.FINISHED));
-        matchDAO.create(new MatchEntity("team_uruguay", "team_south_korea", createDate(6, 17, 16), "stadium_maracana", MatchStage.GROUP_STAGE, MatchStatus.FINISHED));
-        matchDAO.create(new MatchEntity("team_brazil", "team_switzerland", createDate(6, 18, 13), "stadium_metlife", MatchStage.GROUP_STAGE));
-        matchDAO.create(new MatchEntity("team_argentina", "team_mexico", createDate(6, 19, 16), "stadium_azteca", MatchStage.GROUP_STAGE));
-        matchDAO.create(new MatchEntity("team_france", "team_denmark", createDate(6, 20, 13), "stadium_wembley", MatchStage.GROUP_STAGE));
-        matchDAO.create(new MatchEntity("team_spain", "team_germany", createDate(6, 21, 16), "stadium_lusail", MatchStage.GROUP_STAGE));
-        matchDAO.create(new MatchEntity("team_portugal", "team_uruguay", createDate(6, 22, 16), "stadium_maracana", MatchStage.GROUP_STAGE));
-        matchDAO.create(new MatchEntity("team_brazil", "team_cameroon", createDate(6, 23, 16), "stadium_azteca", MatchStage.GROUP_STAGE, MatchStatus.SCHEDULED));
-        matchDAO.create(new MatchEntity("team_argentina", "team_poland", createDate(6, 24, 16), "stadium_metlife", MatchStage.GROUP_STAGE, MatchStatus.SCHEDULED));
-        matchDAO.create(new MatchEntity("team_france", "team_tunisia", createDate(6, 25, 12), "stadium_lusail", MatchStage.GROUP_STAGE, MatchStatus.SCHEDULED));
-        matchDAO.create(new MatchEntity("team_spain", "team_japan", createDate(6, 26, 16), "stadium_wembley", MatchStage.GROUP_STAGE, MatchStatus.SCHEDULED));
-        matchDAO.create(new MatchEntity("team_portugal", "team_south_korea", createDate(6, 27, 12), "stadium_maracana", MatchStage.GROUP_STAGE, MatchStatus.SCHEDULED));
-        matchDAO.create(new MatchEntity("team_netherlands", "team_usa", createDate(6, 29, 12), "stadium_azteca",  MatchStage.ROUND_OF_16, MatchStatus.SCHEDULED));
-        matchDAO.create(new MatchEntity("team_argentina", "team_australia", createDate(6, 29, 16), "stadium_metlife", MatchStage.ROUND_OF_16, MatchStatus.SCHEDULED));
-        matchDAO.create(new MatchEntity("team_france", "team_poland", createDate(6, 30, 12), "stadium_lusail",  MatchStage.ROUND_OF_16, MatchStatus.SCHEDULED));
-        matchDAO.create(new MatchEntity("team_england", "team_senegal", createDate(6, 30, 16), "stadium_wembley",  MatchStage.ROUND_OF_16, MatchStatus.SCHEDULED));
-        matchDAO.create(new MatchEntity("team_japan", "team_croatia", createDate(7, 1, 12), "stadium_maracana",  MatchStage.ROUND_OF_16, MatchStatus.SCHEDULED));
-        matchDAO.create(new MatchEntity("team_brazil", "team_south_korea", createDate(7, 1, 16), "stadium_azteca",  MatchStage.ROUND_OF_16, MatchStatus.SCHEDULED));
-        matchDAO.create(new MatchEntity("qf-uuid-1", "team_croatia", "team_brazil", createDate(7, 5, 12), "stadium_lusail", MatchStage.QUARTER_FINALS, MatchStatus.SCHEDULED));
-        matchDAO.create(new MatchEntity("qf-uuid-2", "team_netherlands", "team_argentina", createDate(7, 5, 16), "stadium_metlife", MatchStage.QUARTER_FINALS, MatchStatus.SCHEDULED));
-        matchDAO.create(new MatchEntity("team_argentina", "team_croatia", createDate(7, 9, 16), "stadium_azteca", MatchStage.QUARTER_FINALS, MatchStatus.SCHEDULED));
-        matchDAO.create(new MatchEntity("team_argentina", "team_france", createDate(7, 14, 16), "stadium_metlife", MatchStage.QUARTER_FINALS, MatchStatus.SCHEDULED));
-        System.out.println("Mock das partidas...");
     }
 
     public static void mockReferee() {
