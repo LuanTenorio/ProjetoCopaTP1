@@ -45,7 +45,7 @@ public class Mocking {
         mockTeam();
         mockPlayer();
         mockUser();
-        mockMatchTest();
+
 
     }
 
@@ -103,9 +103,7 @@ public class Mocking {
         return ZonedDateTime.of(2026, month, day, hour, 0, 0, 0, ZoneId.of("America/Sao_Paulo"));
     }
 
-    public static void mockMatch(){
-        matchDAO.clearAll();
-    }
+
 
     public static void mockReferee() {
         refereeService.deleteAll();
@@ -276,7 +274,7 @@ public class Mocking {
 
     }
 
-    public static void mockMatchTest() {
+    public static void mockMatch() {
         matchDAO.clearAll();
 
         // Busca os times pelo nome para garantir IDs corretos
