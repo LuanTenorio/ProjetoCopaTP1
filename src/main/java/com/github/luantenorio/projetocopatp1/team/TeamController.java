@@ -1,10 +1,12 @@
 package com.github.luantenorio.projetocopatp1.team;
 
 import com.github.luantenorio.projetocopatp1.stadium.StadiumEntity;
+import com.github.luantenorio.projetocopatp1.util.Permission;
 import com.github.luantenorio.projetocopatp1.util.Router;
 import com.github.luantenorio.projetocopatp1.util.Table;
 import com.github.luantenorio.projetocopatp1.util.ViewName;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
@@ -22,6 +24,8 @@ public class TeamController extends Table<TeamEntity> {
     private TextField filterGroup;
     @FXML
     private TextField filterCoach;
+    @FXML
+    private Button btnCadastrar;
 
 //    public VBox rowsContainer; atributo herdado de Table<T>
 //    public Label infoPagination; atributo herdado de Table<T>
@@ -33,6 +37,7 @@ public class TeamController extends Table<TeamEntity> {
     public void initialize() {
         this.objetcs = this.teamService.findAll();
         this.renderTable();
+        Permission.restrictToManagement(btnCadastrar);
     }
 
     public void navigateToCreateTeam() {

@@ -1,5 +1,6 @@
 package com.github.luantenorio.projetocopatp1.player;
 
+import com.github.luantenorio.projetocopatp1.util.Permission;
 import com.github.luantenorio.projetocopatp1.util.Router;
 import com.github.luantenorio.projetocopatp1.util.Table;
 import com.github.luantenorio.projetocopatp1.util.ViewName;
@@ -27,6 +28,8 @@ public class PlayerController extends Table<PlayerEntity> {
     private ComboBox<String> filterStatus;
     @FXML
     private TextField filterAge;
+    @FXML
+    private Button btnCadastrar;
 
     public PlayerController() {
         super(5);
@@ -37,6 +40,7 @@ public class PlayerController extends Table<PlayerEntity> {
         this.renderTable();
         this.formatNumberField();
         this.formatAgeField();
+        Permission.restrictToManagement(btnCadastrar);
     }
 
     private void formatAgeField() {

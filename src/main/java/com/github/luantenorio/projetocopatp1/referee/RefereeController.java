@@ -1,9 +1,11 @@
 package com.github.luantenorio.projetocopatp1.referee;
 
+import com.github.luantenorio.projetocopatp1.util.Permission;
 import com.github.luantenorio.projetocopatp1.util.Router;
 import com.github.luantenorio.projetocopatp1.util.Table;
 import com.github.luantenorio.projetocopatp1.util.ViewName;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
@@ -16,6 +18,8 @@ public class RefereeController extends Table<RefereeEntity>  {
     public TextField filterNationality;
     @FXML
     public TextField filterPerformanceTime;
+    @FXML
+    private Button btnCadastrar;
 
     private String nameFormated, nationalityFormated, performanceTimeFormated;
 
@@ -32,6 +36,7 @@ public class RefereeController extends Table<RefereeEntity>  {
         this.objetcs = this.refereeService.findAll();
         this.renderTable();
         this.formatPerformanceTimeField();
+        Permission.restrictToManagement(btnCadastrar);
     }
 
     protected boolean filterCondition(RefereeEntity object) {

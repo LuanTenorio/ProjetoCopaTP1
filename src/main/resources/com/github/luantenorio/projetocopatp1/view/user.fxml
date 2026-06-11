@@ -2,20 +2,21 @@
 
 <?import java.lang.*?>
 <?import java.util.*?>
+<?import javafx.collections.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
 <?import javafx.scene.shape.SVGPath?>
+
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.github.luantenorio.projetocopatp1.stadium.StadiumController"
-      stylesheets="@../css/estadium.css"
+      fx:controller="com.github.luantenorio.projetocopatp1.users.UserController"
+      stylesheets="@../css/pagination-table.css, @../css/filter.css, @../css/main.css"
       spacing="40"
       maxWidth="1440">
 
-<!--    Filtro-->
-    <VBox stylesheets="@../css/filter.css" styleClass="filters" spacing="20" maxHeight="100">
+    <!--    Filtro-->
+    <VBox styleClass="filters" spacing="20" maxHeight="100">
         <Label text="FILTROS" styleClass="title-filter" />
 
         <GridPane hgap="30" vgap="20">
@@ -26,40 +27,55 @@
 
             <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="0">
                 <Label text="Nome" styleClass="label-filter" />
-                <TextField fx:id="filterName" promptText="Mané garrincha" styleClass="field-filter" onKeyReleased="#filterName"/>
+                <TextField fx:id="filterName" promptText="Nome" styleClass="field-filter" onKeyReleased="#filterName" />
             </VBox>
 
             <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="0">
-                <Label text="Localização" styleClass="label-filter" />
-                <TextField fx:id="filterLocation" promptText="Rio de Janeiro" styleClass="field-filter" onKeyReleased="#filterLocation" />
+                <Label text="Email" styleClass="label-filter" />
+                <TextField fx:id="filterEmail" promptText="Email" styleClass="field-filter" onKeyReleased="#filterEmail" />
             </VBox>
 
             <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="1">
-                <Label text="Capacidade" styleClass="label-filter" />
-                <TextField fx:id="filterCapacity" promptText="100.000" styleClass="field-filter" onKeyReleased="#filterCapacity" />
+                <Label text="País" styleClass="label-filter" />
+                <TextField fx:id="filterCountry" promptText="País" styleClass="field-filter" onKeyReleased="#filterCountry" />
             </VBox>
 
+            <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <Label text="Nível de Acesso" styleClass="label-filter" />
+                <ComboBox fx:id="filterAccessLevel" maxWidth="Infinity" promptText="Selecione..." styleClass="field-filter" onAction="#filterAccessLevel">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="Todos" />
+                            <String fx:value="Administrador" />
+                            <String fx:value="Organizador" />
+                            <String fx:value="Árbitro" />
+                        </FXCollections>
+                    </items>
+                </ComboBox>
+            </VBox>
         </GridPane>
     </VBox>
 
-<!--    Tabela-->
-    <VBox styleClass="card-table" minHeight="767" stylesheets="@../css/pagination-table.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+    <!--    Tabela-->
+    <VBox styleClass="card-table" minHeight="767" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
 
-    <GridPane styleClass="header-table">
-        <columnConstraints>
-            <ColumnConstraints percentWidth="33.4" />
-            <ColumnConstraints percentWidth="33.3" />
-            <ColumnConstraints percentWidth="33.3" />
-        </columnConstraints>
+        <GridPane styleClass="header-table">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="25" />
+                <ColumnConstraints percentWidth="25" />
+                <ColumnConstraints percentWidth="25" />
+                <ColumnConstraints percentWidth="25" />
+            </columnConstraints>
 
-        <Label text="Nome" GridPane.columnIndex="0" styleClass="header-text" maxWidth="Infinity"/>
-        <Label text="Localização" GridPane.columnIndex="1" styleClass="header-text" maxWidth="Infinity"/>
-        <Label text="Capacidade" GridPane.columnIndex="2" styleClass="header-text" maxWidth="Infinity"/>
-    </GridPane>
+            <Label text="Nome" GridPane.columnIndex="0" styleClass="header-text" maxWidth="Infinity"/>
+            <Label text="Email" GridPane.columnIndex="1" styleClass="header-text" maxWidth="Infinity"/>
+            <Label text="País" GridPane.columnIndex="2" styleClass="header-text" maxWidth="Infinity"/>
+            <Label text="Nível de Acesso" GridPane.columnIndex="3" styleClass="header-text" maxWidth="Infinity"/>
+        </GridPane>
 
-    <Region styleClass="bold-row" />
+        <Region styleClass="bold-row" />
 
-    <VBox fx:id="rowsContainer" styleClass="row-container" VBox.vgrow="ALWAYS" />
+        <VBox fx:id="rowsContainer" styleClass="row-container" VBox.vgrow="ALWAYS" />
 
         <HBox styleClass="pagination-container" alignment="CENTER" spacing="15">
             <Button styleClass="btn-pagination" onMouseClicked="#previousPage">
@@ -78,11 +94,9 @@
         </HBox>
     </VBox>
 
-    <Button text="Novo Estádio"
-            fx:id="btnCadastrar"
+    <Button text="Novo Usuário"
             styleClass="botao-novo"
             stylesheets="@../css/main.css"
-            xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" onMouseClicked="#navigateToCreateStadium"/>
+            xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" onMouseClicked="#navigateToCreateUser"/>
 
 </VBox>
-

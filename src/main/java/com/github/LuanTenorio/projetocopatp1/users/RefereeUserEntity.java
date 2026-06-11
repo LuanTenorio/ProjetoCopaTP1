@@ -3,8 +3,8 @@ package com.github.luantenorio.projetocopatp1.users;
 public class RefereeUserEntity extends UserEntity{
     private String experience;
 
-    public RefereeUserEntity(String nome, String email, String pais, String senha, UserStatus status, String experience){
-        super(nome, email, pais, senha, AccessLevel.REFEREE, status);
+    public RefereeUserEntity(String nome, String email, String country, String password, UserStatus status, String experience){
+        super(nome, email, password, country, AccessLevel.REFEREE, status);
         this.experience=experience;
     }
 

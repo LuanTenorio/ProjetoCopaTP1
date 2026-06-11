@@ -46,4 +46,11 @@ public class UserService {
         return this.userDAO.update(user);
     }
 
+    public String translateLevel(UserEntity u) {
+        if (u instanceof AdminEntity) return "Administrador";
+        if (u instanceof OrganizerEntity) return "Organizador";
+        if (u instanceof RefereeUserEntity) return "Árbitro";
+        return "Desconhecido";
+    }
+
 }

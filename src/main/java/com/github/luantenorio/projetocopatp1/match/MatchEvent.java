@@ -1,12 +1,14 @@
 package com.github.luantenorio.projetocopatp1.match;
 
-public class MatchEvent {
+import java.io.Serializable;
+
+public class MatchEvent implements Serializable {
     String id;
     String minute;
     EventType type;
     String description;
 
-    public MatchEvent(String id, String minute, EventType type, String description) {
+    public MatchEvent (String id, String minute, EventType type, String description) {
         this.id = id;
         this.minute = minute;
         this.type = type;
