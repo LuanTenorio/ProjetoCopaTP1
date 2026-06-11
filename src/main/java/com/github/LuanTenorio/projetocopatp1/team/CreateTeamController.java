@@ -2,8 +2,6 @@ package com.github.luantenorio.projetocopatp1.team;
 
 import com.github.luantenorio.projetocopatp1.player.PlayerEntity;
 import com.github.luantenorio.projetocopatp1.player.PlayerService;
-import com.github.luantenorio.projetocopatp1.player.PlayerStatus;
-import com.github.luantenorio.projetocopatp1.stadium.StadiumEntity;
 import com.github.luantenorio.projetocopatp1.util.DataController;
 import com.github.luantenorio.projetocopatp1.util.Router;
 import com.github.luantenorio.projetocopatp1.util.ViewName;
@@ -12,7 +10,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -19,6 +19,10 @@ module com.github.luantenorio.projetocopatp1 {
     opens com.github.luantenorio.projetocopatp1.panel to javafx.fxml;
     exports com.github.luantenorio.projetocopatp1.stadium;
     opens com.github.luantenorio.projetocopatp1.stadium to javafx.fxml;
+    exports com.github.luantenorio.projetocopatp1.users;
+    opens com.github.luantenorio.projetocopatp1.users to javafx.fxml;
+    exports com.github.luantenorio.projetocopatp1.feed;
+    opens com.github.luantenorio.projetocopatp1.feed to javafx.fxml;
     exports com.github.luantenorio.projetocopatp1.player;
     opens com.github.luantenorio.projetocopatp1.player to javafx.fxml;
     exports com.github.luantenorio.projetocopatp1.team;

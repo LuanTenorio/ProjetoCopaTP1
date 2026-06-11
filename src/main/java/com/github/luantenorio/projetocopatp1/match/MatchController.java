@@ -1,6 +1,5 @@
 package com.github.luantenorio.projetocopatp1.match;
 
-import com.github.luantenorio.projetocopatp1.referee.RefereeEntity;
 import com.github.luantenorio.projetocopatp1.util.Permission;
 import com.github.luantenorio.projetocopatp1.util.Router;
 import com.github.luantenorio.projetocopatp1.util.Table;
@@ -9,21 +8,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 
-import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
-import java.util.stream.Collectors;
 
 public class MatchController extends Table<MatchEntity> {
     private MatchDAO matchDAO = new MatchDAO();
-    private List<MatchEntity> filteredMatches;
-    private final int SIZE_PAGINATION = 10;
-    private int totPages;
-    private int curPage = 1;
 
     @FXML
     private TextField filterTeam1;
