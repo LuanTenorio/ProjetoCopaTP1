@@ -1,6 +1,5 @@
 package com.github.luantenorio.projetocopatp1.team;
 
-import com.github.luantenorio.projetocopatp1.stadium.StadiumEntity;
 import com.github.luantenorio.projetocopatp1.util.Permission;
 import com.github.luantenorio.projetocopatp1.util.Router;
 import com.github.luantenorio.projetocopatp1.util.Table;
@@ -9,7 +8,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
 
 public class TeamController extends Table<TeamEntity> {
 
@@ -35,7 +33,7 @@ public class TeamController extends Table<TeamEntity> {
     }
 
     public void initialize() {
-        this.objetcs = this.teamService.findAll();
+        this.objects = this.teamService.findAll();
         this.renderTable();
         Permission.restrictToManagement(btnCadastrar);
     }

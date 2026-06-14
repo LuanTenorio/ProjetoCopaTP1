@@ -56,7 +56,7 @@
 
     </VBox>
 
-    <Button fx:id="operateBtn" layoutX="634.0" layoutY="530.0" mnemonicParsing="false" onMouseClicked="#operate" styleClass="button" text="REGISTRAR" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="50.0" />
-    <Button fx:id="resultBtn" layoutX="304.0" layoutY="513.0" mnemonicParsing="false" styleClass="button" text="Adicionar Resultado" AnchorPane.bottomAnchor="40.60000000000002" AnchorPane.rightAnchor="304.0" />
+    <Button fx:id="operateBtn" layoutX="634.0" layoutY="530.0" mnemonicParsing="false" onMouseClicked="#operate" styleClass="button" text="SALVAR" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="50.0" />
+    <Button fx:id="resultBtn" layoutX="304.0" layoutY="513.0" mnemonicParsing="false" onMouseClicked="#editResult" styleClass="button" text="Adicionar Resultado" AnchorPane.bottomAnchor="40.60000000000002" AnchorPane.rightAnchor="304.0" />
     <Button fx:id="deleteBtn" layoutX="634.0" layoutY="530.0" mnemonicParsing="false" onMouseClicked="#delete" styleClass="button-red" text="Deletar" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="50.0" />
 </AnchorPane>

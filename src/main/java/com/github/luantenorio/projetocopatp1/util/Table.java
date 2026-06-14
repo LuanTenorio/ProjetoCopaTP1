@@ -10,36 +10,41 @@ import java.util.List;
 
 public abstract class Table<T> {
 
-    protected List<T> objetcs = new ArrayList<>();
-    private List<T> objectsFiltered = new ArrayList<>();
-    private List<T> objectsVisibles = new ArrayList<>();
-    private int SIZE_PAGINATION = 10;
+    protected List<T> objects = new ArrayList<>();
+    private List<T> filteredObjects = new ArrayList<>();
+    private int paginationSize;
     private int totPages;
     private int curPage = 1;
-    private int numCollumns;
+    private final int numColumns;
 
     public VBox rowsContainer;
     public Label infoPagination;
 
-    protected Table(int numCollumns){
-        this.numCollumns = numCollumns;
+    protected Table(int numColumns){
+        this.numColumns = numColumns;
+        paginationSize = 10;
+    }
+
+    protected Table(int numColumns, int paginationSize){
+        this.numColumns = numColumns;
+        this.paginationSize = paginationSize;
     }
 
     protected void renderTable() {
         this.rowsContainer.getChildren().clear();
         this.filterObjects();
 
-        this.totPages = Math.max(1, (int) Math.ceil((double) objectsFiltered.size() / this.SIZE_PAGINATION));
+        this.totPages = Math.max(1, (int) Math.ceil((double) filteredObjects.size() / this.paginationSize));
 
         if(this.curPage > this.totPages)
             this.curPage = this.totPages;
 
-        int initIndex = (this.curPage - 1) * this.SIZE_PAGINATION;
-        int endIndex = Math.min(initIndex + this.SIZE_PAGINATION, this.objectsFiltered.size());
+        int initIndex = (this.curPage - 1) * this.paginationSize;
+        int endIndex = Math.min(initIndex + this.paginationSize, this.filteredObjects.size());
 
-        this.objectsVisibles = this.objectsFiltered.subList(initIndex, endIndex);
+        List<T> visibleObjects = this.filteredObjects.subList(initIndex, endIndex);
 
-        for (T e : this.objectsVisibles) {
+        for (T e : visibleObjects) {
             GridPane linha = createRowTable(e);
             this.rowsContainer.getChildren().add(linha);
         }
@@ -55,13 +60,13 @@ public abstract class Table<T> {
 
         Label[] labels = this.getLabels(object);
 
-        for(int i = 0; i < this.numCollumns; i++){
+        for(int i = 0; i < this.numColumns; i++){
             ColumnConstraints col = new ColumnConstraints();
-            col.setPercentWidth(100.0 / this.numCollumns);
+            col.setPercentWidth(100.0 / this.numColumns);
             grid.getColumnConstraints().add(col);
         }
 
-        for(int i = 0; i < labels.length && i < this.numCollumns; i++){
+        for(int i = 0; i < labels.length && i < this.numColumns; i++){
             labels[i].getStyleClass().add("text-row");
             labels[i].setMaxWidth(Double.MAX_VALUE);
             grid.add(labels[i], i, 0);
@@ -86,11 +91,11 @@ public abstract class Table<T> {
 
     private void filterObjects(){
         if(this.isEmptyFilters()){
-            this.objectsFiltered = this.objetcs;
+            this.filteredObjects = this.objects;
             return;
         }
 
-        this.objectsFiltered = this.objetcs.stream().filter(this::filterCondition).toList(); // this::filterCondition = object -> this.filterCondition(object)
+        this.filteredObjects = this.objects.stream().filter(this::filterCondition).toList(); // this::filterCondition = object -> this.filterCondition(object)
     }
 
     // Condição que dita se o objeto vai aparecer ou não na tabela

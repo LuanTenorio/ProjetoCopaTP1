@@ -5,7 +5,7 @@ import javafx.scene.control.TextField;
 public class TimeTextField extends TextField {
     @Override
     public void replaceText(int start, int end, String text) {
-        if (start > 4 || !validate(text)) return;
+        if ((text.length() > (end - start) && this.getText().length() >= 5) || !validate(text)) return;
         super.replaceText(start, end, text);
     }
 
@@ -14,27 +14,27 @@ public class TimeTextField extends TextField {
         return text.matches("[0-9|:]*");
     }
 
-    public boolean isValid(){
+    public boolean isInvalid(){
         String text = this.getText();
-        if (text == null) return false;
-        if (text.isBlank()) return false;
+        if (text == null) return true;
+        if (text.isBlank()) return true;
 
         String[] time = text.split(":");
-        if (time.length != 2) return false;
+        if (time.length != 2) return true;
 
         int hours, minutes;
         try{
             hours = Integer.parseInt(time[0]);
             minutes = Integer.parseInt(time[1]);
         } catch (Exception e) {
-            return false;
+            return true;
         }
 
-        return (hours < 24 && hours >= 0) && (minutes < 60 && minutes >= 0);
+        return (hours >= 24 || hours < 0) || (minutes >= 60 || minutes < 0);
     }
 
     public int getHour(){
-        if (!this.isValid()) return 0;
+        if (this.isInvalid()) return 0;
         try{
             return Integer.parseInt(this.getText().split(":")[0]);
         } catch (Exception ignored){
@@ -43,7 +43,7 @@ public class TimeTextField extends TextField {
     }
 
     public int getMinute(){
-        if (!this.isValid()) return 0;
+        if (this.isInvalid()) return 0;
         try{
             return Integer.parseInt(this.getText().split(":")[1]);
         } catch (Exception ignored){

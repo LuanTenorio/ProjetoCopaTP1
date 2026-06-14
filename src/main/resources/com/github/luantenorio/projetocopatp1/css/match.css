@@ -1,0 +1,6 @@
+.label-team {
+    -fx-text-fill: white;
+    -fx-font-family: "Poppins", "Segoe UI", sans-serif;
+    -fx-font-weight: bold;
+    -fx-font-size: 24px;
+}

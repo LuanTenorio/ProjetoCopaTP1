@@ -101,66 +101,67 @@ public class FormMatchController implements DataController<MatchEntity> {
     }
 
     public void operate(){
+        if (!checkInputs()) return;
+
         TeamDAO teamDao = new TeamDAO();
         StadiumDAO stadiumDAO = new StadiumDAO();
 
-        int team1Idx = inputTeam1.getSelectionModel().getSelectedIndex();
-        if (team1Idx < 0) {
-            warn("Selecione a seleção 1!");
-            return;
-        }
-        String team1id = teamIDs.get(team1Idx);
-
-        int team2Idx = inputTeam2.getSelectionModel().getSelectedIndex();
-        if (team2Idx < 0) {
-            warn("Selecione a seleção 1!");
-            return;
-        }
-        String team2id = teamIDs.get(team2Idx);
-        if (team2id == null) {
-            warn("Selecione a seleção 2!");
-            return;
-        }
-
-        int stadiumIdx = inputStadium.getSelectionModel().getSelectedIndex();
-        if (stadiumIdx < 0) {
-            warn("Selecione um estádio!");
-            return;
-        }
-        String stadiumId = stadiumIDs.get(stadiumIdx);
-
-        if (!inputTime.isValid()) {
-            warn("Horário inválido!");
-            return;
-        }
-
-        if (inputDate.getValue() == null) {
-            warn("Selecione uma data!");
-            return;
-        }
         LocalDateTime dateTime = inputDate.getValue().atTime(inputTime.getHour(), inputTime.getMinute());
         ZonedDateTime zonedDateTime = ZonedDateTime.of(dateTime, ZoneId.systemDefault());
-        MatchStage selected = MatchStage.findByName(inputStage.getSelectionModel().getSelectedItem());
-        if (selected == null) {
-            warn("Selecione uma fase!");
-            return;
-        }
+
+        String team1id = teamIDs.get(inputTeam1.getSelectionModel().getSelectedIndex());
+        String team2id = teamIDs.get(inputTeam2.getSelectionModel().getSelectedIndex());
+        String stadiumId = stadiumIDs.get(inputStadium.getSelectionModel().getSelectedIndex());
+        MatchStage stage = MatchStage.findByName(inputStage.getSelectionModel().getSelectedItem());
 
         if (!this.isEdit) {
             MatchEntity match = new MatchEntity(
-                    team1id, team2id, zonedDateTime, stadiumId, selected
+                    team1id,
+                    team2id,
+                    zonedDateTime,
+                    stadiumId,
+                    stage
             );
             dao.create(match);
         }
         else {
             selectedMatch.setTeam1(teamDao.findById(team1id));
             selectedMatch.setTeam2(teamDao.findById(team2id));
-            selectedMatch.setStage(selected);
+            selectedMatch.setStage(stage);
             selectedMatch.setDate(zonedDateTime);
             selectedMatch.setStadium(stadiumDAO.findById(stadiumId));
-            dao.update(selectedMatch);
+
+            if (dao.findById(selectedMatch.getId()) == null)
+                dao.create(selectedMatch);
+            else dao.update(selectedMatch);
         }
         Router.navigateTo(ViewName.MATCH);
+    }
+
+    @FXML
+    public void editResult(){
+        TeamDAO teamDao = new TeamDAO();
+        StadiumDAO stadiumDAO = new StadiumDAO();
+
+        LocalDateTime dateTime = inputDate.getValue().atTime(inputTime.getHour(), inputTime.getMinute());
+        ZonedDateTime zonedDateTime = ZonedDateTime.of(dateTime, ZoneId.systemDefault());
+
+        String team1id = teamIDs.get(inputTeam1.getSelectionModel().getSelectedIndex());
+        String team2id = teamIDs.get(inputTeam2.getSelectionModel().getSelectedIndex());
+        String stadiumId = stadiumIDs.get(inputStadium.getSelectionModel().getSelectedIndex());
+        MatchStage stage = MatchStage.findByName(inputStage.getSelectionModel().getSelectedItem());
+
+        if (!isEdit) selectedMatch = new MatchEntity(
+                team1id, team2id, zonedDateTime, stadiumId, stage);
+        else {
+            selectedMatch.setTeam1(teamDao.findById(team1id));
+            selectedMatch.setTeam2(teamDao.findById(team2id));
+            selectedMatch.setStage(stage);
+            selectedMatch.setDate(zonedDateTime);
+            selectedMatch.setStadium(stadiumDAO.findById(stadiumId));
+        }
+
+        Router.navigateTo(ViewName.UPDATE_RESULT, selectedMatch);
     }
 
     @FXML
@@ -174,9 +175,48 @@ public class FormMatchController implements DataController<MatchEntity> {
         this.selectedMatch = data;
         this.isEdit = true;
         this.setMatch();
-        this.operateBtn.setText("ATUALIZAR");
         this.resultBtn.setText("Editar Resultado");
-        this.deleteBtn.setVisible(true);
+
+        if (dao.findById(selectedMatch.getId()) != null)
+            this.deleteBtn.setVisible(true);
+    }
+
+    private boolean checkInputs(){
+        int team1Idx = inputTeam1.getSelectionModel().getSelectedIndex();
+        if (team1Idx < 0) {
+            warn("Selecione a seleção 1!");
+            return false;
+        }
+
+        int team2Idx = inputTeam2.getSelectionModel().getSelectedIndex();
+        if (team2Idx < 0) {
+            warn("Selecione a seleção 2!");
+            return false;
+        }
+
+        int stadiumIdx = inputStadium.getSelectionModel().getSelectedIndex();
+        if (stadiumIdx < 0) {
+            warn("Selecione um estádio!");
+            return false;
+        }
+
+        if (inputTime.isInvalid()) {
+            warn("Horário inválido!");
+            return false;
+        }
+
+        if (inputDate.getValue() == null) {
+            warn("Selecione uma data!");
+            return false;
+        }
+
+        MatchStage stage = MatchStage.findByName(inputStage.getSelectionModel().getSelectedItem());
+        if (stage == null) {
+            warn("Selecione uma fase!");
+            return false;
+        }
+
+        return true;
     }
 
     private void setMatch() {

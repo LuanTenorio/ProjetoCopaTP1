@@ -12,6 +12,13 @@
     -fx-font-weight: bold;
 }
 
+.title-score {
+    -fx-text-fill: white;
+    -fx-font-family: "Poppins", "Segoe UI", sans-serif;
+    -fx-font-size: 100px;
+    -fx-font-weight: bold;
+}
+
 .label-filter {
     -fx-text-fill: white;
     -fx-font-family: "Poppins", "Segoe UI", sans-serif;

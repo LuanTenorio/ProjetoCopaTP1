@@ -11,6 +11,14 @@
     -fx-padding: 0 0 15px 0; /* Espaço entre o texto e a linha grossa */
 }
 
+.single-header-text {
+    -fx-font-family: "Poppins", sans-serif;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #4B448E;
+    -fx-alignment: center;
+}
+
 .header-text {
     -fx-font-family: "Poppins", sans-serif;
     -fx-font-size: 16px;

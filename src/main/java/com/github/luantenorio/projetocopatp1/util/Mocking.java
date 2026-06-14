@@ -10,12 +10,10 @@ import com.github.luantenorio.projetocopatp1.refereeMatch.RefereeMatchDAO;
 import com.github.luantenorio.projetocopatp1.refereeMatch.RefereeMatchEntity;
 import com.github.luantenorio.projetocopatp1.stadium.StadiumDAO;
 import com.github.luantenorio.projetocopatp1.stadium.StadiumEntity;
-import com.github.luantenorio.projetocopatp1.users.UserEntity;
 import com.github.luantenorio.projetocopatp1.users.UserService;
 import com.github.luantenorio.projetocopatp1.users.RefereeUserEntity;
 import com.github.luantenorio.projetocopatp1.users.OrganizerEntity;
 import com.github.luantenorio.projetocopatp1.users.UserDAO;
-import com.github.luantenorio.projetocopatp1.users.AccessLevel;
 import com.github.luantenorio.projetocopatp1.users.UserStatus;
 import com.github.luantenorio.projetocopatp1.users.AdminEntity;
 import com.github.luantenorio.projetocopatp1.team.TeamDAO;
@@ -303,10 +301,10 @@ public class Mocking {
                 MatchStatus.FINISHED
         );
         match1.setScore("3-1");
-        match1.addEvent("15", EventType.GOAL, "Vini Jr");
-        match1.addEvent("34", EventType.GOAL, "Endrick");
-        match1.addEvent("52", EventType.GOAL, "Vini Jr");
-        match1.addEvent("78", EventType.GOAL, "Rodrygo");   // gol contra — conta pro placar mas aqui é gol normal pra testar
+        match1.addEvent("15'", EventType.GOAL, "Vini Jr");
+        match1.addEvent("34'", EventType.GOAL, "Endrick");
+        match1.addEvent("52'", EventType.GOAL, "Vini Jr");
+        match1.addEvent("78'", EventType.GOAL, "Rodrygo");   // gol contra — conta pro placar mas aqui é gol normal pra testar
         matchDAO.create(match1);
 
         // Partida 2: France 2 x 2 Germany
@@ -318,10 +316,15 @@ public class Mocking {
                 MatchStatus.FINISHED
         );
         match2.setScore("2-2");
-        match2.addEvent("22", EventType.GOAL, "Vini Jr");
-        match2.addEvent("45", EventType.GOAL, "Endrick");
-        match2.addEvent("60", EventType.GOAL, "Rodrygo");
-        match2.addEvent("88", EventType.GOAL, "Rodrygo");
+        match2.addEvent("22'", EventType.GOAL, "Vini Jr");
+        match2.addEvent("45'", EventType.GOAL, "Endrick");
+        match2.addEvent("60'", EventType.GOAL, "Rodrygo");
+        match2.addEvent("88'", EventType.GOAL, "Rodrygo");
+
+
+
+
+
         matchDAO.create(match2);
 
         System.out.println("Mock de partidas...");

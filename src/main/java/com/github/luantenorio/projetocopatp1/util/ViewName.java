@@ -15,11 +15,16 @@ public enum ViewName {
     MATCH("match.fxml|Partidas"),
     CREATE_MATCH("form_match.fxml|Criar Partida"),
     UPDATE_MATCH("form_match.fxml|Editar Partida"),
+    RESULT("result.fxml|Adicionar Resultado"),
     REFEREE("referee.fxml|Estádios"),
     CREATE_REFEREE("form_referee.fxml|Criar Arbitragem"),
     UPDATE_REFEREE("form_referee.fxml|Editar Arbitragem"),
     USER("user.fxml|Gestão de Usuários"),
-    USER_CREATE("form_user.fxml|Cadastrar Novo Usuário");
+    USER_CREATE("form_user.fxml|Cadastrar Novo Usuário"),
+    UPDATE_RESULT("form_result.fxml|Atualizar Resultado de Partida"),
+    CREATE_EVENT("form_event.fxml|Adicionar Evento de Partida"),
+    UPDATE_EVENT("form_event.fxml|Editar Evento de Partida")
+    ;
 
     private final String fileFxmlName;
 

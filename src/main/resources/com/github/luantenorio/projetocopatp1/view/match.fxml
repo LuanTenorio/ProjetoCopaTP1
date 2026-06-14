@@ -28,12 +28,12 @@
 
             <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="1">
                 <Label styleClass="label-filter" text="Fase" />
-                <ComboBox fx:id="filterStage" onAction="#recreateTable" promptText="Escolha" styleClass="field-filter" />
+                <ComboBox fx:id="filterStage" maxWidth="Infinity" onAction="#recreateTable" promptText="Escolha" styleClass="field-filter" />
             </VBox>
 
             <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="1">
                 <Label styleClass="label-filter" text="Data" />
-                <DatePicker fx:id="filterDate" onAction="#recreateTable" onKeyReleased="#recreateTable" styleClass="field-filter" />
+                <DatePicker fx:id="filterDate" maxWidth="Infinity" onAction="#recreateTable" onKeyReleased="#recreateTable" styleClass="field-filter" />
             </VBox>
          <rowConstraints>
             <RowConstraints />

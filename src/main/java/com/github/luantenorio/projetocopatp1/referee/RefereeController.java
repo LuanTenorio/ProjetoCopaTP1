@@ -33,7 +33,7 @@ public class RefereeController extends Table<RefereeEntity>  {
 
     @FXML
     public void initialize() {
-        this.objetcs = this.refereeService.findAll();
+        this.objects = this.refereeService.findAll();
         this.renderTable();
         this.formatPerformanceTimeField();
         Permission.restrictToManagement(btnCadastrar);
