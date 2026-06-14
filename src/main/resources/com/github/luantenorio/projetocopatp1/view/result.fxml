@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<VBox maxWidth="1440" prefHeight="1205.0" prefWidth="512.0" spacing="40" stylesheets="@../css/match.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.luantenorio.projetocopatp1.match.ResultController">
+
+    <!--    Filtro-->
+    <VBox maxHeight="205.0" prefHeight="174.0" prefWidth="512.0" spacing="20" styleClass="filters" stylesheets="@../css/filter.css">
+
+        <GridPane hgap="10" prefHeight="163.0" prefWidth="451.0" vgap="10">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="40.0" />
+                <ColumnConstraints percentWidth="20.0" />
+                <ColumnConstraints percentWidth="40.0" />
+            </columnConstraints>
+           <Label fx:id="scoreLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="90.0" prefWidth="250.0" styleClass="title-score" text="X-X" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <font>
+               <Font name="Inter Semi Bold" />
+            </font></Label>
+             <Label fx:id="team1label" maxWidth="Infinity" prefHeight="20.0" prefWidth="132.0" styleClass="label-team" text="Seleção 1" GridPane.rowIndex="1" />
+             <Label fx:id="team2label" alignment="CENTER_RIGHT" contentDisplay="RIGHT" maxWidth="Infinity" prefHeight="20.0" prefWidth="132.0" styleClass="label-team" text="Seleção 2" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <rowConstraints>
+                <RowConstraints />
+                <RowConstraints />
+            <RowConstraints />
+            </rowConstraints>
+
+        </GridPane>
+    </VBox>
+    <HBox alignment="TOP_CENTER" prefHeight="100.0" spacing="20"><!--    Tabela-->
+        <VBox maxHeight="400" maxWidth="Infinity" styleClass="card-table" stylesheets="@../css/pagination-table.css"
+              HBox.hgrow="ALWAYS">
+
+            <GridPane styleClass="header-table">
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="100"/>
+                </columnConstraints>
+
+                <Label alignment="CENTER" maxWidth="Infinity" styleClass="single-header-text" text="Detalhes"
+                       GridPane.columnIndex="0"/>
+                <rowConstraints>
+                    <RowConstraints/>
+                </rowConstraints>
+            </GridPane>
+
+            <Region styleClass="bold-row"/>
+
+            <VBox fx:id="detalhesRows" styleClass="row-container" VBox.vgrow="SOMETIMES"/>
+        </VBox>
+        <VBox layoutX="10.0" layoutY="10.0" maxHeight="400" maxWidth="Infinity" styleClass="card-table"
+              stylesheets="@../css/pagination-table.css" HBox.hgrow="ALWAYS">
+            <GridPane styleClass="header-table">
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="100"/>
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints/>
+                </rowConstraints>
+                <Label alignment="CENTER" maxWidth="Infinity" styleClass="single-header-text"
+                       text="Minuto-a-Minuto" GridPane.columnIndex="0"/>
+            </GridPane>
+            <Region styleClass="bold-row"/>
+            <VBox fx:id="rowsContainer" styleClass="row-container" VBox.vgrow="ALWAYS"/>
+            <HBox alignment="CENTER" spacing="15" styleClass="pagination-container">
+                <Button onMouseClicked="#previousPage" styleClass="btn-pagination">
+                    <graphic>
+                        <SVGPath
+                                content="M22.9999 3.83331C12.4583 3.83331 3.83325 12.4583 3.83325 23C3.83325 33.5416 12.4583 42.1666 22.9999 42.1666C33.5416 42.1666 42.1666 33.5416 42.1666 23C42.1666 12.4583 33.5416 3.83331 22.9999 3.83331ZM22.9999 38.3333C14.5666 38.3333 7.66659 31.4333 7.66659 23C7.66659 14.5666 14.5666 7.66665 22.9999 7.66665C31.4333 7.66665 38.3333 14.5666 38.3333 23C38.3333 31.4333 31.4333 38.3333 22.9999 38.3333Z M26.2583 15.9083C25.4917 15.1416 24.3417 15.1416 23.575 15.9083L17.825 21.6583C17.0583 22.425 17.0583 23.575 17.825 24.3416L23.575 30.0916C23.9583 30.475 24.5333 30.6666 24.9167 30.6666C25.3 30.6666 25.875 30.475 26.2583 30.0916C27.025 29.325 27.025 28.175 26.2583 27.4083L21.85 23L26.2583 18.5916C27.025 17.825 27.025 16.675 26.2583 15.9083Z"
+                                fill="#1D1756"/>
+                    </graphic>
+                </Button>
+                <Label fx:id="infoPagination" styleClass="text-pagination" text="1 de 1"/>
+                <Button onMouseClicked="#nextPage" styleClass="btn-pagination">
+                    <graphic>
+                        <SVGPath
+                                content="M23.0001 42.1667C33.5417 42.1667 42.1667 33.5417 42.1667 23C42.1667 12.4584 33.5417 3.83335 23.0001 3.83335C12.4584 3.83335 3.83342 12.4584 3.83342 23C3.83342 33.5417 12.4584 42.1667 23.0001 42.1667ZM23.0001 7.66669C31.4334 7.66669 38.3334 14.5667 38.3334 23C38.3334 31.4334 31.4334 38.3334 23.0001 38.3334C14.5667 38.3334 7.66675 31.4334 7.66675 23C7.66675 14.5667 14.5667 7.66669 23.0001 7.66669Z M19.7417 30.0917C20.5083 30.8584 21.6583 30.8584 22.425 30.0917L28.175 24.3417C28.9417 23.575 28.9417 22.425 28.175 21.6584L22.425 15.9084C22.0417 15.525 21.4667 15.3334 21.0833 15.3334C20.7 15.3334 20.125 15.525 19.7417 15.9084C18.975 16.675 18.975 17.825 19.7417 18.5917L24.15 23L19.7417 27.4084C18.975 28.175 18.975 29.325 19.7417 30.0917Z"
+                                fill="#1D1756"/>
+                    </graphic>
+                </Button>
+            </HBox>
+        </VBox>
+    </HBox>
+    <AnchorPane prefHeight="93.0" prefWidth="512.0">
+        <Button fx:id="btnVoltar" layoutX="14.0" layoutY="23.0" onMouseClicked="#back" styleClass="botao-novo" stylesheets="@../css/main.css" text="Voltar" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" />
+      <Button fx:id="btnEditarPartida" layoutX="334.0" layoutY="23.0" onMouseClicked="#editMatch" styleClass="botao-novo" stylesheets="@../css/main.css" text="Editar Partida" />
+    </AnchorPane>
+
+</VBox>

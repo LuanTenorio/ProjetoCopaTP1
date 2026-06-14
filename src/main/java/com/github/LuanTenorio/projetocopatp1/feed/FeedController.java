@@ -44,7 +44,7 @@ public class FeedController implements Initializable {
         // apenas partidas finalizadas
         List<MatchEntity> finishedMatches = allMatches.stream()
                 .filter(m -> m.getStatus() == MatchStatus.FINISHED)
-                .collect(Collectors.toList());
+                .toList();
 
         // cards de resumo
         int totalMatches = finishedMatches.size();
@@ -56,7 +56,7 @@ public class FeedController implements Initializable {
                     Set<MatchEvent> history = m.getHistory();
                     if (history == null) return 0;
                     return (int) history.stream()
-                            .filter(e -> e.getType() == EventType.GOAL || e.getType() == EventType.OWN_GOAL)
+                            .filter(e -> e.type() == EventType.GOAL || e.type() == EventType.OWN_GOAL)
                             .count();
                 })
                 .sum();
@@ -72,8 +72,8 @@ public class FeedController implements Initializable {
             Set<MatchEvent> history = match.getHistory();
             if (history == null) continue;
             for (MatchEvent event : history) {
-                if (event.getType() == EventType.GOAL) {
-                    String desc = event.getDescription();
+                if (event.type() == EventType.GOAL) {
+                    String desc = event.description();
                     goalsByPlayer.merge(desc, 1, Integer::sum);
                 }
             }
@@ -105,7 +105,7 @@ public class FeedController implements Initializable {
         // gols sofridos = gols marcados pelo adversário (score do placar)
         Map<String, Integer> concededByTeam = new HashMap<>();
         for (MatchEntity match : finishedMatches) {
-            String score = match.getScore(null); // "x-y"
+            String score = match.getScore(); // "x-y"
             if (score == null || !score.contains("-")) continue;
             try {
                 String[] parts = score.split("-");
@@ -120,7 +120,7 @@ public class FeedController implements Initializable {
         List<Map.Entry<String, Integer>> mostConceded = concededByTeam.entrySet().stream()
                 .sorted(Map.Entry.<String, Integer>comparingByValue().reversed())
                 .limit(10)
-                .collect(Collectors.toList());
+                .toList();
 
         mostConcededContainer.getChildren().clear();
         for (Map.Entry<String, Integer> entry : mostConceded) {

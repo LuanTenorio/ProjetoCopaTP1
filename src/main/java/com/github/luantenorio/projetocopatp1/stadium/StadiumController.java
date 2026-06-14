@@ -42,7 +42,7 @@ public class StadiumController extends Table<StadiumEntity> {
 
     @FXML
     public void initialize() {
-        this.objetcs = this.stadiumService.findAll();
+        this.objects = this.stadiumService.findAll();
         this.renderTable();
         this.formatCapacityField();
         Permission.restrictToManagement(btnCadastrar);

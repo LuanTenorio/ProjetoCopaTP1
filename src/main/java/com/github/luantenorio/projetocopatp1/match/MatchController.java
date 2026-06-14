@@ -10,9 +10,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 public class MatchController extends Table<MatchEntity> {
-    private MatchDAO matchDAO = new MatchDAO();
+    private final MatchDAO matchDAO = new MatchDAO();
 
     @FXML
     private TextField filterTeam1;
@@ -35,7 +36,7 @@ public class MatchController extends Table<MatchEntity> {
 
     @FXML
     public void initialize(){
-        this.objetcs = this.matchDAO.findAll();
+        this.objects = this.matchDAO.findAll();
         ObservableList<String> stages = FXCollections.observableArrayList();
         for(MatchStage type : MatchStage.values()){
             stages.add(type.toString());
@@ -80,7 +81,9 @@ public class MatchController extends Table<MatchEntity> {
     protected Label[] getLabels(MatchEntity object) {
         return new Label[]{new Label(String.format("%s vs %s", object.getTeam1().getName(), object.getTeam2().getName())),
                 new Label(object.getStage().toString()),
-                new Label(object.getDate().toLocalDate().format(DateTimeFormatter.ISO_LOCAL_DATE)),
+                new Label(object.getDate().toLocalDate().format(
+                        DateTimeFormatter.ofPattern("dd 'de' MMMM 'de' yyyy", new Locale("pt", "BR"))
+                )),
                 new Label(String.format("%02d:%02d BRT",
                         object.getDate().getHour(), object.getDate().getMinute()))
         };
@@ -88,12 +91,15 @@ public class MatchController extends Table<MatchEntity> {
 
     @Override
     protected void onRowClicked(MatchEntity object) {
-        if (Permission.hasManagementAccess()) Router.navigateTo(ViewName.UPDATE_MATCH, object);
-        /* TODO results */
+        Router.navigateTo(ViewName.RESULT, object);
     }
 
     @FXML
     private void navigateToCreateMatch(){
         Router.navigateTo(ViewName.CREATE_MATCH);
     }
+
+
+
+
 }

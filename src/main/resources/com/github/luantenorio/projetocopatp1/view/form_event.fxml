@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.github.luantenorio.projetocopatp1.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #FAF9F3;" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.luantenorio.projetocopatp1.match.FormEventController">
+    <VBox layoutX="50.0" layoutY="50.0" spacing="30.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+        <HBox spacing="40.0">
+            <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                <StackPane maxWidth="200.0" prefHeight="45.0" styleClass="yellow-label">
+                    <Label styleClass="blue-text" text="MINUTO" />
+                </StackPane>
+                <ExtendedNumericalTextField fx:id="inputMinute" promptText="56'..." styleClass="input" />
+            </VBox>
+
+            <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                <StackPane maxWidth="200.0" prefHeight="45.0" styleClass="yellow-label">
+                    <Label styleClass="blue-text" text="TIPO" />
+                </StackPane>
+                <ComboBox fx:id="inputType" styleClass="input" />
+            </VBox>
+        </HBox>
+
+        <HBox spacing="40.0">
+            <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                <StackPane maxWidth="200.0" prefHeight="45.0" styleClass="yellow-label">
+                    <Label styleClass="blue-text" text="DESCRIÇÃO" />
+                </StackPane>
+                <TextField fx:id="inputDescription" promptText="Vini Jr..." styleClass="input" />
+            </VBox>
+        </HBox>
+    </VBox>
+
+    <Button fx:id="back" layoutX="634.0" layoutY="530.0" mnemonicParsing="false" onMouseClicked="#back" styleClass="button" text="Voltar" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="50.0" />
+    <Button fx:id="deleteBtn" layoutX="634.0" layoutY="530.0" mnemonicParsing="false" onMouseClicked="#delete" styleClass="button-red" text="Deletar" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="200.0" />
+    <Button fx:id="operateBtn" layoutX="634.0" layoutY="530.0" mnemonicParsing="false" onMouseClicked="#operate" styleClass="button" text="Salvar Evento" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="304.0" />
+</AnchorPane>

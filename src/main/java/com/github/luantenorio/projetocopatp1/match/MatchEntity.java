@@ -4,24 +4,26 @@ import com.github.luantenorio.projetocopatp1.stadium.StadiumDAO;
 import com.github.luantenorio.projetocopatp1.stadium.StadiumEntity;
 import com.github.luantenorio.projetocopatp1.team.TeamDAO;
 import com.github.luantenorio.projetocopatp1.team.TeamEntity;
-import javafx.css.Match;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Unmodifiable;
 
 import java.io.Serializable;
 import java.time.ZonedDateTime;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
 public class MatchEntity implements Serializable {
-    private String id;
+    private final String id;
     private String team1Id;
     private String team2Id;
     private ZonedDateTime date;
     private String stadiumId;
     private MatchStage stage;
     private MatchStatus status;
-    private final Result result = new Result("0-0");
+    public static final String DEFAULT_SCORE = "0-0";
+    private final Result result = new Result(DEFAULT_SCORE);
 
     public MatchEntity(String team1Id, String team2Id, ZonedDateTime date, String stadiumId, MatchStage stage) {
         this.id = UUID.randomUUID().toString();
@@ -30,10 +32,11 @@ public class MatchEntity implements Serializable {
         this.date = date;
         this.stadiumId = stadiumId;
         this.stage = stage;
+        this.status = MatchStatus.SCHEDULED;
     }
 
     public MatchEntity(String team1Id, String team2Id, ZonedDateTime date, String stadiumId, MatchStage stage, MatchStatus status) {
-        this.id = this.id = UUID.randomUUID().toString();
+        this.id = UUID.randomUUID().toString();
         this.team1Id = team1Id;
         this.team2Id = team2Id;
         this.date = date;
@@ -58,13 +61,22 @@ public class MatchEntity implements Serializable {
         }
     }
 
-    public String getScore(String score){
-        return result.getScore();
+    public String getScore(){
+
+        return this.status != MatchStatus.SCHEDULED ?
+                result.getScore() :
+                DEFAULT_SCORE;
     }
 
+    @Unmodifiable
     public Set<MatchEvent> getHistory(){
-        if (this.status != MatchStatus.SCHEDULED) return result.getHistory();
-        return null;
+        return this.status != MatchStatus.SCHEDULED ?
+                Collections.unmodifiableSet(result.getHistory()) :
+                Collections.emptySet();
+    }
+
+    public void removeEvent(MatchEvent event){
+        result.removeEvent(event);
     }
 
     public String getId() {
@@ -115,7 +127,9 @@ public class MatchEntity implements Serializable {
 
     public void setStatus(MatchStatus status) {
         this.status = status;
-        if (status == MatchStatus.SCHEDULED) result.setScore("0-0");
+        if (status == MatchStatus.SCHEDULED) {
+            result.reset();
+        }
     }
 
     public void setTeam1(@NotNull TeamEntity team1) {
@@ -135,7 +149,7 @@ public class MatchEntity implements Serializable {
         return getTeam1().getName() + " vs " + getTeam2().getName();
     }
 
-    private class Result implements Serializable {
+    private static class Result implements Serializable {
         private String score;
         private final HashSet<MatchEvent> history = new HashSet<>();
 
@@ -164,6 +178,15 @@ public class MatchEntity implements Serializable {
                             description
                     )
             );
+        }
+
+        public void reset() {
+            score = DEFAULT_SCORE;
+            history.clear();
+        }
+
+        public void removeEvent(MatchEvent event){
+            history.remove(event);
         }
     }
 

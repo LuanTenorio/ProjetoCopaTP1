@@ -6,10 +6,6 @@ import com.github.luantenorio.projetocopatp1.util.Table;
 import com.github.luantenorio.projetocopatp1.util.ViewName;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
-
-import java.util.Objects;
 
 public class PlayerController extends Table<PlayerEntity> {
 
@@ -36,7 +32,7 @@ public class PlayerController extends Table<PlayerEntity> {
     }
 
     public void initialize() {
-        this.objetcs = this.playerService.findAll();
+        this.objects = this.playerService.findAll();
         this.renderTable();
         this.formatNumberField();
         this.formatAgeField();
