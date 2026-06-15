@@ -37,10 +37,10 @@ public class Mocking {
 
     public static void main(String[] args) {
         mockEstadium();
+        mockTeam();
         mockMatch();
         mockReferee();
         mockRefereeMatch();
-        mockTeam();
         mockPlayer();
         mockUser();
 
