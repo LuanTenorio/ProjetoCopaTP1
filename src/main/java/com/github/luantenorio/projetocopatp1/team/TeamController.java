@@ -87,6 +87,6 @@ public class TeamController extends Table<TeamEntity> {
 
     @Override
     protected void onRowClicked(TeamEntity object) {
-        Router.navigateTo(ViewName.UPDATE_TEAM, object);
+        if(Permission.hasManagementAccess()) Router.navigateTo(ViewName.UPDATE_TEAM, object);
     }
 }
