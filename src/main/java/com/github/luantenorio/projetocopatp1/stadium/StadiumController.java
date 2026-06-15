@@ -53,7 +53,7 @@ public class StadiumController extends Table<StadiumEntity> {
     }
 
     protected void onRowClicked(StadiumEntity object) {
-        Router.navigateTo(ViewName.UPDATE_STADIUM, object);
+        if(Permission.hasManagementAccess()) Router.navigateTo(ViewName.UPDATE_STADIUM, object);
     }
 
     public void filterName(){

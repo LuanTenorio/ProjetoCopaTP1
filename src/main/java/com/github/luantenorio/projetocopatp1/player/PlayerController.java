@@ -119,7 +119,7 @@ public class PlayerController extends Table<PlayerEntity> {
 
     @Override
     protected void onRowClicked(PlayerEntity object) {
-        Router.navigateTo(ViewName.UPDATE_PLAYER, object);
+        if(Permission.hasManagementAccess()) Router.navigateTo(ViewName.UPDATE_PLAYER, object);
     }
 
     public void navigateToCreatePlayer() {
