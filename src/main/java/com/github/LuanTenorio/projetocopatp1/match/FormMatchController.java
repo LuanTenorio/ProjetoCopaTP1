@@ -143,8 +143,11 @@ public class FormMatchController implements DataController<MatchEntity> {
         TeamDAO teamDao = new TeamDAO();
         StadiumDAO stadiumDAO = new StadiumDAO();
 
-        LocalDateTime dateTime = inputDate.getValue().atTime(inputTime.getHour(), inputTime.getMinute());
-        ZonedDateTime zonedDateTime = ZonedDateTime.of(dateTime, ZoneId.systemDefault());
+        LocalDateTime dateTime = inputDate.getValue() != null ?
+                inputDate.getValue().atTime(inputTime.getHour(), inputTime.getMinute()) :
+                null;
+        ZonedDateTime zonedDateTime = dateTime == null ? null :
+                ZonedDateTime.of(dateTime, ZoneId.systemDefault());
 
         String team1id = teamIDs.get(inputTeam1.getSelectionModel().getSelectedIndex());
         String team2id = teamIDs.get(inputTeam2.getSelectionModel().getSelectedIndex());
